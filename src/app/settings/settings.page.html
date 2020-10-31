@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-item slot="start">
+        <ion-buttons style="zoom: 2.0;" (click)="goBack()">
+<ion-icon name="arrow-back-outline"></ion-icon>        </ion-buttons>
+        </ion-item>
+      <ion-title style="text-align: center;">Settings</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-list>
+	<ion-item>
+      <ion-label style="font-size: 14px;">Screen Notification</ion-label>
+      <ion-toggle color="primary"></ion-toggle>
+    </ion-item>
+</ion-list>
+<ion-list>
+    <ion-item>
+      <ion-label style="font-size: 14px;">Email Alert Setting <span style="font-size: 11px;">Receive individual email alerts each time a new item is posted 
+        from your selected category.</span></ion-label>
+      <ion-toggle color="primary" checked="true"></ion-toggle>
+    </ion-item>
+</ion-list>
+
+      <ion-list>
+    <button class="btnclick" ion-item (click)="change()">
+     Change Password
+    </button>
+</ion-list>
+
+
+    <ion-list>
+    <button class="btnclick" ion-item (click)="terms()">
+     Terms & Conditions
+    </button>
+</ion-list>
+<ion-list>
+     <button class="btnclick" ion-item (click)="privacy()">
+     Payment Settings
+    </button>
+</ion-list>
+<ion-list>
+     <button class="btnclick" ion-item (click)="posting()">
+     Posting Policy
+    </button>
+</ion-list>
+<ion-list>
+     <button class="btnclick" ion-item (click)="contact()">
+     Contact Us
+     </button>
+ </ion-list>
+ <ion-list>
+     <button class="btnclick" ion-item (click)="privacy()">
+      Support
+    </button>
+</ion-list>
+<ion-list>
+     <button class="btnclick" ion-item>
+     Log Out
+    </button>
+  </ion-list>
+</ion-content>

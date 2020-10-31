@@ -1,0 +1,30 @@
+.list .item {
+	border: none !important;
+	border-bottom: 1px solid #ccc !important;
+	min-height: 60px;
+	font-size: 14px;
+	color: #464646;
+}
+.list{
+	margin: 0 !important;
+}
+.item.item-block.item-toggle {
+	min-height: 70px;
+	border: none !important;
+}
+span {
+	display: block;
+}
+.item-block .item-inner {
+	padding-right: 8px;
+	padding-right: 8px;
+	border-bottom: none !important;
+}
+.btnclick{
+    background-color: #fe6e4a;
+    color: #ffff;
+    width: 322px;
+    height: 53px;
+    margin: auto;
+    display: block;
+}

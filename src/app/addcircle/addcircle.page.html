@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item slot="start">
+      <ion-buttons style="zoom: 2.0;" (click)="goBack()">
+<ion-icon name="arrow-back-outline"></ion-icon>        </ion-buttons>
+      </ion-item>
+    <ion-title style="text-align: center; text-transform: uppercase;">add circle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="back">
+  <div class="Image_create">
+      <ion-avatar item-start>
+        <div class="user_img">
+          <img src="../../assets/imgs/group.png">
+          <img class="camera" src="../../assets/imgs/camera.png">
+      </div>
+      </ion-avatar>
+  </div>
+  <ion-list padding style="margin-top: 50px;">
+    
+    <ion-item class="input_1" no-lines>
+      <ion-input type="text" placeholder="Enter Circle Name"></ion-input>
+    </ion-item>
+  
+    <ion-item class="input_1" no-lines style="height: auto;">
+     <ion-textarea rows="4" placeholder="Description"></ion-textarea>
+    </ion-item>
+  
+    <ion-item no-padding no-lines style="background-color: transparent;">
+      <ion-label>Private</ion-label>
+      <ion-toggle checked="false"></ion-toggle>
+    </ion-item>
+  
+  </ion-list>
+  
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<h4 style=" padding:0 16px;">Add Participaints</h4>
+<div class="user" *ngFor="let k of [1,2,3]" (click)="chatdetail()">
+
+<ion-list no-lines>
+<ion-item no-lines class="chat_item">
+  <ion-avatar item-start>
+      <img src="../../assets/imgs/blank-avatar.jpg">
+  </ion-avatar>
+
+    <ion-label>
+  <h6 class="heading_int">Simon</h6>
+  <p class="dat" >@simon_john</p>
+</ion-label>
+          <ion-checkbox item-end color="primary" checked="true"></ion-checkbox>
+        
+</ion-item>
+</ion-list>
+
+</div>
+
+</ion-content>
