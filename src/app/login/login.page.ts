@@ -18,8 +18,9 @@ export class LoginPage implements OnInit {
 
   }
   ionViewWillEnter() {
-    // this.menuCtrl.enable(false);
+    this.menuCtrl.enable(false);
   }
+  ionViewDidLeave(){this.menuCtrl.enable(true)}
 forgot(){
   this.router.navigate(['/menu/forgot']);
 }
