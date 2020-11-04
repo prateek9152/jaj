@@ -53,13 +53,13 @@
     overflow: hidden;
     margin-left: -14px;
     margin-right: -3px;
-    color: #f5fcfa;
+    color: #000;
   }
   .bg{
     background-color: #2b8e75;
   }
 .iconimage{
-  position: absolute; left: 320px; bottom: 3px; top:15px; width: 32px;
+  position: absolute; right: 20px; top:15px; width: 32px;
 }
 .login-logo{height:120px;display:flex;justify-content:center;align-items:center}
 
@@ -75,4 +75,9 @@
   color: #ffff;
   width: 322px;
   height: 53px;
+}
+#footer{
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 0px;
 }

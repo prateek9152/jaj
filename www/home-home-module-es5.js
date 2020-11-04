@@ -216,12 +216,19 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 
       var HomePage = /*#__PURE__*/function () {
-        function HomePage(router) {
+        function HomePage(router, platform) {
           _classCallCheck(this, HomePage);
 
           this.router = router;
+          this.platform = platform;
           this.show = false;
           this.buttonName = 'Show';
           this.weather = 'sunny';
@@ -231,6 +238,18 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             this.type = 'chat';
+          }
+        }, {
+          key: "ionViewDidEnter",
+          value: function ionViewDidEnter() {
+            this.subscription = this.platform.backButton.subscribe(function () {
+              navigator['app'].exitApp();
+            });
+          }
+        }, {
+          key: "ionViewWillLeave",
+          value: function ionViewWillLeave() {
+            this.subscription.unsubscribe();
           }
         }, {
           key: "toggle",
@@ -296,6 +315,8 @@
       HomePage.ctorParameters = function () {
         return [{
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"]
         }];
       };
 

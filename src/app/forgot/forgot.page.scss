@@ -17,7 +17,6 @@
     height: 53px;
 }
 .input_1 {
-    margin: 10px 0;
     height: 35px;
     background: #fff;
     color: #575757;
@@ -26,7 +25,8 @@
     border-radius: 3px;
     width: 322px;
     padding-left: 0px;
-    left: 47px;
+    margin: 10px auto;
+    left: -2px;
 }
 .login_form_main {
 	height: 100%;

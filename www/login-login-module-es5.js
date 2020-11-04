@@ -237,7 +237,13 @@
           value: function ngOnInit() {}
         }, {
           key: "ionViewWillEnter",
-          value: function ionViewWillEnter() {// this.menuCtrl.enable(false);
+          value: function ionViewWillEnter() {
+            this.menuCtrl.enable(false);
+          }
+        }, {
+          key: "ionViewDidLeave",
+          value: function ionViewDidLeave() {
+            this.menuCtrl.enable(true);
           }
         }, {
           key: "forgot",

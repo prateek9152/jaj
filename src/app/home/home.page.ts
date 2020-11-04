@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,27 @@ export class HomePage implements OnInit {
   public show:boolean = false;
   public buttonName:any = 'Show';
   weather = 'sunny';
+  backButtonSubscription; 
+  public subscription: any;
 
-  constructor(private router:Router) {}
+
+  constructor(private router:Router,private platform: Platform,
+    ) {
+
+    }
   ngOnInit(){
     this.type = 'chat';
+  
   }
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
+    });
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
+  }  
   toggle(){
     this.show = !this.show;
 

@@ -27,13 +27,14 @@
     </ion-card-content>
     <ion-grid fixed no-padding>
 
-      <ion-row>
+       <ion-row>
         <ion-col padding>
 
           <ion-list lines="none">
+            
              <ion-item class="box">
               <ion-label  position="stacked">Full Name:</ion-label>
-              <ion-input type="text" style=" font-weight: bold;" placeholder="" value=""  ></ion-input>
+              <ion-input type="text" style=" font-weight: bold; color: #000;" placeholder="" value=""  ></ion-input>
               <img src="../../assets/imgs/status-edit.png" class="iconimage" >
 
             </ion-item><br>
@@ -51,7 +52,7 @@
             <ion-item class="box">
               <ion-label  position="stacked">Phone Number:</ion-label>
               <ion-input inputmode="number" style=" outline: none; font-weight: bold;" placeholder="" value="" ></ion-input>
-              <img src="../../assets/imgs/status-edit.png" class="iconimage" >
+              <img slot="end" src="../../assets/imgs/status-edit.png" class="iconimage" >
             </ion-item>
 
           </ion-list>
@@ -59,14 +60,12 @@
 
 
         </ion-col>
-      </ion-row>
-
-      <div style=" display: flex;flex-direction: column;height: 100%; color: #fe6e4a;">
-        <ion-list padding-horizontal padding-top style="overflow-y: scroll;max-height: 90%; text-align: center;">
-         <button expand="block" style="background-color: #fe6e4a; font-size: medium; width: 360px;
-          height: 36px;
-          color: white; margin-top: 82px;" (click)="save()">Save</button>              </ion-list>
-    </div>
+      </ion-row> 
+<section id="footer">
+  <button expand="block" style="background-color: #fe6e4a; font-size: medium; width: 360px;
+  height: 36px;
+  color: white;" (click)="save()">Save</button>
+</section>
     </ion-grid>
 
 

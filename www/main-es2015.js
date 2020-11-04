@@ -444,17 +444,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+
 
 
 
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar) {
+    constructor(platform, splashScreen, statusBar, alertController, location, router, toastController) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.alertController = alertController;
+        this.location = location;
+        this.router = router;
+        this.toastController = toastController;
+        this.lastTimeBackPress = 0;
+        this.timePeriodToExit = 2000;
         this.initializeApp();
+        this.backButtonEvent();
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -462,12 +473,44 @@ let AppComponent = class AppComponent {
             this.splashScreen.hide();
         });
     }
+    backButtonEvent() {
+        this.platform.backButton.subscribe(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.routerOutlets.forEach((outlet) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                if (outlet && outlet.canGoBack()) {
+                    outlet.pop();
+                }
+                else if (this.router.url === '/menu/home') {
+                    if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
+                        // this.platform.exitApp(); // Exit from app
+                        navigator['app'].exitApp(); // work in ionic 4
+                    }
+                    else {
+                        const toast = yield this.toastController.create({
+                            message: 'Press back again to exit App.',
+                            duration: 2000,
+                            position: 'middle'
+                        });
+                        toast.present();
+                        // console.log(JSON.stringify(toast));
+                        this.lastTimeBackPress = new Date().getTime();
+                    }
+                }
+            }));
+        }));
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
 ];
+AppComponent.propDecorators = {
+    routerOutlets: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"], args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonRouterOutlet"],] }]
+};
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-root',

@@ -118,18 +118,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
 
 
 
 let HomePage = class HomePage {
-    constructor(router) {
+    constructor(router, platform) {
         this.router = router;
+        this.platform = platform;
         this.show = false;
         this.buttonName = 'Show';
         this.weather = 'sunny';
     }
     ngOnInit() {
         this.type = 'chat';
+    }
+    ionViewDidEnter() {
+        this.subscription = this.platform.backButton.subscribe(() => {
+            navigator['app'].exitApp();
+        });
+    }
+    ionViewWillLeave() {
+        this.subscription.unsubscribe();
     }
     toggle() {
         this.show = !this.show;
@@ -169,7 +180,8 @@ let HomePage = class HomePage {
     add() { }
 };
 HomePage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] }
 ];
 HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
