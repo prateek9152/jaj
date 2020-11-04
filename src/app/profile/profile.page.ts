@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +8,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private menuCtrl:MenuController) { 
+  constructor(private menuCtrl:MenuController, private navCtrl: NavController) { 
     
   }
 
@@ -20,5 +20,7 @@ export class ProfilePage implements OnInit {
   ionViewWillEnter() {
     // this.menuCtrl.enable(false);
   }
-
+  goBack(){
+    this.navCtrl.back();
+  }
 }

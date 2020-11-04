@@ -21,6 +21,7 @@ export class ForgotverifyPage implements OnInit {
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
   }
+  ionViewDidLeave(){this.menuCtrl.enable(true)}
   onKeyUp(ev, id) {
     console.log(ev);
     if (ev != 8) {
