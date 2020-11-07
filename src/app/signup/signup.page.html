@@ -19,20 +19,51 @@
           </div>
 
 
-          <ion-list style="margin:0 0 20px">
-            
-            <ion-input class="input_1" type="text" placeholder="Enter First Name"></ion-input>
-              
-              <ion-input class="input_1"  type="text" placeholder="Enter Last Name"></ion-input>
-             
-              <ion-input class="input_1"  type="text" placeholder="Enter Username"></ion-input>
-                 
-              <ion-input class="input_1" type="number" placeholder="Mobile Number"></ion-input>
-
-              <ion-input class="input_1"  type="password" placeholder="Enter Password"></ion-input>
-              
-              <ion-input class="input_1" type="password" placeholder="Enter Confirm Password"></ion-input>
-
+          <ion-list style="margin:0 0 20px; display: inline;">
+            <form [formGroup]="registerForm" (ngSubmit)="signup()">
+            <ion-input class="input_1" type="text" formControlName="firstName" placeholder="Enter First Name" [ngClass]="{'is-invalid': submitted && f.firstName.errors}"></ion-input>
+            <ng-container *ngFor="let validation of validation_messages.firstName">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('firstName').touched) && registerForm.get('firstName').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1"  type="text" formControlName="lastName" placeholder="Enter Last Name" [ngClass]="{'is-invalid': submitted && f.lastName.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.lastName">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('lastName').touched) && registerForm.get('lastName').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1"  type="text" formControlName="username" placeholder="Enter Username" [ngClass]="{'is-invalid': submitted && f.username.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.username">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('username').touched) && registerForm.get('username').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>                  
+              <ion-input class="input_1" type="number" formControlName="phone" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.phone.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.phone">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('phone').touched) && registerForm.get('phone').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1"  type="password" formControlName="password" placeholder="Enter Password" [ngClass]="{'is-invalid':submitted && f.password.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.password">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('password').touched) && registerForm.get('password').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1" type="password" formControlName="confirmPassword" placeholder="Enter Confirm Password" [ngClass]="{'is-invalid':submitted && f.confirmPassword.errors}"></ion-input>
+              <ng-container>
+              <div *ngIf="submitted && f.confirmPassword.errors" class="error-message">
+                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+              </div>
+              </ng-container>
+            </form>
              </ion-list>
 
 

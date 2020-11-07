@@ -37,7 +37,7 @@
     text-align: center;
 }
 .input_1 {
-    height: 35px;
+    height: 50px;
     background: #fff;
     color: #575757;
     font-size: 13px;
@@ -46,7 +46,7 @@
     width: 322px;
     padding-left: 0px;
     margin: 10px auto;
-left: -2px;
+    left: 4px;
 }
 .btn_grp {
     padding: 10px 0 !important;
@@ -54,7 +54,7 @@ left: -2px;
     font-size: 15px;
 }
 .btn_grp p span {
-	color: #fe6e4a;
+	color: #5ac5ad;
 }
 .toolbar-background.toolbar-background-ios {
 	background: #fff;
@@ -87,9 +87,12 @@ left: -2px;
 	margin-right: 8px;
 }
 .btnclick{
-    background-color: #fe6e4a;
+    background-color: #5ac5ad;
     color: #ffff;
     width: 322px;
     height: 53px;
 }
+.error-message { display:block;
+    color:red;
+    margin-top:5px; text-align: center;}
 /* google*/

@@ -240,6 +240,11 @@
             this.menuCtrl.enable(false);
           }
         }, {
+          key: "ionViewDidLeave",
+          value: function ionViewDidLeave() {
+            this.menuCtrl.enable(true);
+          }
+        }, {
           key: "onKeyUp",
           value: function onKeyUp(ev, id) {
             console.log(ev);
