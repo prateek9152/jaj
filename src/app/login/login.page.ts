@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
+import { ToastService } from '../toast.service';
+import {LoaderService} from '../loader.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -12,7 +13,8 @@ export class LoginPage implements OnInit {
   validations_form: FormGroup;
   submitted = false;
 
-  constructor(private router: Router,public menuCtrl:MenuController,public formBuilder: FormBuilder) {
+  constructor(private router: Router,public menuCtrl:MenuController,public formBuilder: FormBuilder,
+    private toastService:ToastService, private ionLoader:LoaderService ) {
     
     // this.menuCtrl.enable(false,"first");
 
@@ -52,13 +54,18 @@ forgot(){
   this.router.navigate(['/menu/forgot']);
 }
 login(){
+  
   this.submitted = true;
   if(this.validations_form.invalid){
 
   return;
   }
+  this.toastService.showLoginToast();
+  
+
 this.router.navigateByUrl('/menu/home');
 }
+
 register(){
   this.router.navigate(['/menu/signup']);
 }

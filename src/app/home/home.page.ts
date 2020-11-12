@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +17,17 @@ export class HomePage implements OnInit {
   public subscription: any;
 
 
-  constructor(private router:Router,private platform: Platform,
+  constructor(private router:Router,private platform: Platform,private auth:AuthService
     ) {
 
     }
   ngOnInit(){
     this.type = 'chat';
+    // let data = {
+    //   "id": this.auth.getCurrentUserId()
+    // };
+    // console.log(data);
+    
   
   }
   ionViewDidEnter() {

@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController,ModalController,NavController } from '@ionic/angular';
 import {MustMatch} from '.././_helpers/must-match.validator';
 import {UsernameValidator} from '../_helpers/username.validator';
 import {PhoneValidator} from '../_helpers/phone.validator';
+import { LoginPage } from '../login/login.page';
+import {ToastService} from '.././toast.service';
+import {LoaderService} from '../loader.service';
+import { AuthService } from '../auth.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -15,8 +20,16 @@ export class SignupPage implements OnInit {
   cTypeName: any = 'password';
   registerForm: FormGroup;
   submitted = false;
-  constructor(private router:Router,private menuCtrl:MenuController, private formBuilder:FormBuilder) { }
+  loading = false;
+  
+  constructor(private router:Router,private menuCtrl:MenuController, 
+    private formBuilder:FormBuilder,private modalController:ModalController,
+    private toastService:ToastService,private ionLoader:LoaderService,private http:HttpClient,public authService:AuthService) { }
 
+    dismissRegister(){
+      this.modalController.dismiss();
+    }
+    
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       firstName: new FormControl('',Validators.compose([
@@ -43,6 +56,8 @@ export class SignupPage implements OnInit {
       validator: MustMatch('password','confirmPassword')
     });
   }
+  
+  
   get f() { return this.registerForm.controls; }
   'validation_messages' = {
     firstName: [{type: 'required',message: 'First Name is required'}],
@@ -77,7 +92,7 @@ export class SignupPage implements OnInit {
       this.pTypeName = 'password'
     }
   }
-
+  
 
   changeTypeC() {
     if (this.cTypeName == 'password') {
@@ -92,9 +107,32 @@ export class SignupPage implements OnInit {
 
     return;
     }
+    // var formData: any = new FormData();
+    // formData.append("firstName", this.registerForm.get('firstName').value);
+    // formData.append("lastName", this.registerForm.get('lastName').value);
+    // formData.append("username", this.registerForm.get('username').value);
+    // formData.append("phone", this.registerForm.get('phone').value);
+    // formData.append("password", this.registerForm.get('password').value);
+    // formData.append("confirmPassword", this.registerForm.get('confirmPassword').value);
+
+    // this.http.post('',formData).subscribe((response:any)=> {
+    //   if(response.status==1){
+    //     this.authService.updateUserDetails(response.data);
+    //   }
+    // })
+    this.toastService.showToast();
+    // this.toastService.presentToast(data['message']);
     this.router.navigate(['/menu/verify'])
+    this.ionLoader.showLoader();
+    setTimeout(() => {
+      this.hideLoader();
+    },1000);
+  }
+  hideLoader(){
+    this.ionLoader.hideLoader();
   }
   login(){
+    
     this.router.navigate(['/menu/login'])
 
   }
