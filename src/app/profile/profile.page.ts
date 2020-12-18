@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
 // import { AuthService } from '../auth.service';
-import { ImageService } from '../image.service';
+import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'app-profile',

@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, Platform } from '@ionic/angular';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { RequestsModalComponent } from '../requests-modal/requests-modal.component';
 // import { AuthService } from '../auth.service';
 

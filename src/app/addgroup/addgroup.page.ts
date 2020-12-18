@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
-import { CommonService } from '../common.service';
+import { CommonService } from '../services/common.service';
 @Component({
   selector: 'app-addgroup',
   templateUrl: './addgroup.page.html',

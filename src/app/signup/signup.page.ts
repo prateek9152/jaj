@@ -6,9 +6,9 @@ import {MustMatch} from '.././_helpers/must-match.validator';
 import {UsernameValidator} from '../_helpers/username.validator';
 import {PhoneValidator} from '../_helpers/phone.validator';
 import { LoginPage } from '../login/login.page';
-import {ToastService} from '.././toast.service';
-import {LoaderService} from '../loader.service';
-import { AuthService } from '../auth.service';
+import {ToastService} from '../services/toast.service';
+import {LoaderService} from '../services/loader.service';
+import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-signup',
