@@ -1,7 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { RequestsModalComponent } from '../requests-modal/requests-modal.component';
+// import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -15,19 +17,34 @@ export class HomePage implements OnInit {
   weather = 'sunny';
   backButtonSubscription; 
   public subscription: any;
+  resultData: any = [];
 
 
-  constructor(private router:Router,private platform: Platform,private auth:AuthService
+  constructor(private router:Router,private platform: Platform,private auth:AuthService,private modalController:ModalController
     ) {
-
+      this.type = "chat";
     }
   ngOnInit(){
-    this.type = 'chat';
-    // let data = {
-    //   "id": this.auth.getCurrentUserId()
-    // };
-    // console.log(data);
-    
+  //  let data = {
+  //    "id" : this.auth.getCurrentUserId()
+  //  };
+  //  this.auth.get(data,'details').subscribe(
+  //   (response:any) =>{
+  //     console.log(response)
+  //     if(response.status==0){
+  //       this.resultData = response;
+
+
+  //       // this.router.navigate(['/menu/home']);
+  //     }
+  //     else {
+  //       this.auth.updateUserDetails(response.data);
+  //     }
+  //   // let data = {
+  //   //   "id": this.auth.getCurrentUserId()
+  //   // };
+  //   // console.log(data);
+  //   })
   
   }
   ionViewDidEnter() {
@@ -76,4 +93,15 @@ segmentChanged(ev: any) {
   console.log('Segment changed', ev);
 }
 add(){}
+async requests(){
+  const modal = await this.modalController.create({
+
+    component: RequestsModalComponent
+
+  });
+  return await modal.present();
+
 }
+}
+
+

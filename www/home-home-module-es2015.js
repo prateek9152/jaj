@@ -119,20 +119,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 
 
 
 
+
+// import { AuthService } from '../auth.service';
 let HomePage = class HomePage {
-    constructor(router, platform) {
+    constructor(router, platform, auth) {
         this.router = router;
         this.platform = platform;
+        this.auth = auth;
         this.show = false;
         this.buttonName = 'Show';
         this.weather = 'sunny';
+        this.resultData = [];
     }
     ngOnInit() {
-        this.type = 'chat';
+        //  let data = {
+        //    "id" : this.auth.getCurrentUserId()
+        //  };
+        //  this.auth.get(data,'details').subscribe(
+        //   (response:any) =>{
+        //     console.log(response)
+        //     if(response.status==0){
+        //       this.resultData = response;
+        //       // this.router.navigate(['/menu/home']);
+        //     }
+        //     else {
+        //       this.auth.updateUserDetails(response.data);
+        //     }
+        //   // let data = {
+        //   //   "id": this.auth.getCurrentUserId()
+        //   // };
+        //   // console.log(data);
+        //   })
     }
     ionViewDidEnter() {
         this.subscription = this.platform.backButton.subscribe(() => {
@@ -181,7 +203,8 @@ let HomePage = class HomePage {
 };
 HomePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
 ];
 HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

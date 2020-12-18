@@ -446,6 +446,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+
 
 
 
@@ -454,7 +456,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar, alertController, location, router, toastController) {
+    constructor(platform, splashScreen, statusBar, alertController, location, router, toastController, auth) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
@@ -462,6 +464,7 @@ let AppComponent = class AppComponent {
         this.location = location;
         this.router = router;
         this.toastController = toastController;
+        this.auth = auth;
         this.lastTimeBackPress = 0;
         this.timePeriodToExit = 2000;
         this.initializeApp();
@@ -469,6 +472,12 @@ let AppComponent = class AppComponent {
     }
     initializeApp() {
         this.platform.ready().then(() => {
+            if (this.auth.isUserLoggedIn()) {
+                this.router.navigate(['/menu/home']);
+            }
+            else {
+                this.router.navigate(['/menu/login']);
+            }
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
@@ -506,7 +515,8 @@ AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
     { type: _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"] }
 ];
 AppComponent.propDecorators = {
     routerOutlets: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"], args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonRouterOutlet"],] }]
@@ -542,6 +552,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js");
+
+
+
 
 
 
@@ -557,15 +573,139 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot()
+        ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }, _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/auth.service.ts ***!
+  \*********************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+
+
+
+// import { Config } from ".././app/config/config";
+
+let AuthService = class AuthService {
+    constructor(http, router) {
+        this.http = http;
+        this.router = router;
+        this.localStorageUserKey = "JAJSESSION";
+        this.localStorageUserTypeKey = "JAJSESSION";
+        // localStorageNotiCount="DRIVERNOTICOUNT";
+        this.onUserDetailChanged = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](null);
+        this.localStorageNotiData = "JAJNOTIDATA";
+        //this.handleError= httpErrorHandler.createHandleError('TasksService')
+    }
+    generateFormData(data) {
+        let input = new FormData();
+        for (let key in data) {
+            if (key !== "confirmP" && key !== "terms") {
+                if (data[key].name && data[key].value) {
+                    input.append(key, data[key].value, data[key].name);
+                }
+                else {
+                    input.append(key, data[key].value);
+                }
+            }
+        }
+        return input;
+    }
+    getUserDetails() {
+        let user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+        return user.userDetails;
+    }
+    getCurrentUserId() {
+        let user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+        return user.userDetails.id;
+    }
+    updateUserDetails(details) {
+        console.log(details);
+        console.log(this.localStorageUserKey, details);
+        let session = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+        if (session) {
+            session.userDetails = details;
+        }
+        else {
+            session = {
+                "userDetails": details,
+                "language": "en"
+            };
+        }
+        localStorage.setItem(this.localStorageUserKey, JSON.stringify(session));
+        //this.onUserDetailChanged.next(details);
+    }
+    removeUserDetails() {
+        let session = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+        delete session["userDetails"];
+        localStorage.setItem(this.localStorageUserKey, JSON.stringify(session));
+    }
+    removeAllSessions() {
+        localStorage.removeItem(this.localStorageUserKey);
+    }
+    isUserLoggedIn() {
+        let user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+        if (user) {
+            if (user.userDetails) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    getUrlFromData(data) {
+        let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]();
+        for (let key in data) {
+            params = params.append(key, data[key]);
+        }
+        return params;
+    }
+    postData(data, url) {
+        let formdata = this.generateFormData(data);
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "Accept": "application/json" });
+        return this.http.post('https://jajoj.threethree.in/api/' + url, formdata, {});
+    }
+    get(data, url) {
+        let params = this.getUrlFromData(data);
+        return this.http.get('https://jajoj.threethree.in/api/' + url, { params: params });
+    }
+};
+AuthService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
+];
+AuthService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], AuthService);
 
 
 

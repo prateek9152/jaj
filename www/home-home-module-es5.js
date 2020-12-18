@@ -222,22 +222,47 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @ionic/angular */
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../auth.service */
+      "./src/app/auth.service.ts"); // import { AuthService } from '../auth.service';
+
 
       var HomePage = /*#__PURE__*/function () {
-        function HomePage(router, platform) {
+        function HomePage(router, platform, auth) {
           _classCallCheck(this, HomePage);
 
           this.router = router;
           this.platform = platform;
+          this.auth = auth;
           this.show = false;
           this.buttonName = 'Show';
           this.weather = 'sunny';
+          this.resultData = [];
         }
 
         _createClass(HomePage, [{
           key: "ngOnInit",
-          value: function ngOnInit() {
-            this.type = 'chat';
+          value: function ngOnInit() {//  let data = {
+            //    "id" : this.auth.getCurrentUserId()
+            //  };
+            //  this.auth.get(data,'details').subscribe(
+            //   (response:any) =>{
+            //     console.log(response)
+            //     if(response.status==0){
+            //       this.resultData = response;
+            //       // this.router.navigate(['/menu/home']);
+            //     }
+            //     else {
+            //       this.auth.updateUserDetails(response.data);
+            //     }
+            //   // let data = {
+            //   //   "id": this.auth.getCurrentUserId()
+            //   // };
+            //   // console.log(data);
+            //   })
           }
         }, {
           key: "ionViewDidEnter",
@@ -317,6 +342,8 @@
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"]
+        }, {
+          type: _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]
         }];
       };
 

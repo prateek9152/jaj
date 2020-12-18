@@ -21,10 +21,10 @@
 
           <ion-list style="margin:0 0 20px; display: inline;">
             <form [formGroup]="registerForm" (ngSubmit)="signup()">
-            <ion-input class="input_1" type="text" formControlName="firstName" placeholder="Enter First Name" [ngClass]="{'is-invalid': submitted && f.firstName.errors}"></ion-input>
-            <ng-container *ngFor="let validation of validation_messages.firstName">
+            <ion-input class="input_1" type="text" formControlName="name" placeholder="Enter First Name" [ngClass]="{'is-invalid': submitted && f.name.errors}"></ion-input>
+            <ng-container *ngFor="let validation of validation_messages.name">
                 <span class="error-message"
-                  *ngIf="(submitted || registerForm.get('firstName').touched) && registerForm.get('firstName').hasError(validation.type)">
+                  *ngIf="(submitted || registerForm.get('name').touched) && registerForm.get('name').hasError(validation.type)">
                   {{ validation.message }}
                 </span>
               </ng-container>
@@ -41,7 +41,8 @@
                   *ngIf="(submitted || registerForm.get('username').touched) && registerForm.get('username').hasError(validation.type)">
                   {{ validation.message }}
                 </span>
-              </ng-container>                  
+              </ng-container>
+                               
               <ion-input class="input_1" type="number" formControlName="phone" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.phone.errors}"></ion-input>
               <ng-container *ngFor="let validation of validation_messages.phone">
                 <span class="error-message"
@@ -56,11 +57,11 @@
                   {{ validation.message }}
                 </span>
               </ng-container>
-              <ion-input class="input_1" type="password" formControlName="confirmPassword" placeholder="Enter Confirm Password" [ngClass]="{'is-invalid':submitted && f.confirmPassword.errors}"></ion-input>
+              <ion-input class="input_1" type="password" formControlName="c_password" placeholder="Enter Confirm Password" [ngClass]="{'is-invalid':submitted && f.c_password.errors}"></ion-input>
               <ng-container>
-              <div *ngIf="submitted && f.confirmPassword.errors" class="error-message">
-                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+              <div *ngIf="submitted && f.c_password.errors" class="error-message">
+                <div *ngIf="f.c_password.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.c_password.errors.mustMatch">Passwords must match</div>
               </div>
               </ng-container>
             </form>

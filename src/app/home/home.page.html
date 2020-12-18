@@ -17,6 +17,8 @@
     &nbsp;&nbsp;<button ion-button clear icon-only style="color: #000;font-weight: 600;padding: 0;margin: 0; border: none; background: none;" (click)="toggle()">
       <img src="assets/imgs/eye.png" width="25">
       </button>
+      &nbsp;&nbsp; <button ion-button clear icon-only style="color: #000; font-weight: 600; padding: 0; margin: 0;
+      border: none; background: none; outline: none;" (click)="requests()"><ion-icon name="people"></ion-icon></button>
 </ion-buttons>
 <!-- <ion-buttons slot="end">
   <button ion-button (click)="video()" style="color: #000;font-size: 25px; padding: 0;margin: 0; border: none; background: none;">
@@ -34,15 +36,15 @@
 <ion-content class="back">
 
   <ion-segment [(ngModel)]="type" style="background-color: #fe6e4a;">
-    <ion-segment-button  value="chat">
+    <ion-segment-button   value="chat">
       Chat
    </ion-segment-button>
-   <ion-segment-button value="group">
+   <!-- <ion-segment-button value="group">
        Groups
    </ion-segment-button>
    <ion-segment-button value="circle">
        Circles
-   </ion-segment-button>
+   </ion-segment-button> -->
    <ion-segment-button value="request">
     Requests
   </ion-segment-button>
@@ -115,7 +117,7 @@
   
   </div>
   
-  <div *ngSwitchCase="'group'" class="list_plan">
+  <!-- <div *ngSwitchCase="'group'" class="list_plan">
     <ion-searchbar></ion-searchbar>
       
     <div class="user" *ngFor="let k of [1,2,3,4,5]" (click)="chatdetail()">
@@ -125,14 +127,12 @@
       <ion-item  class="chat_item">
         <ion-avatar item-start>
             <img src="assets/imgs/blank-avatar.jpg">
-            <!-- <img class="new_img" src="assets/imgs/lock.png"> -->
         
         </ion-avatar>
         <div>
         <h6 class="heading_int">Korzinka UZ Staff</h6>
         <p class="dateee"><span>Sultan:</span> How are you?</p>
         </div>
-        <!-- <p style="color: #000;font-size: 12px;">31 members <span style="float: right;"><h4 style="font-size: 12px;">@Sultan(3)</h4></span></p> -->
               <div class="rate">
                   <p class="dat">3:47 PM <span class="ping">7</span></p>
               </div>
@@ -199,7 +199,7 @@
       </div>
   
   
-  </div>
+  </div> -->
   
   <div *ngSwitchCase="'request'" class="list_plan">
     <ion-searchbar></ion-searchbar>

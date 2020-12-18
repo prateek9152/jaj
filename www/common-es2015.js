@@ -432,6 +432,149 @@ const openURL = async (url, ev, direction, animation) => {
 
 
 
+/***/ }),
+
+/***/ "./src/app/loader.service.ts":
+/*!***********************************!*\
+  !*** ./src/app/loader.service.ts ***!
+  \***********************************/
+/*! exports provided: LoaderService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderService", function() { return LoaderService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+
+
+let LoaderService = class LoaderService {
+    constructor(loadingController) {
+        this.loadingController = loadingController;
+    }
+    showHideAutoLoader() {
+        this.loadingController.create({
+            message: 'This loader Will Auto Hide in 2 seconds',
+            duration: 2000
+        }).then((res) => {
+            res.present();
+            res.onDidDismiss().then((dis) => {
+                console.log('Loading dismissed! after 2 seconds', dis);
+            });
+        });
+    }
+    showLoader() {
+        this.loadingController.create({
+            message: 'Please Wait....'
+        }).then((res) => {
+            res.present();
+        });
+    }
+    hideLoader() {
+        this.loadingController.dismiss().then((res) => {
+            console.log('Loading dismissed!', res);
+        }).catch((error) => {
+            console.log('error', error);
+        });
+    }
+};
+LoaderService.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] }
+];
+LoaderService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], LoaderService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/toast.service.ts":
+/*!**********************************!*\
+  !*** ./src/app/toast.service.ts ***!
+  \**********************************/
+/*! exports provided: ToastService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToastService", function() { return ToastService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+
+
+let ToastService = class ToastService {
+    constructor(toast) {
+        this.toast = toast;
+    }
+    showToast() {
+        this.myToast = this.toast.create({
+            position: 'bottom',
+            cssClass: 'my-custom-class',
+            buttons: [
+                {
+                    side: 'start',
+                    icon: 'alert-circle-outline',
+                    text: 'Your Registration has been created successfully.',
+                    handler: () => {
+                        console.log('Favorite clicked');
+                    }
+                }, {
+                    text: 'Done',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        }).then((toastData) => {
+            console.log(toastData);
+            toastData.present();
+        });
+    }
+    showLoginToast() {
+        this.myToast = this.toast.create({
+            position: 'bottom',
+            cssClass: 'my-custom-class',
+            buttons: [
+                {
+                    side: 'start',
+                    icon: 'alert-circle-outline',
+                    text: 'Success Login Credentials.',
+                    handler: () => {
+                        console.log('Favorite clicked');
+                    }
+                }, {
+                    text: 'Done',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        }).then((toastData) => {
+            console.log(toastData);
+            toastData.present();
+        });
+    }
+};
+ToastService.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+];
+ToastService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], ToastService);
+
+
+
 /***/ })
 
 }]);

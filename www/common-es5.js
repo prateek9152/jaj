@@ -1,4 +1,10 @@
 (function () {
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
   function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -655,6 +661,211 @@
       }();
       /***/
 
+    },
+
+    /***/
+    "./src/app/loader.service.ts":
+    /*!***********************************!*\
+      !*** ./src/app/loader.service.ts ***!
+      \***********************************/
+
+    /*! exports provided: LoaderService */
+
+    /***/
+    function srcAppLoaderServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "LoaderService", function () {
+        return LoaderService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+      var LoaderService = /*#__PURE__*/function () {
+        function LoaderService(loadingController) {
+          _classCallCheck(this, LoaderService);
+
+          this.loadingController = loadingController;
+        }
+
+        _createClass(LoaderService, [{
+          key: "showHideAutoLoader",
+          value: function showHideAutoLoader() {
+            this.loadingController.create({
+              message: 'This loader Will Auto Hide in 2 seconds',
+              duration: 2000
+            }).then(function (res) {
+              res.present();
+              res.onDidDismiss().then(function (dis) {
+                console.log('Loading dismissed! after 2 seconds', dis);
+              });
+            });
+          }
+        }, {
+          key: "showLoader",
+          value: function showLoader() {
+            this.loadingController.create({
+              message: 'Please Wait....'
+            }).then(function (res) {
+              res.present();
+            });
+          }
+        }, {
+          key: "hideLoader",
+          value: function hideLoader() {
+            this.loadingController.dismiss().then(function (res) {
+              console.log('Loading dismissed!', res);
+            })["catch"](function (error) {
+              console.log('error', error);
+            });
+          }
+        }]);
+
+        return LoaderService;
+      }();
+
+      LoaderService.ctorParameters = function () {
+        return [{
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]
+        }];
+      };
+
+      LoaderService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], LoaderService);
+      /***/
+    },
+
+    /***/
+    "./src/app/toast.service.ts":
+    /*!**********************************!*\
+      !*** ./src/app/toast.service.ts ***!
+      \**********************************/
+
+    /*! exports provided: ToastService */
+
+    /***/
+    function srcAppToastServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ToastService", function () {
+        return ToastService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+      var ToastService = /*#__PURE__*/function () {
+        function ToastService(toast) {
+          _classCallCheck(this, ToastService);
+
+          this.toast = toast;
+        }
+
+        _createClass(ToastService, [{
+          key: "showToast",
+          value: function showToast() {
+            this.myToast = this.toast.create({
+              position: 'bottom',
+              cssClass: 'my-custom-class',
+              buttons: [{
+                side: 'start',
+                icon: 'alert-circle-outline',
+                text: 'Your Registration has been created successfully.',
+                handler: function handler() {
+                  console.log('Favorite clicked');
+                }
+              }, {
+                text: 'Done',
+                role: 'cancel',
+                handler: function handler() {
+                  console.log('Cancel clicked');
+                }
+              }]
+            }).then(function (toastData) {
+              console.log(toastData);
+              toastData.present();
+            });
+          }
+        }, {
+          key: "showLoginToast",
+          value: function showLoginToast() {
+            this.myToast = this.toast.create({
+              position: 'bottom',
+              cssClass: 'my-custom-class',
+              buttons: [{
+                side: 'start',
+                icon: 'alert-circle-outline',
+                text: 'Success Login Credentials.',
+                handler: function handler() {
+                  console.log('Favorite clicked');
+                }
+              }, {
+                text: 'Done',
+                role: 'cancel',
+                handler: function handler() {
+                  console.log('Cancel clicked');
+                }
+              }]
+            }).then(function (toastData) {
+              console.log(toastData);
+              toastData.present();
+            });
+          }
+        }]);
+
+        return ToastService;
+      }();
+
+      ToastService.ctorParameters = function () {
+        return [{
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+        }];
+      };
+
+      ToastService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], ToastService);
+      /***/
     }
   }]);
 })();

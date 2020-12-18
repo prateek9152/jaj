@@ -11,12 +11,22 @@
 <ion-content padding class="back_img">
   <div class="login_form_main">
     <div class="login_form">
+      <form [formGroup]="forgotForm" (ngSubmit)="send()">
+
   <ion-label style="text-align: center;
   display: block; font-weight: bold;">Enter Your Phone Number</ion-label>
-  <ion-input class="input_1" type="number" placeholder="Mobile Number"></ion-input>
+  <ion-input class="input_1" type="number" formControlName="phone" placeholder="Mobile Number"></ion-input>
+  <ng-container *ngFor="let validation of validation_messages.phone">
+    <span class="error-message"
+      *ngIf="(submitted || forgotForm.get('phone').touched) && forgotForm.get('phone').hasError(validation.type)">
+      {{ validation.message }}
+    </span>
+  </ng-container>
   <div padding class="btn_grp">
     <button class="btnclick" (click)="send()">Send</button>
   </div>
-  </div>
+</form>
+
+</div>
   </div>
 </ion-content>

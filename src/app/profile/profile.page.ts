@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
-import { AuthService } from '../auth.service';
+// import { AuthService } from '../auth.service';
 import { ImageService } from '../image.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ProfilePage implements OnInit {
   useBlobImage: any;
   blobImage: Blob;
 
-  constructor(private menuCtrl:MenuController, private navCtrl: NavController,private imageP:ImageService,public auth:AuthService) { 
+  constructor(private menuCtrl:MenuController, private navCtrl: NavController,private imageP:ImageService) { 
     // this.formData = this.auth.getUserDetails();
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
 import { CommonService } from '../common.service';
-import {GroupusersmodalComponent} from '.././groupusersmodal/groupusersmodal.component';
 @Component({
   selector: 'app-addgroup',
   templateUrl: './addgroup.page.html',
@@ -28,6 +27,6 @@ export class AddgroupPage implements OnInit {
   data: any;
   
   showProgramGroup(){
-    this.commonService.presentModal(GroupusersmodalComponent,'halfModal');
+    // this.commonService.presentModal(GroupusersmodalComponent,'halfModal');
   }
 }

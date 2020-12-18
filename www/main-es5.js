@@ -454,9 +454,15 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ./auth.service */
+      "./src/app/auth.service.ts");
 
       var AppComponent = /*#__PURE__*/function () {
-        function AppComponent(platform, splashScreen, statusBar, alertController, location, router, toastController) {
+        function AppComponent(platform, splashScreen, statusBar, alertController, location, router, toastController, auth) {
           _classCallCheck(this, AppComponent);
 
           this.platform = platform;
@@ -466,6 +472,7 @@
           this.location = location;
           this.router = router;
           this.toastController = toastController;
+          this.auth = auth;
           this.lastTimeBackPress = 0;
           this.timePeriodToExit = 2000;
           this.initializeApp();
@@ -478,6 +485,12 @@
             var _this = this;
 
             this.platform.ready().then(function () {
+              if (_this.auth.isUserLoggedIn()) {
+                _this.router.navigate(['/menu/home']);
+              } else {
+                _this.router.navigate(['/menu/login']);
+              }
+
               _this.statusBar.styleDefault();
 
               _this.splashScreen.hide();
@@ -581,6 +594,8 @@
           type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+        }, {
+          type: _auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"]
         }];
       };
 
@@ -675,6 +690,24 @@
       var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ./app-routing.module */
       "./src/app/app-routing.module.ts");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @angular/common/http */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+      /* harmony import */
+
+
+      var _ionic_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @ionic/storage */
+      "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
+      /* harmony import */
+
+
+      var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! @ionic-native/camera/ngx */
+      "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js");
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
@@ -683,13 +716,198 @@
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot()],
         providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
           provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
           useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
-        }],
+        }, _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
       })], AppModule);
+      /***/
+    },
+
+    /***/
+    "./src/app/auth.service.ts":
+    /*!*********************************!*\
+      !*** ./src/app/auth.service.ts ***!
+      \*********************************/
+
+    /*! exports provided: AuthService */
+
+    /***/
+    function srcAppAuthServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "AuthService", function () {
+        return AuthService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common/http */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js"); // import { Config } from ".././app/config/config";
+
+
+      var AuthService = /*#__PURE__*/function () {
+        function AuthService(http, router) {
+          _classCallCheck(this, AuthService);
+
+          this.http = http;
+          this.router = router;
+          this.localStorageUserKey = "JAJSESSION";
+          this.localStorageUserTypeKey = "JAJSESSION"; // localStorageNotiCount="DRIVERNOTICOUNT";
+
+          this.onUserDetailChanged = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](null);
+          this.localStorageNotiData = "JAJNOTIDATA"; //this.handleError= httpErrorHandler.createHandleError('TasksService')
+        }
+
+        _createClass(AuthService, [{
+          key: "generateFormData",
+          value: function generateFormData(data) {
+            var input = new FormData();
+
+            for (var key in data) {
+              if (key !== "confirmP" && key !== "terms") {
+                if (data[key].name && data[key].value) {
+                  input.append(key, data[key].value, data[key].name);
+                } else {
+                  input.append(key, data[key].value);
+                }
+              }
+            }
+
+            return input;
+          }
+        }, {
+          key: "getUserDetails",
+          value: function getUserDetails() {
+            var user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+            return user.userDetails;
+          }
+        }, {
+          key: "getCurrentUserId",
+          value: function getCurrentUserId() {
+            var user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+            return user.userDetails.id;
+          }
+        }, {
+          key: "updateUserDetails",
+          value: function updateUserDetails(details) {
+            console.log(details);
+            console.log(this.localStorageUserKey, details);
+            var session = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+
+            if (session) {
+              session.userDetails = details;
+            } else {
+              session = {
+                "userDetails": details,
+                "language": "en"
+              };
+            }
+
+            localStorage.setItem(this.localStorageUserKey, JSON.stringify(session)); //this.onUserDetailChanged.next(details);
+          }
+        }, {
+          key: "removeUserDetails",
+          value: function removeUserDetails() {
+            var session = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+            delete session["userDetails"];
+            localStorage.setItem(this.localStorageUserKey, JSON.stringify(session));
+          }
+        }, {
+          key: "removeAllSessions",
+          value: function removeAllSessions() {
+            localStorage.removeItem(this.localStorageUserKey);
+          }
+        }, {
+          key: "isUserLoggedIn",
+          value: function isUserLoggedIn() {
+            var user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
+
+            if (user) {
+              if (user.userDetails) {
+                return true;
+              } else {
+                return false;
+              }
+            } else {
+              return false;
+            }
+          }
+        }, {
+          key: "getUrlFromData",
+          value: function getUrlFromData(data) {
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]();
+
+            for (var key in data) {
+              params = params.append(key, data[key]);
+            }
+
+            return params;
+          }
+        }, {
+          key: "postData",
+          value: function postData(data, url) {
+            var formdata = this.generateFormData(data);
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Accept": "application/json"
+            });
+            return this.http.post('https://jajoj.threethree.in/api/' + url, formdata, {});
+          }
+        }, {
+          key: "get",
+          value: function get(data, url) {
+            var params = this.getUrlFromData(data);
+            return this.http.get('https://jajoj.threethree.in/api/' + url, {
+              params: params
+            });
+          }
+        }]);
+
+        return AuthService;
+      }();
+
+      AuthService.ctorParameters = function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+        }];
+      };
+
+      AuthService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], AuthService);
       /***/
     },
 

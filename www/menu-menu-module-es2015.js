@@ -46,11 +46,11 @@ const routes = [
             },
             {
                 path: 'signup',
-                loadChildren: () => __webpack_require__.e(/*! import() | signup-signup-module */ "signup-signup-module").then(__webpack_require__.bind(null, /*! ../signup/signup.module */ "./src/app/signup/signup.module.ts")).then(m => m.SignupPageModule)
+                loadChildren: () => Promise.all(/*! import() | signup-signup-module */[__webpack_require__.e("common"), __webpack_require__.e("signup-signup-module")]).then(__webpack_require__.bind(null, /*! ../signup/signup.module */ "./src/app/signup/signup.module.ts")).then(m => m.SignupPageModule)
             },
             {
                 path: 'login',
-                loadChildren: () => __webpack_require__.e(/*! import() | login-login-module */ "login-login-module").then(__webpack_require__.bind(null, /*! ../login/login.module */ "./src/app/login/login.module.ts")).then(m => m.LoginPageModule)
+                loadChildren: () => Promise.all(/*! import() | login-login-module */[__webpack_require__.e("common"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ../login/login.module */ "./src/app/login/login.module.ts")).then(m => m.LoginPageModule)
             },
             {
                 path: 'verify',

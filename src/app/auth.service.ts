@@ -4,17 +4,21 @@ import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { BehaviorSubject } from 'rxjs';
 
+// import { Config } from ".././app/config/config";
+import { Router } from "@angular/router";
+import { HttpErrorHandlerService , HandleError } from "./http-error-handler.service";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  localStorageUserKey = "JAJOJSESSION";
-  localStorageUserTypeKey = "JAJOJSESSION";
+  localStorageUserKey = "JAJSESSION";
+  localStorageUserTypeKey = "JAJSESSION";
   // localStorageNotiCount="DRIVERNOTICOUNT";
   onUserDetailChanged: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  localStorageNotiData = "JAJOJNOTIDATA";
+  localStorageNotiData = "JAJNOTIDATA";
   constructor(private http: HttpClient,
+      private router: Router
     ) {
 
       //this.handleError= httpErrorHandler.createHandleError('TasksService')
@@ -22,9 +26,9 @@ export class AuthService {
   generateFormData(data: any) {
     let input = new FormData();
     for (let key in data) {
-      if (key !== "confirmPassword" && key !== "terms") {
-        if (data[key].firstname && data[key].value) {
-          input.append(key, data[key].value, data[key].firstname);
+      if (key !== "confirmP" && key !== "terms") {
+        if (data[key].name && data[key].value) {
+          input.append(key, data[key].value, data[key].name);
         } else {
           input.append(key, data[key].value);
         }
@@ -41,6 +45,8 @@ export class AuthService {
     return user.userDetails.id;
   }
   updateUserDetails(details: any) {
+    console.log(details);
+    
     console.log(this.localStorageUserKey,details);
     let session = JSON.parse(localStorage.getItem(this.localStorageUserKey));
 
@@ -92,5 +98,16 @@ export class AuthService {
     }
     return params;
   }
- 
+
+    postData(data: any,url:string): Observable<any>{
+    let formdata = this.generateFormData(data);
+    let headers = new HttpHeaders({ "Accept": "application/json" });
+    return this.http.post<any>('https://jajoj.threethree.in/api/'+url,formdata,{});
+  }
+  get(data: any,url:any): Observable<any>{
+    let params = this.getUrlFromData(data);
+
+    return this.http.get<any>('https://jajoj.threethree.in/api/'+url,{params:params});
+  }
+
 }

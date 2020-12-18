@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { StatusPage } from './status.page';
+import { RequestsModalComponent } from './requests-modal.component';
 
-describe('StatusPage', () => {
-  let component: StatusPage;
-  let fixture: ComponentFixture<StatusPage>;
+describe('RequestsModalComponent', () => {
+  let component: RequestsModalComponent;
+  let fixture: ComponentFixture<RequestsModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StatusPage ],
+      declarations: [ RequestsModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(StatusPage);
+    fixture = TestBed.createComponent(RequestsModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

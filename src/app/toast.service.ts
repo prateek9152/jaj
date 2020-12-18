@@ -9,7 +9,7 @@ private myToast: any;
 
 showToast(){
   this.myToast = this.toast.create({
-    position: 'middle',
+    position: 'bottom',
     cssClass: 'my-custom-class',
     buttons: [
       {
@@ -34,7 +34,7 @@ showToast(){
 }
 showLoginToast(){
   this.myToast = this.toast.create({
-    position: 'middle',
+    position: 'bottom',
     cssClass: 'my-custom-class',
     buttons: [
       {
@@ -52,6 +52,15 @@ showLoginToast(){
         }
       }
     ]
+  }).then((toastData) => {
+    console.log(toastData);
+    toastData.present();
+  });
+}
+requestToast() {
+  this.myToast = this.toast.create({
+    message: 'Thank You For Your Request.',
+    duration: 2000
   }).then((toastData) => {
     console.log(toastData);
     toastData.present();

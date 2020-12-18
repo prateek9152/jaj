@@ -82,9 +82,9 @@
         }, {
           path: 'signup',
           loadChildren: function loadChildren() {
-            return __webpack_require__.e(
+            return Promise.all(
             /*! import() | signup-signup-module */
-            "signup-signup-module").then(__webpack_require__.bind(null,
+            [__webpack_require__.e("common"), __webpack_require__.e("signup-signup-module")]).then(__webpack_require__.bind(null,
             /*! ../signup/signup.module */
             "./src/app/signup/signup.module.ts")).then(function (m) {
               return m.SignupPageModule;
@@ -93,9 +93,9 @@
         }, {
           path: 'login',
           loadChildren: function loadChildren() {
-            return __webpack_require__.e(
+            return Promise.all(
             /*! import() | login-login-module */
-            "login-login-module").then(__webpack_require__.bind(null,
+            [__webpack_require__.e("common"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null,
             /*! ../login/login.module */
             "./src/app/login/login.module.ts")).then(function (m) {
               return m.LoginPageModule;

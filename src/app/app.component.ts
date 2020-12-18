@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +26,8 @@ export class AppComponent {
     public alertController:AlertController,
     private location: Location,
     private router:Router,
-    private toastController:ToastController
-    
+    private toastController:ToastController,
+    private auth:AuthService
    
 
   ) {
@@ -38,6 +39,8 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      
+       
       this.statusBar.styleDefault();
    
      this.splashScreen.hide();

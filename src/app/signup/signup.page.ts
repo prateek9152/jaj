@@ -9,7 +9,7 @@ import { LoginPage } from '../login/login.page';
 import {ToastService} from '.././toast.service';
 import {LoaderService} from '../loader.service';
 import { AuthService } from '../auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -21,10 +21,17 @@ export class SignupPage implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   loading = false;
+  userData={
+    name: "",
+    email: "",
+    password: "",
+    c_password: ""
+  }
   
   constructor(private router:Router,private menuCtrl:MenuController, 
     private formBuilder:FormBuilder,private modalController:ModalController,
-    private toastService:ToastService,private ionLoader:LoaderService,private http:HttpClient,public authService:AuthService) { }
+    private toastService:ToastService,private ionLoader:LoaderService,
+    private http:HttpClient,public authService:AuthService) { }
 
     dismissRegister(){
       this.modalController.dismiss();
@@ -32,7 +39,7 @@ export class SignupPage implements OnInit {
     
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: new FormControl('',Validators.compose([
+      name: new FormControl('',Validators.compose([
         Validators.required,Validators.minLength(4)
       ])),
       lastName: new FormControl('',Validators.compose([Validators.required,Validators.minLength(2)])),
@@ -43,24 +50,26 @@ export class SignupPage implements OnInit {
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         Validators.required
       ])),
+     
       phone: new FormControl('',Validators.compose([
         Validators.required,Validators.minLength(10)
       ])),
+     
       password: new FormControl('',Validators.compose([
         Validators.required,
         Validators.maxLength(25),
         Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
       ])),     
-       confirmPassword: ['',[Validators.required]]
+       c_password: ['',[Validators.required]]
     }, {
-      validator: MustMatch('password','confirmPassword')
+      validator: MustMatch('password','c_password')
     });
   }
   
   
   get f() { return this.registerForm.controls; }
   'validation_messages' = {
-    firstName: [{type: 'required',message: 'First Name is required'}],
+    name: [{type: 'required',message: 'First Name is required'}],
     lastName: [{type: 'required',message: 'Last Name is required'},{type:'minlength',message: 'Last Name must be at least 2 characters long'}],
     username: [   { type: 'required', message: 'Username is required.' },
     { type: 'minlength', message: 'Username must be at least 5 characters long.' },
@@ -77,7 +86,7 @@ export class SignupPage implements OnInit {
       { type: 'pattern', message: 'Length should be 8(least one uppercase, one lowercase, one special charector and one number)' }
 
     ],
-    confirmPassword: [
+    c_password: [
       {type: 'required',message: 'Confirm Password is required'},
       { type: 'pattern', message: 'Confirm Password not match.' }
     ]
@@ -107,6 +116,48 @@ export class SignupPage implements OnInit {
 
     return;
     }
+         this.router.navigate(['/menu/verify'])
+
+    // var formData = new FormData();
+    // formData.append("name",this.registerForm.get('name').value);
+    // formData.append("email",this.registerForm.get('email').value);
+    // formData.append("password",this.registerForm.get('password').value);
+    // formData.append("c_password",this.registerForm.get('c_password').value);
+    // let headers = new HttpHeaders({"Accept": "application/json"});
+    // this.http.post('https://jajoj.threethree.in/api/register',formData,{headers:headers}).subscribe(async (response:any)=> {
+    //         if(response.status==1){
+    //           // this.storage.set('userData', this.registerForm.value.email);
+    //           // this.storage.set('userToken',response.userToken);
+    //           this.router.navigate(['/menu/verify',this.registerForm.value.email]).then(nav => {
+                
+    //           })
+
+    //         }
+    // })
+
+  //  console.log(this.registerForm.value);
+    
+    // this.authService.addUser(this.registerForm.value).subscribe((data:any)=> {
+    //   console.log(data);
+    //   this.router.navigate(['/menu/verify'])
+
+    // })
+    // let data1 = {
+    //   "name":{value:this.userData.name,type:"NO"},
+    //   "email":{value:this.userData.email,type:"NO"},
+    //   "password":{value:this.userData.password,type:"NO"},
+    //   "c_password":{value:this.userData.c_password,type:"NO"}
+    // }
+    // this.authService.postData(data1,'register').subscribe(
+    //   (response:any) => {
+    //     console.log(response);
+    //     this.router.navigate(['/menu/verify'])
+    //   }
+    // )
+    // if(this.registerForm.invalid){
+
+    // return;
+    // }
     // var formData: any = new FormData();
     // formData.append("firstName", this.registerForm.get('firstName').value);
     // formData.append("lastName", this.registerForm.get('lastName').value);
@@ -120,13 +171,12 @@ export class SignupPage implements OnInit {
     //     this.authService.updateUserDetails(response.data);
     //   }
     // })
-    this.toastService.showToast();
+    // this.toastService.showToast();
     // this.toastService.presentToast(data['message']);
-    this.router.navigate(['/menu/verify'])
-    this.ionLoader.showLoader();
-    setTimeout(() => {
-      this.hideLoader();
-    },1000);
+    // this.ionLoader.showLoader();
+    // setTimeout(() => {
+    //   this.hideLoader();
+    // },1000);
   }
   hideLoader(){
     this.ionLoader.hideLoader();
