@@ -1,0 +1,76 @@
+<ion-content padding class="back_img">
+
+
+
+  <div class="login_form_main">
+      <div class="login_form">
+          <div class="logo">
+              <img src="assets/imgs/login/jajlogo.jpeg">
+              <h3 style="font-weight: bold;">Verify your phone number</h3>
+          </div>
+
+
+          <ion-list style="margin:0 0 20px" text-center>
+              <ion-label style="display: block; text-align: center;" (click)="pp()">Enter your verification code</ion-label>
+          </ion-list>
+
+
+
+          <ion-row no-padding class="row_input">
+              <ion-col col-2>
+                  <div class="verify">
+                      <ion-input  #one (keyup)="onKeyUp($event.keyCode,'one')" maxlength="1" type="tel" class="input_2"></ion-input>
+                  </div>
+
+              </ion-col>
+              <ion-col col-2>
+                  <div class="verify">
+                      <ion-input  #two (keyup)="onKeyUp($event.keyCode,'two')" type="tel" maxlength="1" class="input_2"></ion-input>
+                  </div>
+
+              </ion-col>
+              <ion-col col-2>
+                  <div class="verify">
+                      <ion-input  (keyup)="onKeyUp($event.keyCode,'three')" #three type="tel" maxlength="1" class="input_2"></ion-input>
+                  </div>
+
+              </ion-col>
+              <ion-col col-2>
+                  <div class="verify">
+                      <ion-input  (keyup)="onKeyUp($event.keyCode,'four')" #four type="tel" maxlength="1" class="input_2"></ion-input>
+                  </div>
+
+              </ion-col>
+              <ion-col col-2>
+                  <div class="verify">
+                      <ion-input  (keyup)="onKeyUp($event.keyCode,'five')" #five type="tel" maxlength="1" class="input_2"></ion-input>
+                  </div>
+
+              </ion-col>
+              <ion-col col-2>
+                  <div class="verify">
+                      <ion-input  #six (keyup)="onKeyUp($event.keyCode,'six')" type="tel" maxlength="1" class="input_2"></ion-input>
+                  </div>
+
+              </ion-col>
+
+              <div text-center style="width: 100%;margin: 20px 0 100px; text-align: center;">
+                  <button style="    height: 71px;
+                  width: 105px;
+                  font-size: 110%;
+                  border-radius: 25px;
+                  border: 2px solid #fff;
+                  padding: 20px;" (click)="resend()">Resend</button>
+              </div>
+          </ion-row>
+
+
+          <div padding class="btn_grp">
+              <button  class="btnclick" (click)="verify()">Confirm</button>
+          </div>
+      </div>
+  </div>
+
+
+
+</ion-content>

@@ -1,0 +1,80 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+ 
+</ion-header>
+<ion-content padding class="back_img">
+
+
+
+  <div class="login_form_main">
+      <div class="login_form">
+          <div class="logo">
+              <img src="../../assets/imgs/login/jajlogo.jpeg">
+              <h3>Please enter your details</h3>
+          </div>
+
+
+          <ion-list style="margin:0 0 20px; display: inline;">
+            <form [formGroup]="registerForm" (ngSubmit)="signup()">
+            <ion-input class="input_1" type="text" formControlName="name" placeholder="Enter First Name" [ngClass]="{'is-invalid': submitted && f.name.errors}"></ion-input>
+            <ng-container *ngFor="let validation of validation_messages.name">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('name').touched) && registerForm.get('name').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1"  type="text" formControlName="lastName" placeholder="Enter Last Name" [ngClass]="{'is-invalid': submitted && f.lastName.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.lastName">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('lastName').touched) && registerForm.get('lastName').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1"  type="text" formControlName="username" placeholder="Enter Username" [ngClass]="{'is-invalid': submitted && f.username.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.username">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('username').touched) && registerForm.get('username').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+                               
+              <ion-input class="input_1" type="number" formControlName="phone" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.phone.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.phone">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('phone').touched) && registerForm.get('phone').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1"  type="password" formControlName="password" placeholder="Enter Password" [ngClass]="{'is-invalid':submitted && f.password.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.password">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('password').touched) && registerForm.get('password').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1" type="password" formControlName="c_password" placeholder="Enter Confirm Password" [ngClass]="{'is-invalid':submitted && f.c_password.errors}"></ion-input>
+              <ng-container>
+              <div *ngIf="submitted && f.c_password.errors" class="error-message">
+                <div *ngIf="f.c_password.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.c_password.errors.mustMatch">Passwords must match</div>
+              </div>
+              </ng-container>
+            </form>
+             </ion-list>
+
+
+          <div padding class="btn_grp">
+              <button class="btnclick" (click)="signup()">SIGN UP</button>
+              <p>Don't have an account? <span (click)="login()">Login</span></p>
+          </div>
+      </div>
+  </div>
+
+
+
+</ion-content>

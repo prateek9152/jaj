@@ -1,0 +1,57 @@
+<ion-content>
+  <ion-content padding class="back_img">
+
+
+
+    <div class="login_form_main">
+      <form [formGroup]="validations_form" style="	height: 100%;
+      display: contents;
+      width: 100%;
+      align-items: center;"  (ngSubmit)="login()">
+
+      <div class="login_form">
+        <div class="logo">
+          <img src="../../assets/imgs/login/jajlogo.jpeg">
+          <h3>Please enter your login detail</h3>
+        </div>
+  
+  
+        <ion-list style="margin:0 0 20px; display:inline">
+         
+          <!-- <ion-label style="text-align: center;
+          display: block;">Enter Your Phone Number</ion-label> -->
+            <ion-input class="input_1" type="number" formControlName="phone" placeholder="Enter Your Mobile Number" [ngClass]="{'is-invalid': submitted && f.phone.errors}"></ion-input>
+            <ng-container *ngFor="let validation of validation_messages.phone">
+              <span class="error-message"
+                *ngIf="(submitted || validations_form.get('phone').touched) && validations_form.get('phone').hasError(validation.type)">
+                {{ validation.message }}
+              </span>
+            </ng-container>
+            
+          <!-- <ion-label style="text-align: center;
+          display: block;">Password</ion-label> -->
+            <ion-input class="input_1" type="password" formControlName="password" placeholder="Enter Password" [ngClass]="{'is-invalid': submitted && f.password.errors}"></ion-input>
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <span class="error-message"
+                *ngIf="(submitted || validations_form.get('password').touched) && validations_form.get('password').hasError(validation.type)">
+                {{ validation.message }}
+              </span>
+            </ng-container>
+            
+        </ion-list>
+  
+        <h5 style="text-align: center;font-size: 13px;font-weight: normal;" [routerLink]="['/menu/forgot']">Forgot Password?</h5>
+  
+        <div padding class="btn_grp">
+          <button class="btnclick" (click)="login()">LOGIN</button>
+          <p>Don't have an account? <span (click)="register()">Sign Up</span></p>
+        </div>
+      </div>
+      </form>
+
+    </div>
+  
+ 
+  
+  </ion-content>
+</ion-content>

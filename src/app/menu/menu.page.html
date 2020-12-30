@@ -1,0 +1,60 @@
+<ion-app>
+  <ion-menu side="start" contentId="main-content" type="overlay" menuId="custom" id="custom">
+  
+    <ion-content>
+      <div class="user">
+        <ion-list no-lines class="list_menu" style="margin: 16px 0px;border-bottom: 1px solid #ffffff47;">
+  
+          <ion-item no-lines class="chat_item chat_item_2" style="background-color: transparent;">
+            <ion-avatar item-start class="avtar_menu">
+              <div class="user_img">
+                <img src="../../assets/imgs/blank-avatar.jpg">
+  
+              </div>
+            </ion-avatar>&nbsp;&nbsp;
+            <h6 class="heading_int" style="color: #fe6e4a;">Username</h6>
+                  <!-- <p class="dat" style="color: #000;">@username</p> -->
+                  <p class="wallet_p"><b>$<span>100</span></b> <img src="assets/imgs/eye1.png" (click)="toggle()" style="width:18px;margin-left:5px;"></p>
+  
+                  <button ion-button clear item-end style="height: auto;">
+                <img src="assets/imgs/menu_more.png" style="width: 25px;" (click)="more()">
+            </button>
+  
+          </ion-item>
+  
+          <p style="color: #000;font-size: 12px;padding: 0 16px;"><b>0</b> Following <span style="margin-left: 50px;"><b>0</b> Followers</span></p>
+    </ion-list>
+      </div>
+      <ion-list padding>
+  
+        <ion-row>
+        <ion-col col-5>
+            <img class="barcode" src="assets/imgs/info/barcode.png">
+          </ion-col>
+        </ion-row>
+  
+        <ion-item no-lines no-padding class="level">
+            <p item-start style="color: #000;">Level:<b> SILVER</b></p> <br>
+            <p item-end style="color: #000;">000/1000 EXP</p>
+           </ion-item>
+  
+           <div class="progress_bar"  style="height: 7px; background: #868686; border-radius: 50px; position: relative;">
+             <div class="progress_status"  style="background: #fe6e4a;position: absolute; top: 0; left: 0; width: 60%; height: 7px; border-radius: 10px;">
+  
+            </div>
+           </div>
+  
+        </ion-list>
+      <ion-list class="menu-btn">
+          <ion-menu-toggle auto-hide="false" *ngFor="let page of pages">
+          <ion-item [routerLink]="page.path" routerDirection="root" [class.active-menu]="activePath === page.path">
+            <ion-icon [name]="page.icon" slot="start" item-left></ion-icon>
+
+            {{page.name}}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content" main></ion-router-outlet>
+</ion-app>
