@@ -4,8 +4,8 @@ import {ToastController} from '@ionic/angular';
   providedIn: 'root'
 })
 export class ToastService {
-private myToast: any;
-  constructor(private toast:ToastController) { }
+ myToast: any;
+  constructor(public toast:ToastController) { }
 
 showToast(){
   this.myToast = this.toast.create({
@@ -60,6 +60,15 @@ showLoginToast(){
 requestToast() {
   this.myToast = this.toast.create({
     message: 'Thank You For Your Request.',
+    duration: 2000
+  }).then((toastData) => {
+    console.log(toastData);
+    toastData.present();
+  });
+}
+errorLogin(){
+  this.myToast = this.toast.create({
+    message: 'Unauthorized',
     duration: 2000
   }).then((toastData) => {
     console.log(toastData);

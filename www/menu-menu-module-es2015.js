@@ -78,7 +78,7 @@ const routes = [
             },
             {
                 path: 'addgroup',
-                loadChildren: () => __webpack_require__.e(/*! import() | addgroup-addgroup-module */ "addgroup-addgroup-module").then(__webpack_require__.bind(null, /*! ../addgroup/addgroup.module */ "./src/app/addgroup/addgroup.module.ts")).then(m => m.AddgroupPageModule)
+                loadChildren: () => Promise.all(/*! import() | addgroup-addgroup-module */[__webpack_require__.e("common"), __webpack_require__.e("addgroup-addgroup-module")]).then(__webpack_require__.bind(null, /*! ../addgroup/addgroup.module */ "./src/app/addgroup/addgroup.module.ts")).then(m => m.AddgroupPageModule)
             },
             {
                 path: 'addcircle',

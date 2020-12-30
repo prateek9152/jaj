@@ -14,19 +14,28 @@ export class ForgotPage implements OnInit {
 
   ngOnInit() {
     this.forgotForm = this.fb.group({
-      phone: new FormControl('', Validators.compose([
-        Validators.minLength(10),
+      email: new FormControl('', Validators.compose([
         Validators.required,
+        Validators.pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}'),
+        //  Validators.pattern('[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|wdipl|yahoo|live|outlook|hotmail|yopmail|gmx)\.[A-Za-z0-9._%+-]{2,}')
       ])),
+      // phone: new FormControl('', Validators.compose([
+      //   Validators.minLength(10),
+      //   Validators.required,
+      // ])),
     })
   }
   get f(){return this.forgotForm.controls};
 
   validation_messages = {
-    'phone': [
-      {type: 'required', message: 'Phone is required.'},
-      {type: 'minlength', message: 'Phone Number must be at least 10 digits.' }
-    ]
+    email: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email' }
+    ],
+    // 'phone': [
+    //   {type: 'required', message: 'Phone is required.'},
+    //   {type: 'minlength', message: 'Phone Number must be at least 10 digits.' }
+    // ]
   }
   ionViewWillEnter() {
     // this.menuCtrl.enable(false);

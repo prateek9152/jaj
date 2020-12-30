@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n \n</ion-header>\n<ion-content padding class=\"back_img\">\n\n\n\n  <div class=\"login_form_main\">\n      <div class=\"login_form\">\n          <div class=\"logo\">\n              <img src=\"../../assets/imgs/login/jajlogo.jpeg\">\n              <h3>Please enter your details</h3>\n          </div>\n\n\n          <ion-list style=\"margin:0 0 20px; display: inline;\">\n            <form [formGroup]=\"registerForm\" (ngSubmit)=\"signup()\">\n            <ion-input class=\"input_1\" type=\"text\" formControlName=\"name\" placeholder=\"Enter First Name\" [ngClass]=\"{'is-invalid': submitted && f.name.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.name\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('name').touched) && registerForm.get('name').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>\n              <!-- <ion-input class=\"input_1\"  type=\"text\" formControlName=\"lastName\" placeholder=\"Enter Last Name\" [ngClass]=\"{'is-invalid': submitted && f.lastName.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.lastName\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('lastName').touched) && registerForm.get('lastName').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container> -->\n              <!-- <ion-input class=\"input_1\"  type=\"text\" formControlName=\"username\" placeholder=\"Enter Username\" [ngClass]=\"{'is-invalid': submitted && f.username.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.username\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('username').touched) && registerForm.get('username').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container> -->\n              <ion-input class=\"input_1\"  type=\"email\" formControlName=\"email\" placeholder=\"Enter Email\" [ngClass]=\"{'is-invalid': submitted && f.email.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.email\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('email').touched) && registerForm.get('email').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>                  \n              <!-- <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Mobile Number\" [ngClass]=\"{'is-invalid': submitted && f.phone.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.phone\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('phone').touched) && registerForm.get('phone').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container> -->\n              <ion-input class=\"input_1\"  type=\"password\" formControlName=\"password\" placeholder=\"Enter Password\" [ngClass]=\"{'is-invalid':submitted && f.password.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.password\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('password').touched) && registerForm.get('password').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>\n              <ion-input class=\"input_1\" type=\"password\" formControlName=\"c_password\" placeholder=\"Enter Confirm Password\" [ngClass]=\"{'is-invalid':submitted && f.c_password.errors}\"></ion-input>\n              <ng-container>\n              <div *ngIf=\"submitted && f.c_password.errors\" class=\"error-message\">\n                <div *ngIf=\"f.c_password.errors.required\">Confirm Password is required</div>\n                <div *ngIf=\"f.c_password.errors.mustMatch\">Passwords must match</div>\n              </div>\n              </ng-container>\n            </form>\n             </ion-list>\n\n\n          <div padding class=\"btn_grp\">\n              <button class=\"btnclick\" (click)=\"signup()\">SIGN UP</button>\n              <p>Don't have an account? <span (click)=\"login()\">Login</span></p>\n          </div>\n      </div>\n  </div>\n\n\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n \n</ion-header>\n<ion-content padding class=\"back_img\">\n\n\n\n  <div class=\"login_form_main\">\n      <div class=\"login_form\">\n          <div class=\"logo\">\n              <img src=\"../../assets/imgs/login/jajlogo.jpeg\">\n              <h3>Please enter your details</h3>\n          </div>\n\n\n          <ion-list style=\"margin:0 0 20px; display: inline;\">\n            <form [formGroup]=\"registerForm\" (ngSubmit)=\"signup()\">\n            <ion-input class=\"input_1\" type=\"text\" formControlName=\"name\" placeholder=\"Enter First Name\" [ngClass]=\"{'is-invalid': submitted && f.name.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.name\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('name').touched) && registerForm.get('name').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>\n              <ion-input class=\"input_1\"  type=\"text\" formControlName=\"lastName\" placeholder=\"Enter Last Name\" [ngClass]=\"{'is-invalid': submitted && f.lastName.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.lastName\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('lastName').touched) && registerForm.get('lastName').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>\n              <ion-input class=\"input_1\"  type=\"text\" formControlName=\"username\" placeholder=\"Enter Username\" [ngClass]=\"{'is-invalid': submitted && f.username.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.username\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('username').touched) && registerForm.get('username').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>\n                               \n              <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Mobile Number\" [ngClass]=\"{'is-invalid': submitted && f.phone.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.phone\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('phone').touched) && registerForm.get('phone').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>\n              <ion-input class=\"input_1\"  type=\"password\" formControlName=\"password\" placeholder=\"Enter Password\" [ngClass]=\"{'is-invalid':submitted && f.password.errors}\"></ion-input>\n              <ng-container *ngFor=\"let validation of validation_messages.password\">\n                <span class=\"error-message\"\n                  *ngIf=\"(submitted || registerForm.get('password').touched) && registerForm.get('password').hasError(validation.type)\">\n                  {{ validation.message }}\n                </span>\n              </ng-container>\n              <ion-input class=\"input_1\" type=\"password\" formControlName=\"c_password\" placeholder=\"Enter Confirm Password\" [ngClass]=\"{'is-invalid':submitted && f.c_password.errors}\"></ion-input>\n              <ng-container>\n              <div *ngIf=\"submitted && f.c_password.errors\" class=\"error-message\">\n                <div *ngIf=\"f.c_password.errors.required\">Confirm Password is required</div>\n                <div *ngIf=\"f.c_password.errors.mustMatch\">Passwords must match</div>\n              </div>\n              </ng-container>\n            </form>\n             </ion-list>\n\n\n          <div padding class=\"btn_grp\">\n              <button class=\"btnclick\" (click)=\"signup()\">SIGN UP</button>\n              <p>Don't have an account? <span (click)=\"login()\">Login</span></p>\n          </div>\n      </div>\n  </div>\n\n\n\n</ion-content>");
 
 /***/ }),
 
@@ -40,6 +40,32 @@ function MustMatch(controlName, matchingControlName) {
             matchingControl.setErrors(null);
         }
     };
+}
+
+
+/***/ }),
+
+/***/ "./src/app/_helpers/username.validator.ts":
+/*!************************************************!*\
+  !*** ./src/app/_helpers/username.validator.ts ***!
+  \************************************************/
+/*! exports provided: UsernameValidator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsernameValidator", function() { return UsernameValidator; });
+class UsernameValidator {
+    static validUsername(fc) {
+        if (fc.value.toLowerCase() === "abc123" || fc.value.toLowerCase() === "123abc") {
+            return {
+                validUsername: true
+            };
+        }
+        else {
+            return null;
+        }
+    }
 }
 
 
@@ -154,11 +180,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _helpers_must_match_validator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! .././_helpers/must-match.validator */ "./src/app/_helpers/must-match.validator.ts");
-/* harmony import */ var _toast_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! .././toast.service */ "./src/app/toast.service.ts");
-/* harmony import */ var _loader_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../loader.service */ "./src/app/loader.service.ts");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
+/* harmony import */ var _helpers_username_validator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_helpers/username.validator */ "./src/app/_helpers/username.validator.ts");
+/* harmony import */ var _services_toast_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/toast.service */ "./src/app/services/toast.service.ts");
+/* harmony import */ var _services_loader_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/loader.service */ "./src/app/services/loader.service.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 
 
 
@@ -171,14 +197,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SignupPage = class SignupPage {
-    constructor(router, menuCtrl, formBuilder, modalController, toastService, ionLoader, storage, http, authService) {
+    constructor(router, menuCtrl, formBuilder, modalController, toastService, ionLoader, http, authService) {
         this.router = router;
         this.menuCtrl = menuCtrl;
         this.formBuilder = formBuilder;
         this.modalController = modalController;
         this.toastService = toastService;
         this.ionLoader = ionLoader;
-        this.storage = storage;
         this.http = http;
         this.authService = authService;
         this.pTypeName = 'password';
@@ -193,17 +218,16 @@ let SignupPage = class SignupPage {
         };
         this['validation_messages'] = {
             name: [{ type: 'required', message: 'First Name is required' }],
-            // lastName: [{type: 'required',message: 'Last Name is required'},{type:'minlength',message: 'Last Name must be at least 2 characters long'}],
-            // username: [   { type: 'required', message: 'Username is required.' },
-            // { type: 'minlength', message: 'Username must be at least 5 characters long.' },
-            // { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
-            // { type: 'pattern', message: 'Your username must contain only numbers and letters.' },
-            // { type: 'validUsername', message: 'Your username has already been taken.' }],
-            email: [{ type: 'required', message: 'Email is required' }],
-            // phone:[
-            //   { type: 'required', message: 'Mobile Number is required.' },
-            //   { type: 'minlength', message: 'Mobile Number must be at least 10 numbers.' },
-            //   ],
+            lastName: [{ type: 'required', message: 'Last Name is required' }, { type: 'minlength', message: 'Last Name must be at least 2 characters long' }],
+            username: [{ type: 'required', message: 'Username is required.' },
+                { type: 'minlength', message: 'Username must be at least 5 characters long.' },
+                { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
+                { type: 'pattern', message: 'Your username must contain only numbers and letters.' },
+                { type: 'validUsername', message: 'Your username has already been taken.' }],
+            phone: [
+                { type: 'required', message: 'Mobile Number is required.' },
+                { type: 'minlength', message: 'Mobile Number must be at least 10 numbers.' },
+            ],
             password: [
                 { type: 'required', message: 'Password is required.' },
                 { type: 'minlength', message: 'Password must be at least 8 characters long.' },
@@ -223,20 +247,17 @@ let SignupPage = class SignupPage {
             name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(4)
             ])),
-            // lastName: new FormControl('',Validators.compose([Validators.required,Validators.minLength(2)])),
-            // username: new FormControl('',Validators.compose([
-            //   UsernameValidator.validUsername,
-            //   Validators.maxLength(25),
-            //   Validators.minLength(5),
-            //   Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-            //   Validators.required
-            // ])),
-            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+            lastName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(2)])),
+            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+                _helpers_username_validator__WEBPACK_IMPORTED_MODULE_6__["UsernameValidator"].validUsername,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(25),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(5),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
             ])),
-            // phone: new FormControl('',Validators.compose([
-            //   Validators.required,Validators.minLength(10)
-            // ])),
+            phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(10)
+            ])),
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(25),
@@ -269,20 +290,24 @@ let SignupPage = class SignupPage {
     }
     signup() {
         this.submitted = true;
-        var formData = new FormData();
-        formData.append("name", this.registerForm.get('name').value);
-        formData.append("email", this.registerForm.get('email').value);
-        formData.append("password", this.registerForm.get('password').value);
-        formData.append("c_password", this.registerForm.get('c_password').value);
-        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpHeaders"]({ "Accept": "application/json" });
-        this.http.post('https://jajoj.threethree.in/api/register', formData, { headers: headers }).subscribe((response) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            if (response.status == 1) {
-                this.storage.set('userData', this.registerForm.value.email);
-                this.storage.set('userToken', response.userToken);
-                this.router.navigate(['/menu/verify', this.registerForm.value.email]).then(nav => {
-                });
-            }
-        }));
+        if (this.registerForm.invalid) {
+            return;
+        }
+        this.router.navigate(['/menu/verify']);
+        // var formData = new FormData();
+        // formData.append("name",this.registerForm.get('name').value);
+        // formData.append("email",this.registerForm.get('email').value);
+        // formData.append("password",this.registerForm.get('password').value);
+        // formData.append("c_password",this.registerForm.get('c_password').value);
+        // let headers = new HttpHeaders({"Accept": "application/json"});
+        // this.http.post('https://jajoj.threethree.in/api/register',formData,{headers:headers}).subscribe(async (response:any)=> {
+        //         if(response.status==1){
+        //           // this.storage.set('userData', this.registerForm.value.email);
+        //           // this.storage.set('userToken',response.userToken);
+        //           this.router.navigate(['/menu/verify',this.registerForm.value.email]).then(nav => {
+        //           })
+        //         }
+        // })
         //  console.log(this.registerForm.value);
         // this.authService.addUser(this.registerForm.value).subscribe((data:any)=> {
         //   console.log(data);
@@ -334,11 +359,10 @@ SignupPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"] },
-    { type: _toast_service__WEBPACK_IMPORTED_MODULE_6__["ToastService"] },
-    { type: _loader_service__WEBPACK_IMPORTED_MODULE_7__["LoaderService"] },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["Storage"] },
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClient"] },
-    { type: _auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"] }
+    { type: _services_toast_service__WEBPACK_IMPORTED_MODULE_7__["ToastService"] },
+    { type: _services_loader_service__WEBPACK_IMPORTED_MODULE_8__["LoaderService"] },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClient"] },
+    { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"] }
 ];
 SignupPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

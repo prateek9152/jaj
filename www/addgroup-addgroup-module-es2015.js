@@ -13,19 +13,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/groupusersmodal/groupusersmodal.component.html":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/groupusersmodal/groupusersmodal.component.html ***!
-  \******************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  groupusersmodal works!\n</p>\n");
-
-/***/ }),
-
 /***/ "./src/app/addgroup/addgroup-routing.module.ts":
 /*!*****************************************************!*\
   !*** ./src/app/addgroup/addgroup-routing.module.ts ***!
@@ -131,9 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
-/* harmony import */ var _groupusersmodal_groupusersmodal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! .././groupusersmodal/groupusersmodal.component */ "./src/app/groupusersmodal/groupusersmodal.component.ts");
-
+/* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/common.service */ "./src/app/services/common.service.ts");
 
 
 
@@ -156,13 +141,13 @@ let AddgroupPage = class AddgroupPage {
         this.navCtrl.back();
     }
     showProgramGroup() {
-        this.commonService.presentModal(_groupusersmodal_groupusersmodal_component__WEBPACK_IMPORTED_MODULE_4__["GroupusersmodalComponent"], 'halfModal');
+        // this.commonService.presentModal(GroupusersmodalComponent,'halfModal');
     }
 };
 AddgroupPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-    { type: _common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"] }
+    { type: _services_common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"] }
 ];
 AddgroupPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -171,165 +156,6 @@ AddgroupPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./addgroup.page.scss */ "./src/app/addgroup/addgroup.page.scss")).default]
     })
 ], AddgroupPage);
-
-
-
-/***/ }),
-
-/***/ "./src/app/common.service.ts":
-/*!***********************************!*\
-  !*** ./src/app/common.service.ts ***!
-  \***********************************/
-/*! exports provided: CommonService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommonService", function() { return CommonService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-
-
-
-
-let CommonService = class CommonService {
-    constructor(alertController, toastController, loadingController, router, modalController) {
-        this.alertController = alertController;
-        this.toastController = toastController;
-        this.loadingController = loadingController;
-        this.router = router;
-        this.modalController = modalController;
-        this.isLoading = false;
-    }
-    presentAlert(title, msg, btns) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            console.log(btns);
-            let alert = yield this.alertController.create({
-                header: title,
-                message: msg,
-                buttons: btns
-            });
-            alert.present();
-        });
-    }
-    presentToast(headerdata) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const toast = yield this.toastController.create({
-                header: headerdata,
-                duration: 2000,
-                position: 'bottom',
-            });
-            toast.present();
-        });
-    }
-    presentLoader() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.isLoading = true;
-            return yield this.loadingController.create({
-                message: 'wait...',
-            }).then(a => {
-                a.present().then(() => {
-                    if (!this.isLoading) {
-                        a.dismiss().then(() => console.log('abort presenting'));
-                    }
-                });
-            });
-        });
-    }
-    dismissLoader() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.isLoading = false;
-            return yield this.loadingController.dismiss().then(() => console.log('dismissed'));
-        });
-    }
-    // loggingout(){
-    //   this.storage.get('userData').then((value) =>            
-    //   this.settingsService.logout().subscribe((data: any) => {         
-    //        this.storage.clear();  
-    //        this.dismissLoader(); 
-    //       this.router.navigateByUrl('/splash');
-    //     }, err => {
-    //       console.log('error msg!');
-    //     })
-    //   );
-    // }
-    dismissModal(dataArray = []) {
-        // using the injected ModalController this page
-        // can "dismiss" itself and optionally pass back data
-        this.modalController.dismiss(dataArray);
-    }
-    presentModal(path, classcss) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const modal = yield this.modalController.create({
-                component: path,
-                cssClass: classcss
-            });
-            modal.onDidDismiss().then((d) => {
-                console.log(d);
-                this.d = d;
-            });
-            return yield modal.present();
-        });
-    }
-};
-CommonService.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] }
-];
-CommonService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
-], CommonService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/groupusersmodal/groupusersmodal.component.scss":
-/*!****************************************************************!*\
-  !*** ./src/app/groupusersmodal/groupusersmodal.component.scss ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2dyb3VwdXNlcnNtb2RhbC9ncm91cHVzZXJzbW9kYWwuY29tcG9uZW50LnNjc3MifQ== */");
-
-/***/ }),
-
-/***/ "./src/app/groupusersmodal/groupusersmodal.component.ts":
-/*!**************************************************************!*\
-  !*** ./src/app/groupusersmodal/groupusersmodal.component.ts ***!
-  \**************************************************************/
-/*! exports provided: GroupusersmodalComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupusersmodalComponent", function() { return GroupusersmodalComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-
-
-let GroupusersmodalComponent = class GroupusersmodalComponent {
-    constructor() { }
-    ngOnInit() { }
-};
-GroupusersmodalComponent.ctorParameters = () => [];
-GroupusersmodalComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-groupusersmodal',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./groupusersmodal.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/groupusersmodal/groupusersmodal.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./groupusersmodal.component.scss */ "./src/app/groupusersmodal/groupusersmodal.component.scss")).default]
-    })
-], GroupusersmodalComponent);
 
 
 

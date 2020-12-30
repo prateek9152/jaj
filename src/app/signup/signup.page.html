@@ -28,28 +28,35 @@
                   {{ validation.message }}
                 </span>
               </ng-container>
-              <ion-input class="input_1"  type="text" formControlName="lastName" placeholder="Enter Last Name" [ngClass]="{'is-invalid': submitted && f.lastName.errors}"></ion-input>
-              <ng-container *ngFor="let validation of validation_messages.lastName">
+              <ion-input class="input_1"  type="text" formControlName="last_name" placeholder="Enter Last Name" [ngClass]="{'is-invalid': submitted && f.last_name.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.last_name">
                 <span class="error-message"
-                  *ngIf="(submitted || registerForm.get('lastName').touched) && registerForm.get('lastName').hasError(validation.type)">
+                  *ngIf="(submitted || registerForm.get('last_name').touched) && registerForm.get('last_name').hasError(validation.type)">
                   {{ validation.message }}
                 </span>
               </ng-container>
-              <ion-input class="input_1"  type="text" formControlName="username" placeholder="Enter Username" [ngClass]="{'is-invalid': submitted && f.username.errors}"></ion-input>
-              <ng-container *ngFor="let validation of validation_messages.username">
+              <ion-input class="input_1"  type="text" formControlName="user_name" placeholder="Enter Username" [ngClass]="{'is-invalid': submitted && f.user_name.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.user_name">
                 <span class="error-message"
-                  *ngIf="(submitted || registerForm.get('username').touched) && registerForm.get('username').hasError(validation.type)">
+                  *ngIf="(submitted || registerForm.get('user_name').touched) && registerForm.get('user_name').hasError(validation.type)">
                   {{ validation.message }}
                 </span>
               </ng-container>
-                               
-              <ion-input class="input_1" type="number" formControlName="phone" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.phone.errors}"></ion-input>
-              <ng-container *ngFor="let validation of validation_messages.phone">
+              <ion-input class="input_1" type="tel" formControlName="mobile_number" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.mobile_number.errors}" minlength="10"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.mobile_number">
                 <span class="error-message"
-                  *ngIf="(submitted || registerForm.get('phone').touched) && registerForm.get('phone').hasError(validation.type)">
+                  *ngIf="(submitted || registerForm.get('mobile_number').touched) && registerForm.get('mobile_number').hasError(validation.type)">
                   {{ validation.message }}
                 </span>
               </ng-container>
+              <ion-input class="input_1" type="email" formControlName="email" placeholder="E-Mail" [ngClass]="{'is-invalid': submitted && f.email.errors}"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.email">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('email').touched) && registerForm.get('email').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>                  
+              
               <ion-input class="input_1"  type="password" formControlName="password" placeholder="Enter Password" [ngClass]="{'is-invalid':submitted && f.password.errors}"></ion-input>
               <ng-container *ngFor="let validation of validation_messages.password">
                 <span class="error-message"

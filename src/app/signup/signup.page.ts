@@ -10,6 +10,7 @@ import {ToastService} from '../services/toast.service';
 import {LoaderService} from '../services/loader.service';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Storage} from '@ionic/storage';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -31,7 +32,7 @@ export class SignupPage implements OnInit {
   constructor(private router:Router,private menuCtrl:MenuController, 
     private formBuilder:FormBuilder,private modalController:ModalController,
     private toastService:ToastService,private ionLoader:LoaderService,
-    private http:HttpClient,public authService:AuthService) { }
+    private http:HttpClient,public authService:AuthService, private storage:Storage) { }
 
     dismissRegister(){
       this.modalController.dismiss();
@@ -42,16 +43,20 @@ export class SignupPage implements OnInit {
       name: new FormControl('',Validators.compose([
         Validators.required,Validators.minLength(4)
       ])),
-      lastName: new FormControl('',Validators.compose([Validators.required,Validators.minLength(2)])),
-      username: new FormControl('',Validators.compose([
+      last_name: new FormControl('',Validators.compose([Validators.required,Validators.minLength(2)])),
+      user_name: new FormControl('',Validators.compose([
         UsernameValidator.validUsername,
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         Validators.required
       ])),
-     
-      phone: new FormControl('',Validators.compose([
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}'),
+        //  Validators.pattern('[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|wdipl|yahoo|live|outlook|hotmail|yopmail|gmx)\.[A-Za-z0-9._%+-]{2,}')
+      ])),
+      mobile_number:new FormControl('',Validators.compose([
         Validators.required,Validators.minLength(10)
       ])),
      
@@ -70,13 +75,17 @@ export class SignupPage implements OnInit {
   get f() { return this.registerForm.controls; }
   'validation_messages' = {
     name: [{type: 'required',message: 'First Name is required'}],
-    lastName: [{type: 'required',message: 'Last Name is required'},{type:'minlength',message: 'Last Name must be at least 2 characters long'}],
-    username: [   { type: 'required', message: 'Username is required.' },
+    last_name: [{type: 'required',message: 'Last Name is required'},{type:'minlength',message: 'Last Name must be at least 2 characters long'}],
+    user_name: [   { type: 'required', message: 'Username is required.' },
     { type: 'minlength', message: 'Username must be at least 5 characters long.' },
     { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
     { type: 'pattern', message: 'Your username must contain only numbers and letters.' },
     { type: 'validUsername', message: 'Your username has already been taken.' }],
-    phone:[
+    email: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email' }
+    ],
+    mobile_number:[
       { type: 'required', message: 'Mobile Number is required.' },
       { type: 'minlength', message: 'Mobile Number must be at least 10 numbers.' },
       ],
@@ -116,67 +125,38 @@ export class SignupPage implements OnInit {
 
     return;
     }
-         this.router.navigate(['/menu/verify'])
 
-    // var formData = new FormData();
-    // formData.append("name",this.registerForm.get('name').value);
-    // formData.append("email",this.registerForm.get('email').value);
-    // formData.append("password",this.registerForm.get('password').value);
-    // formData.append("c_password",this.registerForm.get('c_password').value);
-    // let headers = new HttpHeaders({"Accept": "application/json"});
-    // this.http.post('https://jajoj.threethree.in/api/register',formData,{headers:headers}).subscribe(async (response:any)=> {
+    var formData = new FormData();
+    formData.append("name",this.registerForm.get('name').value);
+    formData.append("last_name",this.registerForm.get('last_name').value);
+    formData.append("user_name",this.registerForm.get('user_name').value);
+    formData.append("mobile_number",this.registerForm.get('mobile_number').value);
+    formData.append("email",this.registerForm.get('email').value);
+    formData.append("password",this.registerForm.get('password').value);
+    formData.append("c_password",this.registerForm.get('c_password').value);
+
+    let headers = new HttpHeaders({"Accept": "application/json"});
+    this.http.post('https://jajoj.threethree.in/api/register',formData,{headers:headers}).subscribe(async (response:any)=> {
+              this.router.navigate(['/menu/verify']);
     //         if(response.status==1){
-    //           // this.storage.set('userData', this.registerForm.value.email);
-    //           // this.storage.set('userToken',response.userToken);
-    //           this.router.navigate(['/menu/verify',this.registerForm.value.email]).then(nav => {
-                
-    //           })
-
-    //         }
-    // })
-
-  //  console.log(this.registerForm.value);
-    
-    // this.authService.addUser(this.registerForm.value).subscribe((data:any)=> {
-    //   console.log(data);
-    //   this.router.navigate(['/menu/verify'])
-
-    // })
-    // let data1 = {
-    //   "name":{value:this.userData.name,type:"NO"},
-    //   "email":{value:this.userData.email,type:"NO"},
-    //   "password":{value:this.userData.password,type:"NO"},
-    //   "c_password":{value:this.userData.c_password,type:"NO"}
-    // }
-    // this.authService.postData(data1,'register').subscribe(
-    //   (response:any) => {
-    //     console.log(response);
-    //     this.router.navigate(['/menu/verify'])
-    //   }
-    // )
-    // if(this.registerForm.invalid){
-
-    // return;
-    // }
-    // var formData: any = new FormData();
-    // formData.append("firstName", this.registerForm.get('firstName').value);
-    // formData.append("lastName", this.registerForm.get('lastName').value);
-    // formData.append("username", this.registerForm.get('username').value);
-    // formData.append("phone", this.registerForm.get('phone').value);
-    // formData.append("password", this.registerForm.get('password').value);
-    // formData.append("confirmPassword", this.registerForm.get('confirmPassword').value);
-
-    // this.http.post('',formData).subscribe((response:any)=> {
-    //   if(response.status==1){
-    //     this.authService.updateUserDetails(response.data);
-    //   }
-    // })
-    // this.toastService.showToast();
-    // this.toastService.presentToast(data['message']);
-    // this.ionLoader.showLoader();
+    //           this.storage.set('userData', this.registerForm.value.email);
+    //           this.storage.set('userToken',response.userToken);
+   
+    //             this.toastService.showToast();
+    //         this.toastService.showToast();
+    //         this.ionLoader.showLoader();
     // setTimeout(() => {
     //   this.hideLoader();
     // },1000);
+              
+
+    //         }
+    })
+
+
+   
+    
+   
   }
   hideLoader(){
     this.ionLoader.hideLoader();

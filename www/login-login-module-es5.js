@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-content padding class=\"back_img\">\n\n\n\n    <div class=\"login_form_main\">\n      <form [formGroup]=\"validations_form\" style=\"\theight: 100%;\n      display: contents;\n      width: 100%;\n      align-items: center;\"  (ngSubmit)=\"login()\">\n\n      <div class=\"login_form\">\n        <div class=\"logo\">\n          <img src=\"../../assets/imgs/login/jajlogo.jpeg\">\n          <h3>Please enter your login detail</h3>\n        </div>\n  \n  \n        <ion-list style=\"margin:0 0 20px; display:inline\">\n          <ion-input class=\"input_1\" type=\"email\" formControlName=\"email\" placeholder=\"Enter Your E-Mail\" [ngClass]=\"{'is-invalid': submitted && f.email.errors}\"></ion-input>\n          <ng-container *ngFor=\"let validation of validation_messages.email\">\n            <span class=\"error-message\"\n              *ngIf=\"(submitted || validations_form.get('email').touched) && validations_form.get('email').hasError(validation.type)\">\n              {{ validation.message }}\n            </span>\n          </ng-container>\n          <!-- <ion-label style=\"text-align: center;\n          display: block;\">Enter Your Phone Number</ion-label> -->\n            <!-- <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Enter Your Mobile Number\" [ngClass]=\"{'is-invalid': submitted && f.phone.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.phone\">\n              <span class=\"error-message\"\n                *ngIf=\"(submitted || validations_form.get('phone').touched) && validations_form.get('phone').hasError(validation.type)\">\n                {{ validation.message }}\n              </span>\n            </ng-container> -->\n            \n          <!-- <ion-label style=\"text-align: center;\n          display: block;\">Password</ion-label> -->\n            <ion-input class=\"input_1\" type=\"password\" formControlName=\"password\" placeholder=\"Enter Password\" [ngClass]=\"{'is-invalid': submitted && f.password.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\n              <span class=\"error-message\"\n                *ngIf=\"(submitted || validations_form.get('password').touched) && validations_form.get('password').hasError(validation.type)\">\n                {{ validation.message }}\n              </span>\n            </ng-container>\n            \n        </ion-list>\n  \n        <h5 style=\"text-align: center;font-size: 13px;font-weight: normal;\" [routerLink]=\"['/menu/forgot']\">Forgot Password?</h5>\n  \n        <div padding class=\"btn_grp\">\n          <button class=\"btnclick\" (click)=\"login()\">LOGIN</button>\n          <p>Don't have an account? <span (click)=\"register()\">Sign Up</span></p>\n        </div>\n      </div>\n      </form>\n\n    </div>\n  \n \n  \n  </ion-content>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-content>\n  <ion-content padding class=\"back_img\">\n\n\n\n    <div class=\"login_form_main\">\n      <form [formGroup]=\"validations_form\" style=\"\theight: 100%;\n      display: contents;\n      width: 100%;\n      align-items: center;\"  (ngSubmit)=\"login()\">\n\n      <div class=\"login_form\">\n        <div class=\"logo\">\n          <img src=\"../../assets/imgs/login/jajlogo.jpeg\">\n          <h3>Please enter your login detail</h3>\n        </div>\n  \n  \n        <ion-list style=\"margin:0 0 20px; display:inline\">\n         \n          <!-- <ion-label style=\"text-align: center;\n          display: block;\">Enter Your Phone Number</ion-label> -->\n            <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Enter Your Mobile Number\" [ngClass]=\"{'is-invalid': submitted && f.phone.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.phone\">\n              <span class=\"error-message\"\n                *ngIf=\"(submitted || validations_form.get('phone').touched) && validations_form.get('phone').hasError(validation.type)\">\n                {{ validation.message }}\n              </span>\n            </ng-container>\n            \n          <!-- <ion-label style=\"text-align: center;\n          display: block;\">Password</ion-label> -->\n            <ion-input class=\"input_1\" type=\"password\" formControlName=\"password\" placeholder=\"Enter Password\" [ngClass]=\"{'is-invalid': submitted && f.password.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\n              <span class=\"error-message\"\n                *ngIf=\"(submitted || validations_form.get('password').touched) && validations_form.get('password').hasError(validation.type)\">\n                {{ validation.message }}\n              </span>\n            </ng-container>\n            \n        </ion-list>\n  \n        <h5 style=\"text-align: center;font-size: 13px;font-weight: normal;\" [routerLink]=\"['/menu/forgot']\">Forgot Password?</h5>\n  \n        <div padding class=\"btn_grp\">\n          <button class=\"btnclick\" (click)=\"login()\">LOGIN</button>\n          <p>Don't have an account? <span (click)=\"register()\">Sign Up</span></p>\n        </div>\n      </div>\n      </form>\n\n    </div>\n  \n \n  \n  </ion-content>\n</ion-content>\n";
       /***/
     },
 
@@ -231,15 +231,15 @@
       /* harmony import */
 
 
-      var _toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! ../toast.service */
-      "./src/app/toast.service.ts");
+      var _services_toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ../services/toast.service */
+      "./src/app/services/toast.service.ts");
       /* harmony import */
 
 
-      var _loader_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-      /*! ../loader.service */
-      "./src/app/loader.service.ts");
+      var _services_loader_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../services/loader.service */
+      "./src/app/services/loader.service.ts");
       /* harmony import */
 
 
@@ -249,9 +249,9 @@
       /* harmony import */
 
 
-      var _auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-      /*! ../auth.service */
-      "./src/app/auth.service.ts");
+      var _services_auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ../services/auth.service */
+      "./src/app/services/auth.service.ts");
 
       var LoginPage = /*#__PURE__*/function () {
         function LoginPage(router, menuCtrl, formBuilder, toastService, ionLoader, http, authService) {
@@ -267,14 +267,13 @@
           this.authService = authService;
           this.submitted = false;
           this.validation_messages = {
-            'email': [{
+            'phone': [{
               type: 'required',
               message: 'Phone is required.'
+            }, {
+              type: 'minlength',
+              message: 'Phone Number must be at least 10 digits.'
             }],
-            // 'phone': [
-            //   { type: 'required', message: 'Phone is required.' },
-            //   { type: 'minlength', message: 'Phone Number must be at least 10 digits.' }
-            // ],
             'password': [{
               type: 'required',
               message: 'Password is required.'
@@ -292,11 +291,7 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             this.validations_form = this.formBuilder.group({
-              email: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])),
-              // phone: new FormControl('', Validators.compose([
-              //   Validators.minLength(10),
-              //   Validators.required,
-              // ])),
+              phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])),
               password: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(5), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9!$%@#£€*?&]+$')]))
             });
           }
@@ -318,35 +313,28 @@
         }, {
           key: "login",
           value: function login() {
-            var _this = this;
-
             this.submitted = true;
 
             if (this.validations_form.invalid) {
               return;
-            }
+            } // var formData: any = new FormData();
+            // formData.append("email",this.validations_form.get('email').value);
+            // formData.append("password",this.validations_form.get('password').value);
+            // let headers = new HttpHeaders({"Accept": "application/json"});
+            // console.log(formData);
 
-            var formData = new FormData();
-            formData.append("email", this.validations_form.get('email').value);
-            formData.append("password", this.validations_form.get('password').value);
-            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpHeaders"]({
-              "Accept": "application/json"
-            });
-            this.http.post('https://jajoj.threethree.in/api/login', formData, {
-              headers: headers
-            }).subscribe(function (response) {
-              _this.router.navigate(['/menu/home']);
 
-              console.log(response);
-
-              if (response.status == 1) {
-                _this.authService.updateUserDetails(response.data);
-
-                _this.router.navigate(['/menu/home']);
-
-                _this.toastService.showLoginToast();
-              } else {}
-            });
+            this.router.navigate(['/menu/home']); // this.http.post('https://jajoj.threethree.in/api/login',formData,{headers:headers}).subscribe((response:any)=> {
+            // this.router.navigate(['/menu/home']);
+            // console.log(response);
+            //  if(response.status==1){
+            //    this.authService.updateUserDetails(response.data);
+            //    this.router.navigate(['/menu/home']);
+            //    this.toastService.showLoginToast();
+            //  }
+            //   else {
+            //   }
+            // })
           }
         }, {
           key: "register",
@@ -371,13 +359,13 @@
         }, {
           type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
         }, {
-          type: _toast_service__WEBPACK_IMPORTED_MODULE_5__["ToastService"]
+          type: _services_toast_service__WEBPACK_IMPORTED_MODULE_5__["ToastService"]
         }, {
-          type: _loader_service__WEBPACK_IMPORTED_MODULE_6__["LoaderService"]
+          type: _services_loader_service__WEBPACK_IMPORTED_MODULE_6__["LoaderService"]
         }, {
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]
         }, {
-          type: _auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]
+          type: _services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]
         }];
       };
 

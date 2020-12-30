@@ -170,9 +170,9 @@
         }, {
           path: 'addgroup',
           loadChildren: function loadChildren() {
-            return __webpack_require__.e(
+            return Promise.all(
             /*! import() | addgroup-addgroup-module */
-            "addgroup-addgroup-module").then(__webpack_require__.bind(null,
+            [__webpack_require__.e("common"), __webpack_require__.e("addgroup-addgroup-module")]).then(__webpack_require__.bind(null,
             /*! ../addgroup/addgroup.module */
             "./src/app/addgroup/addgroup.module.ts")).then(function (m) {
               return m.AddgroupPageModule;

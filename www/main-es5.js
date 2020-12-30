@@ -17,7 +17,7 @@
     /***/
     function $$_lazy_route_resourceLazyRecursive(module, exports, __webpack_require__) {
       var map = {
-        "../home/home.module": ["./src/app/home/home.module.ts", "home-home-module"],
+        "../home/home.module": ["./src/app/home/home.module.ts", "common", "home-home-module"],
         "../profile/profile.module": ["./src/app/profile/profile.module.ts", "profile-profile-module"],
         "./menu/menu.module": ["./src/app/menu/menu.module.ts", "menu-menu-module"]
       };
@@ -33,7 +33,7 @@
 
         var ids = map[req],
             id = ids[0];
-        return __webpack_require__.e(ids[1]).then(function () {
+        return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function () {
           return __webpack_require__(id);
         });
       }
@@ -201,61 +201,6 @@
           });
         }
       }, {
-        path: 'chat',
-        loadChildren: function loadChildren() {
-          return __webpack_require__.e(
-          /*! import() | chat-chat-module */
-          "chat-chat-module").then(__webpack_require__.bind(null,
-          /*! ./chat/chat.module */
-          "./src/app/chat/chat.module.ts")).then(function (m) {
-            return m.ChatPageModule;
-          });
-        }
-      }, {
-        path: 'groups',
-        loadChildren: function loadChildren() {
-          return __webpack_require__.e(
-          /*! import() | groups-groups-module */
-          "groups-groups-module").then(__webpack_require__.bind(null,
-          /*! ./groups/groups.module */
-          "./src/app/groups/groups.module.ts")).then(function (m) {
-            return m.GroupsPageModule;
-          });
-        }
-      }, {
-        path: 'circle',
-        loadChildren: function loadChildren() {
-          return __webpack_require__.e(
-          /*! import() | circle-circle-module */
-          "circle-circle-module").then(__webpack_require__.bind(null,
-          /*! ./circle/circle.module */
-          "./src/app/circle/circle.module.ts")).then(function (m) {
-            return m.CirclePageModule;
-          });
-        }
-      }, {
-        path: 'requests',
-        loadChildren: function loadChildren() {
-          return __webpack_require__.e(
-          /*! import() | requests-requests-module */
-          "requests-requests-module").then(__webpack_require__.bind(null,
-          /*! ./requests/requests.module */
-          "./src/app/requests/requests.module.ts")).then(function (m) {
-            return m.RequestsPageModule;
-          });
-        }
-      }, {
-        path: 'status',
-        loadChildren: function loadChildren() {
-          return __webpack_require__.e(
-          /*! import() | status-status-module */
-          "status-status-module").then(__webpack_require__.bind(null,
-          /*! ./status/status.module */
-          "./src/app/status/status.module.ts")).then(function (m) {
-            return m.StatusPageModule;
-          });
-        }
-      }, {
         path: 'settings',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
@@ -302,9 +247,9 @@
       }, {
         path: 'addgroup',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | addgroup-addgroup-module */
-          "addgroup-addgroup-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("addgroup-addgroup-module")]).then(__webpack_require__.bind(null,
           /*! ./addgroup/addgroup.module */
           "./src/app/addgroup/addgroup.module.ts")).then(function (m) {
             return m.AddgroupPageModule;
@@ -321,44 +266,7 @@
             return m.AddcirclePageModule;
           });
         }
-      } // {
-      //   path: 'home',
-      //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-      // },
-      // {
-      //   path: '',
-      //   redirectTo: 'login',
-      //   pathMatch: 'full'
-      // },
-      // {
-      //   path: 'signup',
-      //   loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
-      // },
-      // {
-      //   path: 'login',
-      //   loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-      // },
-      // {
-      //   path: 'forgot',
-      //   loadChildren: () => import('./forgot/forgot.module').then( m => m.ForgotPageModule)
-      // },
-      // {
-      //   path: 'verify',
-      //   loadChildren: () => import('./verify/verify.module').then( m => m.VerifyPageModule)
-      // },
-      // {
-      //   path: 'edit-profile',
-      //   loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
-      // },
-      // {
-      //   path: 'profile',
-      //   loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-      // },
-      // {
-      //   path: 'menu',
-      //   loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
-      // },
-      ];
+      }];
 
       var AppRoutingModule = function AppRoutingModule() {
         _classCallCheck(this, AppRoutingModule);
@@ -457,9 +365,9 @@
       /* harmony import */
 
 
-      var _auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-      /*! ./auth.service */
-      "./src/app/auth.service.ts");
+      var _services_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ./services/auth.service */
+      "./src/app/services/auth.service.ts");
 
       var AppComponent = /*#__PURE__*/function () {
         function AppComponent(platform, splashScreen, statusBar, alertController, location, router, toastController, auth) {
@@ -485,12 +393,6 @@
             var _this = this;
 
             this.platform.ready().then(function () {
-              if (_this.auth.isUserLoggedIn()) {
-                _this.router.navigate(['/menu/home']);
-              } else {
-                _this.router.navigate(['/menu/login']);
-              }
-
               _this.statusBar.styleDefault();
 
               _this.splashScreen.hide();
@@ -595,7 +497,7 @@
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
         }, {
-          type: _auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"]
+          type: _services_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"]
         }];
       };
 
@@ -699,15 +601,10 @@
       /* harmony import */
 
 
-      var _ionic_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
-      /*! @ionic/storage */
-      "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
-      /* harmony import */
-
-
-      var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! @ionic-native/camera/ngx */
-      "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js");
+      "./node_modules/@ionic-native/camera/__ivy_ngcc__/ngx/index.js"); // import { IonicStorageModule } from '@ionic/storage';
+
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
@@ -716,26 +613,26 @@
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot()],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"]],
         providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
           provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
           useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
-        }, _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"]],
+        }, _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_10__["Camera"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
       })], AppModule);
       /***/
     },
 
     /***/
-    "./src/app/auth.service.ts":
-    /*!*********************************!*\
-      !*** ./src/app/auth.service.ts ***!
-      \*********************************/
+    "./src/app/services/auth.service.ts":
+    /*!******************************************!*\
+      !*** ./src/app/services/auth.service.ts ***!
+      \******************************************/
 
     /*! exports provided: AuthService */
 
     /***/
-    function srcAppAuthServiceTs(module, __webpack_exports__, __webpack_require__) {
+    function srcAppServicesAuthServiceTs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);

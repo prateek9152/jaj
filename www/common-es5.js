@@ -664,15 +664,269 @@
     },
 
     /***/
-    "./src/app/loader.service.ts":
-    /*!***********************************!*\
-      !*** ./src/app/loader.service.ts ***!
-      \***********************************/
+    "./src/app/services/common.service.ts":
+    /*!********************************************!*\
+      !*** ./src/app/services/common.service.ts ***!
+      \********************************************/
+
+    /*! exports provided: CommonService */
+
+    /***/
+    function srcAppServicesCommonServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CommonService", function () {
+        return CommonService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+      var CommonService = /*#__PURE__*/function () {
+        function CommonService(alertController, toastController, loadingController, router, modalController) {
+          _classCallCheck(this, CommonService);
+
+          this.alertController = alertController;
+          this.toastController = toastController;
+          this.loadingController = loadingController;
+          this.router = router;
+          this.modalController = modalController;
+          this.isLoading = false;
+        }
+
+        _createClass(CommonService, [{
+          key: "presentAlert",
+          value: function presentAlert(title, msg, btns) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var alert;
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      console.log(btns);
+                      _context3.next = 3;
+                      return this.alertController.create({
+                        header: title,
+                        message: msg,
+                        buttons: btns
+                      });
+
+                    case 3:
+                      alert = _context3.sent;
+                      alert.present();
+
+                    case 5:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this);
+            }));
+          }
+        }, {
+          key: "presentToast",
+          value: function presentToast(headerdata) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+              var toast;
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
+                      _context4.next = 2;
+                      return this.toastController.create({
+                        header: headerdata,
+                        duration: 2000,
+                        position: 'bottom'
+                      });
+
+                    case 2:
+                      toast = _context4.sent;
+                      toast.present();
+
+                    case 4:
+                    case "end":
+                      return _context4.stop();
+                  }
+                }
+              }, _callee4, this);
+            }));
+          }
+        }, {
+          key: "presentLoader",
+          value: function presentLoader() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+              var _this = this;
+
+              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                while (1) {
+                  switch (_context5.prev = _context5.next) {
+                    case 0:
+                      this.isLoading = true;
+                      _context5.next = 3;
+                      return this.loadingController.create({
+                        message: 'wait...'
+                      }).then(function (a) {
+                        a.present().then(function () {
+                          if (!_this.isLoading) {
+                            a.dismiss().then(function () {
+                              return console.log('abort presenting');
+                            });
+                          }
+                        });
+                      });
+
+                    case 3:
+                      return _context5.abrupt("return", _context5.sent);
+
+                    case 4:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, _callee5, this);
+            }));
+          }
+        }, {
+          key: "dismissLoader",
+          value: function dismissLoader() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+              return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                while (1) {
+                  switch (_context6.prev = _context6.next) {
+                    case 0:
+                      this.isLoading = false;
+                      _context6.next = 3;
+                      return this.loadingController.dismiss().then(function () {
+                        return console.log('dismissed');
+                      });
+
+                    case 3:
+                      return _context6.abrupt("return", _context6.sent);
+
+                    case 4:
+                    case "end":
+                      return _context6.stop();
+                  }
+                }
+              }, _callee6, this);
+            }));
+          } // loggingout(){
+          //   this.storage.get('userData').then((value) =>            
+          //   this.settingsService.logout().subscribe((data: any) => {         
+          //        this.storage.clear();  
+          //        this.dismissLoader(); 
+          //       this.router.navigateByUrl('/splash');
+          //     }, err => {
+          //       console.log('error msg!');
+          //     })
+          //   );
+          // }
+
+        }, {
+          key: "dismissModal",
+          value: function dismissModal() {
+            var dataArray = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+            // using the injected ModalController this page
+            // can "dismiss" itself and optionally pass back data
+            this.modalController.dismiss(dataArray);
+          }
+        }, {
+          key: "presentModal",
+          value: function presentModal(path, classcss) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+              var _this2 = this;
+
+              var modal;
+              return regeneratorRuntime.wrap(function _callee7$(_context7) {
+                while (1) {
+                  switch (_context7.prev = _context7.next) {
+                    case 0:
+                      _context7.next = 2;
+                      return this.modalController.create({
+                        component: path,
+                        cssClass: classcss
+                      });
+
+                    case 2:
+                      modal = _context7.sent;
+                      modal.onDidDismiss().then(function (d) {
+                        console.log(d);
+                        _this2.d = d;
+                      });
+                      _context7.next = 6;
+                      return modal.present();
+
+                    case 6:
+                      return _context7.abrupt("return", _context7.sent);
+
+                    case 7:
+                    case "end":
+                      return _context7.stop();
+                  }
+                }
+              }, _callee7, this);
+            }));
+          }
+        }]);
+
+        return CommonService;
+      }();
+
+      CommonService.ctorParameters = function () {
+        return [{
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+        }];
+      };
+
+      CommonService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], CommonService);
+      /***/
+    },
+
+    /***/
+    "./src/app/services/loader.service.ts":
+    /*!********************************************!*\
+      !*** ./src/app/services/loader.service.ts ***!
+      \********************************************/
 
     /*! exports provided: LoaderService */
 
     /***/
-    function srcAppLoaderServiceTs(module, __webpack_exports__, __webpack_require__) {
+    function srcAppServicesLoaderServiceTs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -757,15 +1011,15 @@
     },
 
     /***/
-    "./src/app/toast.service.ts":
-    /*!**********************************!*\
-      !*** ./src/app/toast.service.ts ***!
-      \**********************************/
+    "./src/app/services/toast.service.ts":
+    /*!*******************************************!*\
+      !*** ./src/app/services/toast.service.ts ***!
+      \*******************************************/
 
     /*! exports provided: ToastService */
 
     /***/
-    function srcAppToastServiceTs(module, __webpack_exports__, __webpack_require__) {
+    function srcAppServicesToastServiceTs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -846,6 +1100,17 @@
                   console.log('Cancel clicked');
                 }
               }]
+            }).then(function (toastData) {
+              console.log(toastData);
+              toastData.present();
+            });
+          }
+        }, {
+          key: "requestToast",
+          value: function requestToast() {
+            this.myToast = this.toast.create({
+              message: 'Thank You For Your Request.',
+              duration: 2000
             }).then(function (toastData) {
               console.log(toastData);
               toastData.present();
