@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import {  MenuController } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ToastService } from '../services/toast.service';
 import {LoaderService} from '../services/loader.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -16,7 +17,7 @@ export class LoginPage implements OnInit {
   submitted = false;
 
   constructor(private router: Router,public menuCtrl:MenuController,public formBuilder: FormBuilder,
-    private toastService:ToastService, private ionLoader:LoaderService, private http:HttpClient,private authService:AuthService ) {
+    private toastService:ToastService, private ionLoader:LoaderService, private http:HttpClient,private authService:AuthService,private alertService:AlertService ) {
     
     // this.menuCtrl.enable(false,"first");
 
@@ -24,11 +25,15 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
-       
-        phone: new FormControl('', Validators.compose([
-          Validators.minLength(10),
-          Validators.required,
-        ])),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}'),
+        //  Validators.pattern('[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|wdipl|yahoo|live|outlook|hotmail|yopmail|gmx)\.[A-Za-z0-9._%+-]{2,}')
+      ])),
+        // phone: new FormControl('', Validators.compose([
+        //   Validators.minLength(10),
+        //   Validators.required,
+        // ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required,
@@ -39,10 +44,14 @@ export class LoginPage implements OnInit {
   get f() { return this.validations_form.controls; }
 
   validation_messages = {
-    'phone': [
-      { type: 'required', message: 'Phone is required.' },
-      { type: 'minlength', message: 'Phone Number must be at least 10 digits.' }
+    email: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email' }
     ],
+    // 'phone': [
+    //   { type: 'required', message: 'Phone is required.' },
+    //   { type: 'minlength', message: 'Phone Number must be at least 10 digits.' }
+    // ],
     'password': [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'Password must be at least 5 characters long.' },
@@ -62,26 +71,25 @@ login(){
 
   return;
   }
-  // var formData: any = new FormData();
-  // formData.append("email",this.validations_form.get('email').value);
-  // formData.append("password",this.validations_form.get('password').value);
-  // let headers = new HttpHeaders({"Accept": "application/json"});
-  // console.log(formData);
+  var formData: any = new FormData();
+  formData.append("email",this.validations_form.get('email').value);
+  formData.append("password",this.validations_form.get('password').value);
+  let headers = new HttpHeaders({"Accept": "application/json"});
+  console.log(formData);
+  this.http.post('https://jajoj.threethree.in/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
+  console.log(response);
   this.router.navigate(['/menu/home']);
-  // this.http.post('https://jajoj.threethree.in/api/login',formData,{headers:headers}).subscribe((response:any)=> {
-  // this.router.navigate(['/menu/home']);
-  // console.log(response);
 
   //  if(response.status==1){
-  //    this.authService.updateUserDetails(response.data);
-  //    this.router.navigate(['/menu/home']);
+  //   //  this.authService.updateUserDetails(response.data);
   //    this.toastService.showLoginToast();
 
   //  }
   //   else {
-      
+  //     // this.alertService.show('Alert',response.message);
+   
   //   }
-  // })
+  })
   
   
 

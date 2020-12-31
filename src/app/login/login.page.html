@@ -17,16 +17,22 @@
   
   
         <ion-list style="margin:0 0 20px; display:inline">
-         
+          <ion-input class="input_1" type="email" formControlName="email" placeholder="E-Mail" [ngClass]="{'is-invalid': submitted && f.email.errors}"></ion-input>
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <span class="error-message"
+              *ngIf="(submitted || validations_form.get('email').touched) && validations_form.get('email').hasError(validation.type)">
+              {{ validation.message }}
+            </span>
+          </ng-container>  
           <!-- <ion-label style="text-align: center;
           display: block;">Enter Your Phone Number</ion-label> -->
-            <ion-input class="input_1" type="number" formControlName="phone" placeholder="Enter Your Mobile Number" [ngClass]="{'is-invalid': submitted && f.phone.errors}"></ion-input>
+            <!-- <ion-input class="input_1" type="number" formControlName="phone" placeholder="Enter Your Mobile Number" [ngClass]="{'is-invalid': submitted && f.phone.errors}"></ion-input>
             <ng-container *ngFor="let validation of validation_messages.phone">
               <span class="error-message"
                 *ngIf="(submitted || validations_form.get('phone').touched) && validations_form.get('phone').hasError(validation.type)">
                 {{ validation.message }}
               </span>
-            </ng-container>
+            </ng-container> -->
             
           <!-- <ion-label style="text-align: center;
           display: block;">Password</ion-label> -->

@@ -13,12 +13,15 @@
     <ion-menu-button autoHide="false">
       <img src='../../assets/imgs/blank-avatar.jpg'>
     </ion-menu-button>
-    <button ion-button clear icon-only small style="color: #000;font-weight: 600;padding: 0;margin: 0; border: none; background: none;">$<span *ngIf="show">100</span></button>
+
+    <ion-icon name="person-add-outline" (click)="mycontact()" class="size"></ion-icon>  
+
+    <!-- <button ion-button clear icon-only small style="color: #000;font-weight: 600;padding: 0;margin: 0; border: none; background: none;">$<span *ngIf="show">100</span></button>
     &nbsp;&nbsp;<button ion-button clear icon-only style="color: #000;font-weight: 600;padding: 0;margin: 0; border: none; background: none;" (click)="toggle()">
       <img src="assets/imgs/eye.png" width="25">
       </button>
       &nbsp;&nbsp; <button ion-button clear icon-only style="color: #000; font-weight: 600; padding: 0; margin: 0;
-      border: none; background: none; outline: none;" (click)="requests()"><ion-icon name="people"></ion-icon></button>
+      border: none; background: none; outline: none;" (click)="requests()"><ion-icon name="people"></ion-icon></button> -->
 </ion-buttons>
 <!-- <ion-buttons slot="end">
   <button ion-button (click)="video()" style="color: #000;font-size: 25px; padding: 0;margin: 0; border: none; background: none;">
@@ -48,29 +51,30 @@
    <ion-segment-button value="request">
     Requests
   </ion-segment-button>
-  <ion-segment-button value="status">
+  <!-- <ion-segment-button value="status">
     Status
-  </ion-segment-button>
+  </ion-segment-button> -->
   </ion-segment>
   
   <div class="" [ngSwitch]="type">
   
   <div *ngSwitchCase="'chat'" class="list_plan" style="margin-top: 15px;">
     <ion-searchbar style="width: 90%;
-    margin: auto;"></ion-searchbar>
+    margin: auto;" [(ngModel)]="filterTerm" animated="true">
+  </ion-searchbar>
       
     <div class="user" *ngFor="let k of [1,2,3,4,5]" (click)="chatdetail()">
   
       <ion-list>
       <ion-item-sliding no-lines>
-      <ion-item  class="chat_item">
+      <ion-item  class="chat_item" *ngFor="let data of userRecords | filter:filterTerm" >
         <ion-avatar item-start>
             <img src="assets/imgs/blank-avatar.jpg">
        
         </ion-avatar>
       
         <div>
-          <h6 class="heading_int">Simon</h6>
+          <h6 class="heading_int">{{data.name}}</h6>
               <p class="dateee">How are you?</p>
               </div>
               <div class="rate">
@@ -202,18 +206,18 @@
   </div> -->
   
   <div *ngSwitchCase="'request'" class="list_plan">
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
       
     <div class="user">
   
       <ion-list>
       <ion-item-sliding no-lines>
-      <ion-item no-lines class="chat_item">
+      <ion-item no-lines class="chat_item" *ngFor="let data of userRecords | filter:filterTerm">
         <ion-avatar item-start>
             <img src="assets/imgs/blank-avatar.jpg">
         </ion-avatar>
         <div>
-        <h6 class="heading_int">Simon</h6>
+        <h6 class="heading_int">{{data.name}}</h6>
               <p class="dateee">How are you?</p>
               </div>
               <div class="rate">
@@ -254,7 +258,7 @@
   </div>
   
   
-  <div *ngSwitchCase="'status'" class="list_plan">
+  <!-- <div *ngSwitchCase="'status'" class="list_plan">
   
     
         
@@ -304,24 +308,24 @@
   </ion-list>
   
       </div>
-  </div>
+  </div> -->
   
   
   </div>
   
-  <ion-fab *ngIf="type=='chat'"   style="bottom:50px !important; right:35px !important"  (click)="mycontact()">
+  <!-- <ion-fab *ngIf="type=='chat'"   style="bottom:50px !important; right:35px !important"  (click)="mycontact()">
       <img src="assets/imgs/icon_slect.png" width="90" style="max-width:90px">
-    </ion-fab>
+    </ion-fab> -->
   
-    <ion-fab *ngIf="type=='group'"   style="bottom:50px !important; right:35px !important"  (click)="addgroup()">
+    <!-- <ion-fab *ngIf="type=='group'"   style="bottom:50px !important; right:35px !important"  (click)="addgroup()">
         <img src="assets/imgs/icon_slect.png" width="90" style="max-width:90px">
       </ion-fab>
   
       <ion-fab *ngIf="type=='circle'"   style="bottom:50px !important; right:35px !important"  (click)="addcir()">
           <img src="assets/imgs/icon_slect.png" width="90" style="max-width:90px">
-        </ion-fab>
+        </ion-fab> -->
        
-        <div class="footer">
+        <!-- <div class="footer">
           <ion-segment style="background:#ffff">
             <ion-segment-button style="color:white" icon-left>
               <img src="../../assets/imgs/footer/chat-active.png" style="max-width: 50%;" >
@@ -340,7 +344,7 @@
 
             </ion-segment-button>
           </ion-segment>
-        </div>
+        </div> -->
         <!-- <ion-tabs>
           <ion-tab-bar slot="bottom">
             <ion-tab-button tab="schedule">

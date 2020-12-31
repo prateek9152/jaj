@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
   backButtonSubscription; 
   public subscription: any;
   resultData: any = [];
+  filterTerm: string;
 
 
   constructor(private router:Router,private platform: Platform,private auth:AuthService,private modalController:ModalController
@@ -53,6 +54,47 @@ export class HomePage implements OnInit {
     });
   }
 
+  userRecords = [{
+    "id": 1,
+    "name": "Simon",
+  },
+  {
+    "id": 2,
+    "name": "Ervin Howell",
+  },
+  {
+    "id": 3,
+    "name": "Clementine Bauch",
+  },
+  {
+    "id": 4,
+    "name": "Patricia Lebsack",
+  },
+  {
+    "id": 5,
+    "name": "Chelsey Dietrich",
+  },
+  {
+    "id": 6,
+    "name": "Mrs. Dennis Schulist",
+  },
+  {
+    "id": 7,
+    "name": "Kurtis",
+  },
+  {
+    "id": 8,
+    "name": "Nicholas ",
+  },
+  {
+    "id": 9,
+    "name": "Glenna Reichert",
+  },
+  {
+    "id": 10,
+    "name": "Clementina DuBuque",
+  }
+]
   ionViewWillLeave() {
     this.subscription.unsubscribe();
   }  

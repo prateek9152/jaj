@@ -14,14 +14,21 @@
       <form [formGroup]="forgotForm" (ngSubmit)="send()">
 
   <ion-label style="text-align: center;
-  display: block; font-weight: bold;">Enter Your Phone Number</ion-label>
-  <ion-input class="input_1" type="number" formControlName="phone" placeholder="Mobile Number"></ion-input>
+  display: block; font-weight: bold;">Enter Your Email</ion-label>
+ <ion-input class="input_1" type="email" formControlName="email" placeholder="E-Mail" [ngClass]="{'is-invalid': submitted && f.email.errors}"></ion-input>
+ <ng-container *ngFor="let validation of validation_messages.email">
+   <span class="error-message"
+     *ngIf="(submitted || forgotForm.get('email').touched) && forgotForm.get('email').hasError(validation.type)">
+     {{ validation.message }}
+   </span>
+ </ng-container>
+ <!-- <ion-input class="input_1" type="number" formControlName="phone" placeholder="Mobile Number"></ion-input>
   <ng-container *ngFor="let validation of validation_messages.phone">
     <span class="error-message"
       *ngIf="(submitted || forgotForm.get('phone').touched) && forgotForm.get('phone').hasError(validation.type)">
       {{ validation.message }}
     </span>
-  </ng-container>
+  </ng-container> -->
   <div padding class="btn_grp">
     <button class="btnclick" (click)="send()">Send</button>
   </div>

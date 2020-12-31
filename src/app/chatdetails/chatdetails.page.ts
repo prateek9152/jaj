@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PopoverController,NavController,MenuController } from '@ionic/angular';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 
@@ -9,7 +10,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 })
 export class ChatdetailsPage implements OnInit {
 
-  constructor(public popoverController:PopoverController,public navCtrl:NavController,public menuCtrl:MenuController) { }
+  constructor(public popoverController:PopoverController,public navCtrl:NavController,public menuCtrl:MenuController,private router:Router) { }
 
   ngOnInit() {
   }
@@ -27,7 +28,7 @@ export class ChatdetailsPage implements OnInit {
   video(){}
   audio(){}
   goBack(){
-    this.navCtrl.back();
+    this.router.navigate(['/menu/home']);
   }
 
 }

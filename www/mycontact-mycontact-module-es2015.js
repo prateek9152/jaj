@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-item slot=\"start\">\n      <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n      </ion-item>\n    <ion-title style=\"text-align: center; text-transform: uppercase;\">contacts</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"back\">\n\n  <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>\n  <div class=\"user\" (click)=\"chatdetail()\">\n\n    <ion-list>\n    <ion-item-sliding no-lines>\n    <ion-item no-lines class=\"chat_item\">\n      <ion-avatar item-start>\n        <div>\n          <img src=\"../../assets/imgs/blank-avatar.jpg\">\n      </div>\n      </ion-avatar>\n      <div>\n      <h6 class=\"heading_int\">Simon</h6>\n            <p class=\"dateee\">@simon_john</p>\n            </div>\n    </ion-item>\n\n  </ion-item-sliding>\n</ion-list>\n\n    </div>\n    <div class=\"user\">\n\n      <ion-list>\n      <ion-item-sliding no-lines>\n      <ion-item no-lines class=\"chat_item\">\n        <ion-avatar item-start (click)=\"chatdetail()\">\n            <img src=\"../../assets/imgs/blank-avatar.jpg\">\n        </ion-avatar>\n        <div>\n        <h6 class=\"heading_int\" (click)=\"chatdetail()\">Simon</h6>\n              <p class=\"dateee\">+91452458452</p>\n              </div>\n              <button ion-button item-end style=\"position: absolute !important;\n              top: 27px !important;\n              right: 16px !important;\n              text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"invite()\">Invite</button>\n      </ion-item>\n  \n    </ion-item-sliding>\n  </ion-list>\n  \n      </div>\n      <div class=\"user\" (click)=\"chatdetail()\">\n\n        <ion-list no-lines>\n        <ion-item-sliding no-lines>\n        <ion-item no-lines class=\"chat_item\">\n          <ion-avatar item-start>\n              <img src=\"../../assets/imgs/blank-avatar.jpg\">\n          </ion-avatar>\n          <div>\n          <h6 class=\"heading_int\">Simon</h6>\n                <p class=\"dateee\">@simon_john</p>\n        </div>\n              </ion-item>\n        \n      </ion-item-sliding>\n    </ion-list>\n    \n        </div>\n        <div class=\"user\">\n    \n          <ion-list no-lines>\n          <ion-item-sliding no-lines>\n          <ion-item no-lines class=\"chat_item\">\n            <ion-avatar item-start (click)=\"chatdetail()\">\n                <img src=\"../../assets/imgs/blank-avatar.jpg\">\n            </ion-avatar>\n            <div>\n            <h6 class=\"heading_int\" (click)=\"chatdetail()\">Simon</h6>\n                  <p class=\"dateee\">+91452458452</p>\n                  </div>\n                  <button ion-button item-end style=\"position: absolute !important;\n                  top: 27px !important;\n                  right: 16px !important;\n                  text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"invite()\">Invite</button>\n          </ion-item>\n      \n        </ion-item-sliding>\n      </ion-list>\n      \n          </div>\n\t<div class=\"user\" *ngFor=\"let k of [1,2,3,4]\" (click)=\"chatdetail()\">\n\n    <ion-list no-lines>\n    <ion-item-sliding no-lines>\n    <ion-item no-lines class=\"chat_item\">\n      <ion-avatar item-start>\n          <img src=\"../../assets/imgs/blank-avatar.jpg\">\n      </ion-avatar>\n      <div>\n      <h6 class=\"heading_int\">Simon</h6>\n            <p class=\"dateee\">@simon_john</p>\n        </div>\n          </ion-item>\n\n    <ion-item-options side=\"left\"> \n      <button ion-button color=\"dark\" icon-start>\n        <img src=\"assets/imgs/msg.png\">\n        Read\n      </button>\n      <button ion-button color=\"primary\" icon-start>\n        <img src=\"assets/imgs/pin.png\">\n        Pin\n      </button>\n    </ion-item-options>\n\n    <ion-item-options side=\"right\">\n      <button ion-button color=\"dark\">\n        <img src=\"assets/imgs/more.png\">\n        more\n      </button>\n      <button ion-button color=\"primary\">\n        <img src=\"assets/imgs/archive.png\">\n        Archive\n      </button>\n    </ion-item-options>\n\n  </ion-item-sliding>\n</ion-list>\n\n    </div>\n\n</ion-content>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-item slot=\"start\">\n      <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n      </ion-item>\n    <ion-title style=\"text-align: center; text-transform: uppercase;\">contacts</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"back\">\n\n  <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>\n  <div class=\"user\" (click)=\"chatdetail()\">\n\n    <ion-list>\n    <ion-item-sliding no-lines>\n    <ion-item no-lines class=\"chat_item\">\n      <ion-avatar item-start>\n        <div>\n          <img src=\"../../assets/imgs/blank-avatar.jpg\">\n      </div>\n      </ion-avatar>\n      <div>\n      <h6 class=\"heading_int\">Simon</h6>\n            <p class=\"dateee\">@simon_john</p>\n            </div>\n            <button ion-button item-end style=\"position: absolute !important;\n            top: 27px !important;\n            right: 16px !important;\n            text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n    </ion-item>\n\n  </ion-item-sliding>\n</ion-list>\n\n    </div>\n    <div class=\"user\">\n\n      <ion-list>\n      <ion-item-sliding no-lines>\n      <ion-item no-lines class=\"chat_item\">\n        <ion-avatar item-start (click)=\"chatdetail()\">\n            <img src=\"../../assets/imgs/blank-avatar.jpg\">\n        </ion-avatar>\n        <div>\n        <h6 class=\"heading_int\" (click)=\"chatdetail()\">Simon</h6>\n              <p class=\"dateee\">+91452458452</p>\n              </div>\n              <button ion-button item-end style=\"position: absolute !important;\n              top: 27px !important;\n              right: 16px !important;\n              text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n      </ion-item>\n  \n    </ion-item-sliding>\n  </ion-list>\n  \n      </div>\n      <div class=\"user\" (click)=\"chatdetail()\">\n\n        <ion-list no-lines>\n        <ion-item-sliding no-lines>\n        <ion-item no-lines class=\"chat_item\">\n          <ion-avatar item-start>\n              <img src=\"../../assets/imgs/blank-avatar.jpg\">\n          </ion-avatar>\n          <div>\n          <h6 class=\"heading_int\">Simon</h6>\n                <p class=\"dateee\">@simon_john</p>\n        </div>\n        <button ion-button item-end style=\"position: absolute !important;\n        top: 27px !important;\n        right: 16px !important;\n        text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n              </ion-item>\n        \n      </ion-item-sliding>\n    </ion-list>\n    \n        </div>\n        <div class=\"user\">\n    \n          <ion-list no-lines>\n          <ion-item-sliding no-lines>\n          <ion-item no-lines class=\"chat_item\">\n            <ion-avatar item-start (click)=\"chatdetail()\">\n                <img src=\"../../assets/imgs/blank-avatar.jpg\">\n            </ion-avatar>\n            <div>\n            <h6 class=\"heading_int\" (click)=\"chatdetail()\">Simon</h6>\n                  <p class=\"dateee\">+91452458452</p>\n                  </div>\n                  <button ion-button item-end style=\"position: absolute !important;\n                  top: 27px !important;\n                  right: 16px !important;\n                  text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n          </ion-item>\n      \n        </ion-item-sliding>\n      </ion-list>\n      \n          </div>\n\t<div class=\"user\" *ngFor=\"let k of [1,2,3,4]\" (click)=\"chatdetail()\">\n\n    <ion-list no-lines>\n    <ion-item-sliding no-lines>\n    <ion-item no-lines class=\"chat_item\">\n      <ion-avatar item-start>\n          <img src=\"../../assets/imgs/blank-avatar.jpg\">\n      </ion-avatar>\n      <div>\n      <h6 class=\"heading_int\">Simon</h6>\n            <p class=\"dateee\">@simon_john</p>\n        </div>\n        <button ion-button item-end style=\"position: absolute !important;\n        top: 27px !important;\n        right: 16px !important;\n        text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n          </ion-item>\n\n    <ion-item-options> \n      <button ion-button color=\"dark\" icon-start>\n        <img src=\"assets/imgs/msg.png\">\n        Read\n      </button>\n      <button ion-button color=\"primary\" icon-start>\n        <img src=\"assets/imgs/pin.png\">\n        Pin\n      </button>\n    </ion-item-options>\n\n    <ion-item-options>\n      <button ion-button color=\"dark\">\n        <img src=\"assets/imgs/more.png\">\n        more\n      </button>\n      <button ion-button color=\"primary\">\n        <img src=\"assets/imgs/archive.png\">\n        Archive\n      </button>\n    </ion-item-options>\n\n  </ion-item-sliding>\n</ion-list>\n\n    </div>\n\n</ion-content>\n\n");
 
 /***/ }),
 
@@ -122,9 +122,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MycontactPage = class MycontactPage {
-    constructor(navCtrl, menuCtrl) {
+    constructor(navCtrl, menuCtrl, alertController) {
         this.navCtrl = navCtrl;
         this.menuCtrl = menuCtrl;
+        this.alertController = alertController;
     }
     ngOnInit() {
     }
@@ -137,10 +138,35 @@ let MycontactPage = class MycontactPage {
     ionViewWillEnter() {
         // this.menuCtrl.enable(false);
     }
+    showModal() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const alert = yield this.alertController.create({
+                header: 'Thanks You For Your Request!',
+                message: '',
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: (blah) => {
+                            console.log('Confirm Cancel: blah');
+                        }
+                    }, {
+                        text: 'Okay',
+                        handler: () => {
+                            console.log('Confirm Okay');
+                        }
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
 };
 MycontactPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
 ];
 MycontactPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
