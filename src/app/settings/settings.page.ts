@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {MenuController, NavController} from '@ionic/angular';
 @Component({
   selector: 'app-settings',
@@ -7,12 +8,14 @@ import {MenuController, NavController} from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(public navCtrl:NavController,private menuCtrl:MenuController) { }
+  constructor(public navCtrl:NavController,private menuCtrl:MenuController,private router:Router) { }
 
   ngOnInit() {
   }
   change(){}
-  terms(){}
+  terms(){
+    this.router.navigate(['/menu/terms']);
+  }
   privacy(){}
   posting(){}
   contact(){}

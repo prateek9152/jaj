@@ -60,6 +60,10 @@ const routes: Routes = [
       path:'addcircle',
       loadChildren:() => import('../addcircle/addcircle.module').then(m => m.AddcirclePageModule)
     },
+    {
+      path: 'terms',
+      loadChildren: () => import('../terms/terms.module').then( m => m.TermsPageModule)
+    },
      ]
   },
   {

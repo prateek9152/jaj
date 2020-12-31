@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  @ViewChild('input',{static:false}) searchInput: { setFocus: () => void; } ;
+
   activePath = '';
 
   pages = [
@@ -50,7 +52,10 @@ export class MenuPage implements OnInit {
     
   }
   toggle(){}
-  more(){}
+  more(){
+    this.searchInput.setFocus();
+
+  }
   async logout(){
     const alert = await this.alertController.create({
       header: 'Alert!',
