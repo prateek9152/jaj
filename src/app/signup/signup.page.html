@@ -42,10 +42,17 @@
                   {{ validation.message }}
                 </span>
               </ng-container>
-              <ion-input class="input_1" type="tel" formControlName="mobile_number" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.mobile_number.errors}" minlength="10"></ion-input>
-              <ng-container *ngFor="let validation of validation_messages.mobile_number">
+              <ion-input class="input_1" type="tel" formControlName="primary_mobile_number" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.primary_mobile_number.errors}" minlength="10"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.primary_mobile_number">
                 <span class="error-message"
-                  *ngIf="(submitted || registerForm.get('mobile_number').touched) && registerForm.get('mobile_number').hasError(validation.type)">
+                  *ngIf="(submitted || registerForm.get('primary_mobile_number').touched) && registerForm.get('primary_mobile_number').hasError(validation.type)">
+                  {{ validation.message }}
+                </span>
+              </ng-container>
+              <ion-input class="input_1" type="tel" formControlName="secondary_mobile_number" placeholder="Mobile Number" [ngClass]="{'is-invalid': submitted && f.secondary_mobile_number.errors}" minlength="10"></ion-input>
+              <ng-container *ngFor="let validation of validation_messages.primary_mobile_number">
+                <span class="error-message"
+                  *ngIf="(submitted || registerForm.get('secondary_mobile_number').touched) && registerForm.get('secondary_mobile_number').hasError(validation.type)">
                   {{ validation.message }}
                 </span>
               </ng-container>
