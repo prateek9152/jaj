@@ -12,12 +12,18 @@ import { HttpClientModule } from '@angular/common/http';
 // import { IonicStorageModule } from '@ionic/storage';
 import {ComponentModule} from './components.modules';
 import {Camera} from '@ionic-native/camera/ngx';
-import { IonicStorageModule } from '@ionic/storage';
+// import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,ComponentModule,IonicStorageModule.forRoot()
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    HttpClientModule,
+    ComponentModule,
+    // IonicStorageModule.forRoot()
 
   ],
   providers: [
