@@ -25,9 +25,9 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
-      email: new FormControl('', Validators.compose([
+      emailOrPrimaryMobile: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}'),
+        // Validators.pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}'),
         //  Validators.pattern('[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|wdipl|yahoo|live|outlook|hotmail|yopmail|gmx)\.[A-Za-z0-9._%+-]{2,}')
       ])),
         // phone: new FormControl('', Validators.compose([
@@ -44,9 +44,9 @@ export class LoginPage implements OnInit {
   get f() { return this.validations_form.controls; }
 
   validation_messages = {
-    email: [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email' }
+    emailOrPrimaryMobile: [
+      { type: 'required', message: 'Email Or Mobile is required.' },
+      // { type: 'pattern', message: 'Enter a valid email' }
     ],
     // 'phone': [
     //   { type: 'required', message: 'Phone is required.' },
@@ -72,12 +72,12 @@ login(){
   return;
   }
   var formData: any = new FormData();
-  formData.append("email",this.validations_form.get('email').value);
+  formData.append("emailOrPrimaryMobile",this.validations_form.get('emailOrPrimaryMobile').value);
   formData.append("password",this.validations_form.get('password').value);
   let headers = new HttpHeaders({"Accept": "application/json"});
   console.log(formData);
   this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
-  console.log(response);
+  console.log("loginResponce:"+JSON.stringify(response));
   this.router.navigate(['/menu/home']);
 
   //  if(response.status==1){

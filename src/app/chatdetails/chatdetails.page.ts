@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute,ParamMap} from '@angular/router';
 import { PopoverController,NavController,MenuController,AlertController } from '@ionic/angular';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { CommonService } from 'src/app/services/common.service';
@@ -29,7 +29,7 @@ export class ChatdetailsPage implements OnInit {
   user_name : any;
   display_name :any;
   profile_pic : any;
-  // profilePicUrl : any = Config.profilePic;
+  profilePicUrl : any = 'https://ionicinto.wdipl.com/mychat/public/pic/';
   UserOnLineStatus : any;
   blockstatus : any = 0;
   bSOUser : any = 'unblock';
@@ -47,16 +47,28 @@ export class ChatdetailsPage implements OnInit {
   groupstoreMessage = '';
   messageDateString : string ;
   lastChatId : any = 0;
+  loginId : any;
   constructor(
     public popoverController:PopoverController,
     public navCtrl:NavController,
     public menuCtrl:MenuController,
     private router:Router,
+    private actRoute: ActivatedRoute,
     private socket: Socket,
     public commonService:CommonService,
     public alertController: AlertController,) { }
 
   ngOnInit() {
+    this.loginId = 1;
+    this.actRoute.paramMap.subscribe((params: ParamMap) => {
+      // this.room = params.get('room');
+      this.room = 'cm9vbS0xMg==';
+      //--reciver is ( in private chat is sender id )-----
+      // this.receiverId = params.get('receiver');
+      this.receiverId = 2;
+      // this.chatType = params.get('type');
+      this.chatType = 1;
+    });
     this.getStart();
     this.privateChat();
   }
@@ -67,10 +79,8 @@ export class ChatdetailsPage implements OnInit {
     this.socket.emit('set-name', this.room,this.chatType);
     this.socket.fromEvent('users-changed').subscribe(data => {
       if (data['event'] === 'left') {
-        // this.showToast('User left: ' + this.room);
         this.UserOnLineStatus = 'is OffLine';
       } else {
-        // this.showToast('User joined: ' + this.room);
         this.UserOnLineStatus = 'is OnLine';
       }
     });    
@@ -80,6 +90,7 @@ export class ChatdetailsPage implements OnInit {
   privateChat(){
     // this.commonService.presentLoader();
     this.socket.fromEvent('message').subscribe(message => {
+      // console.log('message:' + JSON.stringify(message));
       this.messages.push(message);
       this.contentArea.scrollToBottom();
     });
@@ -105,11 +116,11 @@ export class ChatdetailsPage implements OnInit {
       this.UserOnLineStatus = UserOnLineStatus;
     });
 
-    this.socket.emit("addUser", this.userData.id,this.receiverId);
-    this.socket.emit("newUser", [this.userData.id,this.receiverId, this.room]);
+    this.socket.emit("addUser", this.loginId,this.receiverId);
+    this.socket.emit("newUser", [this.loginId,this.receiverId, this.room]);
     
 
-    this.socket.emit("storemassagerequest",this.userData.id,this.receiverId);
+    this.socket.emit("storemassagerequest",this.loginId,this.receiverId);
 
     this.socket.fromEvent('stormessage').subscribe(storMessage => {      
       this.storeMessages = storMessage;
@@ -118,12 +129,9 @@ export class ChatdetailsPage implements OnInit {
 
     this.socket.fromEvent('userName').subscribe(data => {
       this.user_name = data[0].user_name;
+      this.profile_pic = data[0].profile_picture;   
     });
 
-    this.socket.fromEvent('userBio').subscribe(data => {
-      this.display_name = data[0].display_name;
-      this.profile_pic = data[0].profile_pic;      
-    });
   }
   sendMessage() {
     if(this.message != '' && this.message != null && this.chatType == 1){
@@ -133,9 +141,6 @@ export class ChatdetailsPage implements OnInit {
         this.blockStatusOfUser(this.bidOUser);
       }   
       this.message = '';   
-    }else if(this.groupMessage != '' && this.groupMessage != null && this.chatType == 2){
-        this.socket.emit('send-group-message', { text: this.groupMessage});
-        this.groupMessage = '';
     }
   }
   async blockStatusOfUser(id : any) {
@@ -168,7 +173,7 @@ export class ChatdetailsPage implements OnInit {
       component: DropdownComponent,
       event: ev,
       componentProps: {
-        userDataid:this.userData.id,
+        userDataid:this.loginId,
         receiverId: this.receiverId,
         bidOUser : this.bidOUser,
         bSOUser:this.bSOUser,
@@ -184,7 +189,7 @@ export class ChatdetailsPage implements OnInit {
           //
         }else{
           this.bSOUser = data['data'];
-          this.socket.emit('userBlockStatus',this.userData.id,this.receiverId);
+          this.socket.emit('userBlockStatus',this.loginId,this.receiverId);
         }
     });
     return await popover.present();   

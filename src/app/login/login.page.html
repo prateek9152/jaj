@@ -17,10 +17,10 @@
   
   
         <ion-list style="margin:0 0 20px; display:inline">
-          <ion-input class="input_1" type="email" formControlName="email" placeholder="E-Mail" [ngClass]="{'is-invalid': submitted && f.email.errors}"></ion-input>
-          <ng-container *ngFor="let validation of validation_messages.email">
+          <ion-input class="input_1" type="text" formControlName="emailOrPrimaryMobile" placeholder="E-Mail Or Mobile" [ngClass]="{'is-invalid': submitted && f.emailOrPrimaryMobile.errors}"></ion-input>
+          <ng-container *ngFor="let validation of validation_messages.emailOrPrimaryMobile">
             <span class="error-message"
-              *ngIf="(submitted || validations_form.get('email').touched) && validations_form.get('email').hasError(validation.type)">
+              *ngIf="(submitted || validations_form.get('emailOrPrimaryMobile').touched) && validations_form.get('emailOrPrimaryMobile').hasError(validation.type)">
               {{ validation.message }}
             </span>
           </ng-container>  
