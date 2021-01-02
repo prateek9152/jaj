@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {ComponentModule} from './components.modules';
 import {Camera} from '@ionic-native/camera/ngx';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { Contacts } from '@ionic-native/contacts/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,7 +23,7 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Camera
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Camera,Contacts
   ],
   bootstrap: [AppComponent]
 })

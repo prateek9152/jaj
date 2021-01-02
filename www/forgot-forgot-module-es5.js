@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-item slot=\"start\">\n      <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n      </ion-item>\n    <ion-title style=\"text-align: center;\">Forgot Password</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding class=\"back_img\">\n  <div class=\"login_form_main\">\n    <div class=\"login_form\">\n      <form [formGroup]=\"forgotForm\" (ngSubmit)=\"send()\">\n\n  <ion-label style=\"text-align: center;\n  display: block; font-weight: bold;\">Enter Your Phone Number</ion-label>\n  <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Mobile Number\"></ion-input>\n  <ng-container *ngFor=\"let validation of validation_messages.phone\">\n    <span class=\"error-message\"\n      *ngIf=\"(submitted || forgotForm.get('phone').touched) && forgotForm.get('phone').hasError(validation.type)\">\n      {{ validation.message }}\n    </span>\n  </ng-container>\n  <div padding class=\"btn_grp\">\n    <button class=\"btnclick\" (click)=\"send()\">Send</button>\n  </div>\n</form>\n\n</div>\n  </div>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-item slot=\"start\">\n      <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n      </ion-item>\n    <ion-title style=\"text-align: center;\">Forgot Password</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding class=\"back_img\">\n  <div class=\"login_form_main\">\n    <div class=\"login_form\">\n      <form [formGroup]=\"forgotForm\" (ngSubmit)=\"send()\">\n\n  <ion-label style=\"text-align: center;\n  display: block; font-weight: bold;\">Enter Your Email</ion-label>\n <ion-input class=\"input_1\" type=\"email\" formControlName=\"email\" placeholder=\"E-Mail\" [ngClass]=\"{'is-invalid': submitted && f.email.errors}\"></ion-input>\n <ng-container *ngFor=\"let validation of validation_messages.email\">\n   <span class=\"error-message\"\n     *ngIf=\"(submitted || forgotForm.get('email').touched) && forgotForm.get('email').hasError(validation.type)\">\n     {{ validation.message }}\n   </span>\n </ng-container>\n <!-- <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Mobile Number\"></ion-input>\n  <ng-container *ngFor=\"let validation of validation_messages.phone\">\n    <span class=\"error-message\"\n      *ngIf=\"(submitted || forgotForm.get('phone').touched) && forgotForm.get('phone').hasError(validation.type)\">\n      {{ validation.message }}\n    </span>\n  </ng-container> -->\n  <div padding class=\"btn_grp\">\n    <button class=\"btnclick\" (click)=\"send()\">Send</button>\n  </div>\n</form>\n\n</div>\n  </div>\n</ion-content>\n";
       /***/
     },
 
@@ -239,12 +239,12 @@
           this.fb = fb;
           this.submitted = false;
           this.validation_messages = {
-            'phone': [{
+            email: [{
               type: 'required',
-              message: 'Phone is required.'
+              message: 'Email is required.'
             }, {
-              type: 'minlength',
-              message: 'Phone Number must be at least 10 digits.'
+              type: 'pattern',
+              message: 'Enter a valid email'
             }]
           };
         }
@@ -253,7 +253,7 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             this.forgotForm = this.fb.group({
-              phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]))
+              email: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}')]))
             });
           }
         }, {

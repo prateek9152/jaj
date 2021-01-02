@@ -15,20 +15,29 @@
 
     <ion-list >
     <ion-item-sliding no-lines>
-    <ion-item no-lines class="chat_item" *ngFor="let data of userRecords | filter:filterTerm">
+    <ion-item no-lines class="chat_item" *ngFor="let data of myContacts | filter:filterTerm">
       <ion-avatar item-start>
         <div>
           <img src="../../assets/imgs/blank-avatar.jpg">
       </div>
       </ion-avatar>
       <div>
-      <h6 class="heading_int">{{data.name}}</h6>
+      <h6 class="heading_int">{{data.name.givenName}}<b>{{data.name.familyName}}</b></h6>
+      <p>{{ data.phoneNumbers[ 0 ].value }}</p>
+
             </div>
             <button ion-button item-end style="position: absolute !important;
             top: 27px !important;
             right: 16px !important;
             text-align: right; text-transform: uppercase; background-color: orange; " small (click)="message()">Invite</button>
     </ion-item>
+    <!-- <ion-item *ngFor="let c of myContacts">
+				<ion-label
+					>{{ c.name.givenName }} <b>{{ c.name.familyName }}</b>
+					<p>{{ c.phoneNumbers[ 0 ].value }}</p>
+				</ion-label>
+			</ion-item> -->
+
 
   </ion-item-sliding>
 </ion-list>

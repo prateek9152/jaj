@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n      <ion-item slot=\"start\">\n        <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n        </ion-item>\n      <ion-title style=\"text-align: center;\">Settings</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n<ion-list>\n\t<ion-item>\n      <ion-label style=\"font-size: 14px;\">Screen Notification</ion-label>\n      <ion-toggle color=\"primary\"></ion-toggle>\n    </ion-item>\n</ion-list>\n<ion-list>\n    <ion-item>\n      <ion-label style=\"font-size: 14px;\">Email Alert Setting <span style=\"font-size: 11px;\">Receive individual email alerts each time a new item is posted \n        from your selected category.</span></ion-label>\n      <ion-toggle color=\"primary\" checked=\"true\"></ion-toggle>\n    </ion-item>\n</ion-list>\n\n      <ion-list>\n    <button class=\"btnclick\" ion-item (click)=\"change()\">\n     Change Password\n    </button>\n</ion-list>\n\n\n    <ion-list>\n    <button class=\"btnclick\" ion-item (click)=\"terms()\">\n     Terms & Conditions\n    </button>\n</ion-list>\n<ion-list>\n     <button class=\"btnclick\" ion-item (click)=\"privacy()\">\n     Payment Settings\n    </button>\n</ion-list>\n<ion-list>\n     <button class=\"btnclick\" ion-item (click)=\"posting()\">\n     Posting Policy\n    </button>\n</ion-list>\n<ion-list>\n     <button class=\"btnclick\" ion-item (click)=\"contact()\">\n     Contact Us\n     </button>\n </ion-list>\n <ion-list>\n     <button class=\"btnclick\" ion-item (click)=\"privacy()\">\n      Support\n    </button>\n</ion-list>\n<ion-list>\n     <button class=\"btnclick\" ion-item>\n     Log Out\n    </button>\n  </ion-list>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n      <ion-item slot=\"start\">\n        <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n        </ion-item>\n      <ion-title style=\"text-align: center;\">Settings</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n<ion-list>\n\t<ion-item>\n      <ion-label style=\"font-size: 14px;\">Screen Notification</ion-label>\n      <ion-toggle color=\"primary\"></ion-toggle>\n    </ion-item>\n</ion-list>\n<ion-list>\n    <ion-item>\n      <ion-label style=\"font-size: 14px;\">Email Alert Setting <span style=\"font-size: 11px;\">Receive individual email alerts each time a new item is posted \n        from your selected category.</span></ion-label>\n      <ion-toggle color=\"primary\" checked=\"true\"></ion-toggle>\n    </ion-item>\n</ion-list>\n\n      <ion-list>\n    <button class=\"btnclick\" ion-item (click)=\"change()\">\n     Change Password\n    </button>\n</ion-list>\n\n\n    <ion-list>\n    <button class=\"btnclick\" ion-item (click)=\"terms()\">\n     Terms & Conditions\n    </button>\n</ion-list>\n<ion-list>\n     <button class=\"btnclick\" ion-item (click)=\"contact()\">\n     Contact Us\n     </button>\n </ion-list>\n \n</ion-content>");
 
 /***/ }),
 
@@ -117,19 +117,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPage", function() { return SettingsPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
 
 
 
 let SettingsPage = class SettingsPage {
-    constructor(navCtrl, menuCtrl) {
+    constructor(navCtrl, menuCtrl, router) {
         this.navCtrl = navCtrl;
         this.menuCtrl = menuCtrl;
+        this.router = router;
     }
     ngOnInit() {
     }
     change() { }
-    terms() { }
+    terms() {
+        this.router.navigate(['/menu/terms']);
+    }
     privacy() { }
     posting() { }
     contact() { }
@@ -141,8 +146,9 @@ let SettingsPage = class SettingsPage {
     }
 };
 SettingsPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
 ];
 SettingsPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

@@ -233,23 +233,30 @@
       /* harmony import */
 
 
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @ionic/angular */
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
       /* harmony import */
 
 
-      var _dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! ../dropdown/dropdown.component */
       "./src/app/dropdown/dropdown.component.ts");
 
       var ChatdetailsPage = /*#__PURE__*/function () {
-        function ChatdetailsPage(popoverController, navCtrl, menuCtrl) {
+        function ChatdetailsPage(popoverController, navCtrl, menuCtrl, router) {
           _classCallCheck(this, ChatdetailsPage);
 
           this.popoverController = popoverController;
           this.navCtrl = navCtrl;
           this.menuCtrl = menuCtrl;
+          this.router = router;
         }
 
         _createClass(ChatdetailsPage, [{
@@ -266,7 +273,7 @@
                     case 0:
                       _context.next = 2;
                       return this.popoverController.create({
-                        component: _dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_3__["DropdownComponent"],
+                        component: _dropdown_dropdown_component__WEBPACK_IMPORTED_MODULE_4__["DropdownComponent"],
                         event: ev,
                         translucent: true
                       });
@@ -300,7 +307,7 @@
         }, {
           key: "goBack",
           value: function goBack() {
-            this.navCtrl.back();
+            this.router.navigate(['/menu/home']);
           }
         }]);
 
@@ -309,11 +316,13 @@
 
       ChatdetailsPage.ctorParameters = function () {
         return [{
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["PopoverController"]
         }, {
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"]
         }, {
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
         }];
       };
 
