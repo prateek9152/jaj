@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-app>\n  <ion-menu side=\"start\" contentId=\"main-content\" type=\"overlay\" menuId=\"custom\" id=\"custom\">\n  \n    <ion-content>\n      <div class=\"user\">\n        <ion-list no-lines class=\"list_menu\" style=\"margin: 16px 0px;border-bottom: 1px solid #ffffff47;\">\n  \n          <ion-item no-lines class=\"chat_item chat_item_2\" style=\"background-color: transparent;\">\n            <ion-avatar item-start class=\"avtar_menu\">\n              <div class=\"user_img\">\n                <img src=\"../../assets/imgs/blank-avatar.jpg\">\n  \n              </div>\n            </ion-avatar>&nbsp;&nbsp;\n            <h6 class=\"heading_int\" style=\"color: #fe6e4a;\">Username</h6>\n                  <!-- <p class=\"dat\" style=\"color: #000;\">@username</p> -->\n                  <p class=\"wallet_p\"><b>$<span>100</span></b> <img src=\"assets/imgs/eye1.png\" (click)=\"toggle()\" style=\"width:18px;margin-left:5px;\"></p>\n  \n                  <button ion-button clear item-end style=\"height: auto;\">\n                <img src=\"assets/imgs/menu_more.png\" style=\"width: 25px;\" (click)=\"more()\">\n            </button>\n  \n          </ion-item>\n  \n          <p style=\"color: #000;font-size: 12px;padding: 0 16px;\"><b>0</b> Following <span style=\"margin-left: 50px;\"><b>0</b> Followers</span></p>\n    </ion-list>\n      </div>\n      <ion-list padding>\n  \n        <ion-row>\n        <ion-col col-5>\n            <img class=\"barcode\" src=\"assets/imgs/info/barcode.png\">\n          </ion-col>\n        </ion-row>\n  \n        <ion-item no-lines no-padding class=\"level\">\n            <p item-start style=\"color: #000;\">Level:<b> SILVER</b></p> <br>\n            <p item-end style=\"color: #000;\">000/1000 EXP</p>\n           </ion-item>\n  \n           <div class=\"progress_bar\"  style=\"height: 7px; background: #868686; border-radius: 50px; position: relative;\">\n             <div class=\"progress_status\"  style=\"background: #fe6e4a;position: absolute; top: 0; left: 0; width: 60%; height: 7px; border-radius: 10px;\">\n  \n            </div>\n           </div>\n  \n        </ion-list>\n      <ion-list class=\"menu-btn\">\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let page of pages\">\n          <ion-item [routerLink]=\"page.path\" routerDirection=\"root\" [class.active-menu]=\"activePath === page.path\">\n            <ion-icon [name]=\"page.icon\" slot=\"start\" item-left></ion-icon>\n\n            {{page.name}}\n          </ion-item>\n        </ion-menu-toggle>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n  <ion-router-outlet id=\"main-content\" main></ion-router-outlet>\n</ion-app>";
+      __webpack_exports__["default"] = "<ion-app>\n  <ion-menu side=\"start\" contentId=\"main-content\" type=\"overlay\" menuId=\"custom\" id=\"custom\">\n  \n    <ion-content>\n      <div class=\"user\">\n        <ion-list no-lines class=\"list_menu\" style=\"margin: 16px 0px;border-bottom: 1px solid #ffffff47;\">\n  \n          <ion-item no-lines class=\"chat_item chat_item_2\" style=\"background-color: transparent;\">\n            <ion-avatar item-start class=\"avtar_menu\">\n              <div class=\"user_img\">\n                <img src=\"../../assets/imgs/blank-avatar.jpg\">\n  \n              </div>\n            </ion-avatar>&nbsp;&nbsp;\n            <ion-input placeholder=\"Username\" class=\"heading_int\" style=\"color: #fe6e4a;\"></ion-input>\n            <!-- <p class=\"dat\" style=\"color: #000;\">@username</p> -->\n          <!-- <p class=\"wallet_p\"><b>$<span>100</span></b> <img src=\"assets/imgs/eye1.png\" (click)=\"toggle()\" style=\"width:18px;margin-left:5px;\"></p> -->\n  \n  \n          </ion-item>\n  \n          <!-- <p style=\"color: #000;font-size: 12px;padding: 0 16px;\"><b>0</b> Following <span style=\"margin-left: 50px;\"><b>0</b> Followers</span></p> -->\n    </ion-list>\n      </div>\n      <!-- <ion-list padding>\n  \n        <ion-row>\n        <ion-col col-5>\n            <img class=\"barcode\" src=\"assets/imgs/info/barcode.png\">\n          </ion-col>\n        </ion-row>\n  \n        <ion-item no-lines no-padding class=\"level\">\n            <p item-start style=\"color: #000;\">Level:<b> SILVER</b></p> <br>\n            <p item-end style=\"color: #000;\">000/1000 EXP</p>\n           </ion-item>\n  \n           <div class=\"progress_bar\"  style=\"height: 7px; background: #868686; border-radius: 50px; position: relative;\">\n             <div class=\"progress_status\"  style=\"background: #fe6e4a;position: absolute; top: 0; left: 0; width: 60%; height: 7px; border-radius: 10px;\">\n  \n            </div>\n           </div>\n  \n        </ion-list> -->\n      <ion-list class=\"menu-btn\">\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let page of pages\">\n          <ion-item [routerLink]=\"page.path\" routerDirection=\"root\" [class.active-menu]=\"activePath === page.path\">\n            <ion-icon [name]=\"page.icon\" slot=\"start\" item-left></ion-icon>\n\n            {{page.name}}\n          </ion-item>\n        </ion-menu-toggle>\n        <ion-menu-toggle auto-hide=\"false\">\n          <ion-item  lines=\"none\">\n            <ion-icon slot=\"start\" name=\"log-out-outline\"></ion-icon>\n            <ion-item (click)=\"logout()\" menuClose no-lines>\n              Logout\n           </ion-item>\n               </ion-item>\n          <!-- <ion-icon slot=\"start\" name=\"log-out\" color=\"primary\"></ion-icon>\n\n          <ion-item (click)=\"logout()\" menuClose no-lines>\n            Logout\n         </ion-item> -->\n        </ion-menu-toggle>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n  <ion-router-outlet id=\"main-content\" main></ion-router-outlet>\n</ion-app>";
       /***/
     },
 
@@ -159,9 +159,9 @@
         }, {
           path: 'mycontact',
           loadChildren: function loadChildren() {
-            return __webpack_require__.e(
+            return Promise.all(
             /*! import() | mycontact-mycontact-module */
-            "mycontact-mycontact-module").then(__webpack_require__.bind(null,
+            [__webpack_require__.e("common"), __webpack_require__.e("mycontact-mycontact-module")]).then(__webpack_require__.bind(null,
             /*! ../mycontact/mycontact.module */
             "./src/app/mycontact/mycontact.module.ts")).then(function (m) {
               return m.MycontactPageModule;
@@ -187,6 +187,17 @@
             /*! ../addcircle/addcircle.module */
             "./src/app/addcircle/addcircle.module.ts")).then(function (m) {
               return m.AddcirclePageModule;
+            });
+          }
+        }, {
+          path: 'terms',
+          loadChildren: function loadChildren() {
+            return __webpack_require__.e(
+            /*! import() | terms-terms-module */
+            "terms-terms-module").then(__webpack_require__.bind(null,
+            /*! ../terms/terms.module */
+            "./src/app/terms/terms.module.ts")).then(function (m) {
+              return m.TermsPageModule;
             });
           }
         }]
@@ -336,14 +347,28 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../services/auth.service */
+      "./src/app/services/auth.service.ts");
 
       var MenuPage = /*#__PURE__*/function () {
-        function MenuPage(router) {
+        function MenuPage(router, auth, alertController) {
           var _this = this;
 
           _classCallCheck(this, MenuPage);
 
           this.router = router;
+          this.auth = auth;
+          this.alertController = alertController;
           this.activePath = '';
           this.pages = [{
             name: 'Profile',
@@ -351,24 +376,22 @@
             icon: 'person'
           }, {
             name: 'Notifications',
-            path: '/menu/register',
+            path: '/menu/notifications',
             icon: 'notifications'
-          }, {
-            name: 'Mail',
-            path: '/menu/home',
-            icon: 'mail'
-          }, {
-            name: 'Wallet',
-            path: '/menu/contact',
-            icon: 'wallet'
-          }, {
+          }, // {
+          //   name: 'Mail',
+          //   path: '/menu/home',
+          //   icon: 'mail'
+          // },
+          // {
+          //   name: 'Wallet',
+          //   path: '/menu/contact',
+          //   icon: 'wallet'
+          // },
+          {
             name: 'Settings',
             path: '/menu/settings',
             icon: 'settings'
-          }, {
-            name: 'Logout',
-            path: '/menu/login',
-            icon: 'log-out'
           }];
           this.router.events.subscribe(function (event) {
             _this.activePath = event.url;
@@ -383,7 +406,54 @@
           value: function toggle() {}
         }, {
           key: "more",
-          value: function more() {}
+          value: function more() {
+            this.searchInput.setFocus();
+          }
+        }, {
+          key: "logout",
+          value: function logout() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              var _this2 = this;
+
+              var alert;
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return this.alertController.create({
+                        header: 'Alert!',
+                        message: 'Do you want to log out??',
+                        buttons: [{
+                          text: 'Cancel',
+                          role: 'cancel',
+                          cssClass: 'secondary',
+                          handler: function handler(blah) {
+                            console.log('Confirm Cancel: blah');
+                          }
+                        }, {
+                          text: 'Yes',
+                          handler: function handler() {
+                            _this2.auth.removeAllSessions();
+
+                            _this2.router.navigate(['/menu/login']);
+                          }
+                        }]
+                      });
+
+                    case 2:
+                      alert = _context.sent;
+                      _context.next = 5;
+                      return alert.present();
+
+                    case 5:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          }
         }]);
 
         return MenuPage;
@@ -392,9 +462,21 @@
       MenuPage.ctorParameters = function () {
         return [{
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        }, {
+          type: _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
         }];
       };
 
+      MenuPage.propDecorators = {
+        searchInput: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"],
+          args: ['input', {
+            "static": false
+          }]
+        }]
+      };
       MenuPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-menu',
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(

@@ -12,8 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 // import { IonicStorageModule } from '@ionic/storage';
 import {ComponentModule} from './components.modules';
 import {Camera} from '@ionic-native/camera/ngx';
-// import { IonicStorageModule } from '@ionic/storage';
-
+import { IonicStorageModule } from '@ionic/storage';
+import { Contacts } from '@ionic-native/contacts/ngx';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://ionicinto.wdipl.com:9902/', options: {} };
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,13 +25,14 @@ import {Camera} from '@ionic-native/camera/ngx';
     AppRoutingModule,
     HttpClientModule,
     ComponentModule,
-    // IonicStorageModule.forRoot()
+    // IonicStorageModule.forRoot(),
+    SocketIoModule.forRoot(config),
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Camera
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Camera,Contacts
   ],
   bootstrap: [AppComponent]
 })

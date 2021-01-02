@@ -76,7 +76,7 @@ login(){
   formData.append("password",this.validations_form.get('password').value);
   let headers = new HttpHeaders({"Accept": "application/json"});
   console.log(formData);
-  this.http.post('https://jajoj.threethree.in/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
+  this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
   console.log(response);
   this.router.navigate(['/menu/home']);
 

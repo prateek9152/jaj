@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-item slot=\"start\">\n      <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n      </ion-item>\n    <ion-title style=\"text-align: center; text-transform: uppercase;\">contacts</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"back\">\n\n  <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>\n  <div class=\"user\" (click)=\"chatdetail()\">\n\n    <ion-list>\n    <ion-item-sliding no-lines>\n    <ion-item no-lines class=\"chat_item\">\n      <ion-avatar item-start>\n        <div>\n          <img src=\"../../assets/imgs/blank-avatar.jpg\">\n      </div>\n      </ion-avatar>\n      <div>\n      <h6 class=\"heading_int\">Simon</h6>\n            <p class=\"dateee\">@simon_john</p>\n            </div>\n            <button ion-button item-end style=\"position: absolute !important;\n            top: 27px !important;\n            right: 16px !important;\n            text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n    </ion-item>\n\n  </ion-item-sliding>\n</ion-list>\n\n    </div>\n    <div class=\"user\">\n\n      <ion-list>\n      <ion-item-sliding no-lines>\n      <ion-item no-lines class=\"chat_item\">\n        <ion-avatar item-start (click)=\"chatdetail()\">\n            <img src=\"../../assets/imgs/blank-avatar.jpg\">\n        </ion-avatar>\n        <div>\n        <h6 class=\"heading_int\" (click)=\"chatdetail()\">Simon</h6>\n              <p class=\"dateee\">+91452458452</p>\n              </div>\n              <button ion-button item-end style=\"position: absolute !important;\n              top: 27px !important;\n              right: 16px !important;\n              text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n      </ion-item>\n  \n    </ion-item-sliding>\n  </ion-list>\n  \n      </div>\n      <div class=\"user\" (click)=\"chatdetail()\">\n\n        <ion-list no-lines>\n        <ion-item-sliding no-lines>\n        <ion-item no-lines class=\"chat_item\">\n          <ion-avatar item-start>\n              <img src=\"../../assets/imgs/blank-avatar.jpg\">\n          </ion-avatar>\n          <div>\n          <h6 class=\"heading_int\">Simon</h6>\n                <p class=\"dateee\">@simon_john</p>\n        </div>\n        <button ion-button item-end style=\"position: absolute !important;\n        top: 27px !important;\n        right: 16px !important;\n        text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n              </ion-item>\n        \n      </ion-item-sliding>\n    </ion-list>\n    \n        </div>\n        <div class=\"user\">\n    \n          <ion-list no-lines>\n          <ion-item-sliding no-lines>\n          <ion-item no-lines class=\"chat_item\">\n            <ion-avatar item-start (click)=\"chatdetail()\">\n                <img src=\"../../assets/imgs/blank-avatar.jpg\">\n            </ion-avatar>\n            <div>\n            <h6 class=\"heading_int\" (click)=\"chatdetail()\">Simon</h6>\n                  <p class=\"dateee\">+91452458452</p>\n                  </div>\n                  <button ion-button item-end style=\"position: absolute !important;\n                  top: 27px !important;\n                  right: 16px !important;\n                  text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n          </ion-item>\n      \n        </ion-item-sliding>\n      </ion-list>\n      \n          </div>\n\t<div class=\"user\" *ngFor=\"let k of [1,2,3,4]\" (click)=\"chatdetail()\">\n\n    <ion-list no-lines>\n    <ion-item-sliding no-lines>\n    <ion-item no-lines class=\"chat_item\">\n      <ion-avatar item-start>\n          <img src=\"../../assets/imgs/blank-avatar.jpg\">\n      </ion-avatar>\n      <div>\n      <h6 class=\"heading_int\">Simon</h6>\n            <p class=\"dateee\">@simon_john</p>\n        </div>\n        <button ion-button item-end style=\"position: absolute !important;\n        top: 27px !important;\n        right: 16px !important;\n        text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"showModal()\">Invite</button>\n          </ion-item>\n\n    <ion-item-options> \n      <button ion-button color=\"dark\" icon-start>\n        <img src=\"assets/imgs/msg.png\">\n        Read\n      </button>\n      <button ion-button color=\"primary\" icon-start>\n        <img src=\"assets/imgs/pin.png\">\n        Pin\n      </button>\n    </ion-item-options>\n\n    <ion-item-options>\n      <button ion-button color=\"dark\">\n        <img src=\"assets/imgs/more.png\">\n        more\n      </button>\n      <button ion-button color=\"primary\">\n        <img src=\"assets/imgs/archive.png\">\n        Archive\n      </button>\n    </ion-item-options>\n\n  </ion-item-sliding>\n</ion-list>\n\n    </div>\n\n</ion-content>\n\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-item slot=\"start\">\n      <ion-buttons style=\"zoom: 2.0;\" (click)=\"goBack()\">\n<ion-icon name=\"arrow-back-outline\"></ion-icon>        </ion-buttons>\n      </ion-item>\n    <ion-title style=\"text-align: center; text-transform: uppercase;\">contacts</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"back\">\n\n  <ion-searchbar [(ngModel)]=\"filterTerm\" animated=\"true\"></ion-searchbar>\n  <div class=\"user\" (click)=\"chatdetail()\">\n\n    <ion-list >\n    <ion-item-sliding no-lines>\n    <ion-item no-lines class=\"chat_item\" *ngFor=\"let data of myContacts | filter:filterTerm\">\n      <ion-avatar item-start>\n        <div>\n          <img src=\"../../assets/imgs/blank-avatar.jpg\">\n      </div>\n      </ion-avatar>\n      <div>\n      <h6 class=\"heading_int\">{{data.name.givenName}}<b>{{data.name.familyName}}</b></h6>\n      <p>{{ data.phoneNumbers[ 0 ].value }}</p>\n\n            </div>\n            <button ion-button item-end style=\"position: absolute !important;\n            top: 27px !important;\n            right: 16px !important;\n            text-align: right; text-transform: uppercase; background-color: orange; \" small (click)=\"message()\">Invite</button>\n    </ion-item>\n    <!-- <ion-item *ngFor=\"let c of myContacts\">\n\t\t\t\t<ion-label\n\t\t\t\t\t>{{ c.name.givenName }} <b>{{ c.name.familyName }}</b>\n\t\t\t\t\t<p>{{ c.phoneNumbers[ 0 ].value }}</p>\n\t\t\t\t</ion-label>\n\t\t\t</ion-item> -->\n\n\n  </ion-item-sliding>\n</ion-list>\n\n    </div>\n  \n\n</ion-content>\n\n";
       /***/
     },
 
@@ -147,13 +147,19 @@
       var _mycontact_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./mycontact.page */
       "./src/app/mycontact/mycontact.page.ts");
+      /* harmony import */
+
+
+      var ng2_search_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ng2-search-filter */
+      "./node_modules/ng2-search-filter/__ivy_ngcc__/ng2-search-filter.js");
 
       var MycontactPageModule = function MycontactPageModule() {
         _classCallCheck(this, MycontactPageModule);
       };
 
       MycontactPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _mycontact_routing_module__WEBPACK_IMPORTED_MODULE_5__["MycontactPageRoutingModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _mycontact_routing_module__WEBPACK_IMPORTED_MODULE_5__["MycontactPageRoutingModule"], ng2_search_filter__WEBPACK_IMPORTED_MODULE_7__["Ng2SearchPipeModule"]],
         declarations: [_mycontact_page__WEBPACK_IMPORTED_MODULE_6__["MycontactPage"]]
       })], MycontactPageModule);
       /***/
@@ -216,19 +222,77 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @ionic/angular */
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _ionic_native_contacts_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @ionic-native/contacts/ngx */
+      "./node_modules/@ionic-native/contacts/__ivy_ngcc__/ngx/index.js");
 
       var MycontactPage = /*#__PURE__*/function () {
-        function MycontactPage(navCtrl, menuCtrl, alertController) {
+        function MycontactPage(navCtrl, contacts, menuCtrl, alertController, router) {
           _classCallCheck(this, MycontactPage);
 
           this.navCtrl = navCtrl;
+          this.contacts = contacts;
           this.menuCtrl = menuCtrl;
           this.alertController = alertController;
+          this.router = router;
+          this.myContacts = [];
+          this.userRecords = [{
+            "id": 1,
+            "name": "Simon"
+          }, {
+            "id": 2,
+            "name": "Ervin Howell"
+          }, {
+            "id": 3,
+            "name": "Clementine Bauch"
+          }, {
+            "id": 4,
+            "name": "Patricia Lebsack"
+          }, {
+            "id": 5,
+            "name": "Chelsey Dietrich"
+          }, {
+            "id": 6,
+            "name": "Mrs. Dennis Schulist"
+          }, {
+            "id": 7,
+            "name": "Kurtis"
+          }, {
+            "id": 8,
+            "name": "Nicholas "
+          }, {
+            "id": 9,
+            "name": "Glenna Reichert"
+          }, {
+            "id": 10,
+            "name": "Clementina DuBuque"
+          }];
         }
 
         _createClass(MycontactPage, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            var _this = this;
+
+            var options = {
+              filter: '',
+              multiple: true,
+              hasPhoneNumber: true
+            };
+            this.contacts.find(['*'], options).then(function (contacts) {
+              _this.myContacts = contacts;
+              console.log('Contacts: ', contacts);
+            });
+          }
         }, {
           key: "chatdetail",
           value: function chatdetail() {}
@@ -246,6 +310,11 @@
         }, {
           key: "ionViewWillEnter",
           value: function ionViewWillEnter() {// this.menuCtrl.enable(false);
+          }
+        }, {
+          key: "message",
+          value: function message() {
+            this.router.navigate(['/menu/chatdetails']);
           }
         }, {
           key: "showModal",
@@ -288,6 +357,9 @@
               }, _callee, this);
             }));
           }
+        }, {
+          key: "loadContacts",
+          value: function loadContacts() {}
         }]);
 
         return MycontactPage;
@@ -297,9 +369,13 @@
         return [{
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
         }, {
+          type: _ionic_native_contacts_ngx__WEBPACK_IMPORTED_MODULE_4__["Contacts"]
+        }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
         }];
       };
 

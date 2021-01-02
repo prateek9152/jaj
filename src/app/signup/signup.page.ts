@@ -136,7 +136,7 @@ export class SignupPage implements OnInit {
     formData.append("c_password",this.registerForm.get('c_password').value);
 
     let headers = new HttpHeaders({"Accept": "application/json"});
-    this.http.post('https://jajoj.threethree.in/api/register',formData,{headers:headers}).subscribe(async (response:any)=> {
+    this.http.post('https://ionicinto.wdipl.com/mychat/api/register',formData,{headers:headers}).subscribe(async (response:any)=> {
               this.router.navigate(['/menu/verify']);
     //         if(response.status==1){
     //           this.storage.set('userData', this.registerForm.value.email);
