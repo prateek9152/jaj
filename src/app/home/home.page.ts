@@ -18,6 +18,9 @@ export class HomePage implements OnInit {
   public subscription: any;
   resultData: any = [];
   filterTerm: string;
+  chatType : any;
+  room : any;
+  receiverID : any;
   constructor(
     private router:Router,
     private platform: Platform,
@@ -27,6 +30,9 @@ export class HomePage implements OnInit {
       this.type = "chat";
     }
   ngOnInit(){
+    this.chatType = 1;
+    this.room = '';
+    this.receiverID = '';
    let data = {
      "id" : this.auth.getCurrentUserId()
    };
@@ -110,7 +116,7 @@ export class HomePage implements OnInit {
   }
 details(){}
 chatdetail(){
-  this.router.navigate(['/menu/chatdetails']);
+  this.router.navigate(['/menu/chatdetails/'+this.receiverID+'/'+this.room+'/'+this.chatType]);
 }
 filter() {
 }
