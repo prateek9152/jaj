@@ -14,10 +14,19 @@ import {ComponentModule} from './components.modules';
 import {Camera} from '@ionic-native/camera/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { Contacts } from '@ionic-native/contacts/ngx';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://ionicinto.wdipl.com:9902/', options: {} };
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,ComponentModule,IonicStorageModule.forRoot()
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    HttpClientModule,
+    ComponentModule,
+    IonicStorageModule.forRoot(),
+    SocketIoModule.forRoot(config),
 
   ],
   providers: [

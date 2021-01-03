@@ -72,6 +72,8 @@ export class MenuPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.auth.removeAllSessions();
+            this.auth.logout();
+
               this.router.navigate(['/menu/login']);
           }
         }

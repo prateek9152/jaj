@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ModalController, Platform } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { RequestsModalComponent } from '../requests-modal/requests-modal.component';
-// import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -19,16 +18,19 @@ export class HomePage implements OnInit {
   public subscription: any;
   resultData: any = [];
   filterTerm: string;
-
-
-  constructor(private router:Router,private platform: Platform,private auth:AuthService,private modalController:ModalController
+  constructor(
+    private router:Router,
+    private platform: Platform,
+    private auth:AuthService,
+    private modalController:ModalController
     ) {
       this.type = "chat";
     }
   ngOnInit(){
-  //  let data = {
-  //    "id" : this.auth.getCurrentUserId()
-  //  };
+   let data = {
+     "id" : this.auth.getCurrentUserId()
+   };
+  //  this.resultData = 
   //  this.auth.get(data,'details').subscribe(
   //   (response:any) =>{
   //     console.log(response)
@@ -36,16 +38,15 @@ export class HomePage implements OnInit {
   //       this.resultData = response;
 
 
-  //       // this.router.navigate(['/menu/home']);
+  //       this.router.navigate(['/menu/home']);
   //     }
   //     else {
   //       this.auth.updateUserDetails(response.data);
   //     }
-  //   // let data = {
-  //   //   "id": this.auth.getCurrentUserId()
-  //   // };
-  //   // console.log(data);
-  //   })
+    // let data = {
+    //   "id": this.auth.getCurrentUserId()
+    // };
+    // console.log(data);
   
   }
   ionViewDidEnter() {
