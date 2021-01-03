@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {  MenuController } from '@ionic/angular';
+import {  MenuController, Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ToastService } from '../services/toast.service';
 import {LoaderService} from '../services/loader.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
+import {Storage} from '@ionic/storage';
+import { SettingsService } from '../services/settings.service';
+import { CommonService } from '../services/common.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,9 +18,12 @@ import { AlertService } from '../services/alert.service';
 export class LoginPage implements OnInit {
   validations_form: FormGroup;
   submitted = false;
+  diviceToken: string;
 
   constructor(private router: Router,public menuCtrl:MenuController,public formBuilder: FormBuilder,
-    private toastService:ToastService, private ionLoader:LoaderService, private http:HttpClient,private authService:AuthService,private alertService:AlertService ) {
+    private toastService:ToastService, private ionLoader:LoaderService, private http:HttpClient, public storage: Storage,
+    private authService:AuthService,private alertService:AlertService,private settingsService:SettingsService,private commonService:CommonService,
+    private platform:Platform ) {
     
     // this.menuCtrl.enable(false,"first");
 
@@ -76,20 +82,36 @@ login(){
   formData.append("password",this.validations_form.get('password').value);
   let headers = new HttpHeaders({"Accept": "application/json"});
   console.log(formData);
-  this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
-  console.log("loginResponce:"+JSON.stringify(response));
-  this.router.navigate(['/menu/home']);
+  this.authService.userLogin(this.validations_form.value).subscribe((response:any)=> {
+      if(response){
+          this.authService.updateUserDetails(response);
+          this.router.navigate(['/menu/home']);
+      }
+      else {
+        
+      }
+       
 
-  //  if(response.status==1){
-  //   //  this.authService.updateUserDetails(response.data);
-  //    this.toastService.showLoginToast();
 
-  //  }
-  //   else {
-  //     // this.alertService.show('Alert',response.message);
-   
-  //   }
+      //  this.registerForm.reset();
+    
+      
   })
+  // this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
+  // console.log("loginResponce:"+JSON.stringify(response));
+  // console.log(response.status);
+  // this.router.navigate(['/menu/home']);
+
+  // //  if(response.status==1){
+  // //   //  this.authService.updateUserDetails(response.data);
+  // //    this.toastService.showLoginToast();
+
+  // //  }
+  // //   else {
+  // //     // this.alertService.show('Alert',response.message);
+   
+  // //   }
+  // })
   
   
 

@@ -59,13 +59,13 @@ export class ChatdetailsPage implements OnInit {
     public alertController: AlertController,) { }
 
   ngOnInit() {
-    this.loginId = 1;
+    this.loginId = 2;
     this.actRoute.paramMap.subscribe((params: ParamMap) => {
       // this.room = params.get('room');
       this.room = 'cm9vbS0xMg==';
       //--reciver is ( in private chat is sender id )-----
       // this.receiverId = params.get('receiver');
-      this.receiverId = 2;
+      this.receiverId = 1;
       // this.chatType = params.get('type');
       this.chatType = 1;
     });

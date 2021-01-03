@@ -27,9 +27,10 @@ export class HomePage implements OnInit {
       this.type = "chat";
     }
   ngOnInit(){
-  //  let data = {
-  //    "id" : this.auth.getCurrentUserId()
-  //  };
+   let data = {
+     "id" : this.auth.getCurrentUserId()
+   };
+  //  this.resultData = 
   //  this.auth.get(data,'details').subscribe(
   //   (response:any) =>{
   //     console.log(response)
@@ -37,16 +38,15 @@ export class HomePage implements OnInit {
   //       this.resultData = response;
 
 
-  //       // this.router.navigate(['/menu/home']);
+  //       this.router.navigate(['/menu/home']);
   //     }
   //     else {
   //       this.auth.updateUserDetails(response.data);
   //     }
-  //   // let data = {
-  //   //   "id": this.auth.getCurrentUserId()
-  //   // };
-  //   // console.log(data);
-  //   })
+    // let data = {
+    //   "id": this.auth.getCurrentUserId()
+    // };
+    // console.log(data);
   
   }
   ionViewDidEnter() {

@@ -44,19 +44,13 @@ export class SignupPage implements OnInit {
         Validators.required,Validators.minLength(4)
       ])),
       last_name: new FormControl('',Validators.compose([Validators.required,Validators.minLength(2)])),
-      user_name: new FormControl('',Validators.compose([
-        UsernameValidator.validUsername,
-        Validators.maxLength(25),
-        Validators.minLength(5),
-        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-        Validators.required
-      ])),
+     
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}'),
         //  Validators.pattern('[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|wdipl|yahoo|live|outlook|hotmail|yopmail|gmx)\.[A-Za-z0-9._%+-]{2,}')
       ])),
-      mobile_number:new FormControl('',Validators.compose([
+      primary_mobile_number:new FormControl('',Validators.compose([
         Validators.required,Validators.minLength(10)
       ])),
      
@@ -76,16 +70,11 @@ export class SignupPage implements OnInit {
   'validation_messages' = {
     name: [{type: 'required',message: 'First Name is required'}],
     last_name: [{type: 'required',message: 'Last Name is required'},{type:'minlength',message: 'Last Name must be at least 2 characters long'}],
-    user_name: [   { type: 'required', message: 'Username is required.' },
-    { type: 'minlength', message: 'Username must be at least 5 characters long.' },
-    { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
-    { type: 'pattern', message: 'Your username must contain only numbers and letters.' },
-    { type: 'validUsername', message: 'Your username has already been taken.' }],
     email: [
       { type: 'required', message: 'Email is required.' },
       { type: 'pattern', message: 'Enter a valid email' }
     ],
-    mobile_number:[
+    primary_mobile_number:[
       { type: 'required', message: 'Mobile Number is required.' },
       { type: 'minlength', message: 'Mobile Number must be at least 10 numbers.' },
       ],
@@ -129,29 +118,19 @@ export class SignupPage implements OnInit {
     var formData = new FormData();
     formData.append("name",this.registerForm.get('name').value);
     formData.append("last_name",this.registerForm.get('last_name').value);
-    formData.append("user_name",this.registerForm.get('user_name').value);
-    formData.append("mobile_number",this.registerForm.get('mobile_number').value);
+    formData.append("primary_mobile_number",this.registerForm.get('primary_mobile_number').value);
     formData.append("email",this.registerForm.get('email').value);
     formData.append("password",this.registerForm.get('password').value);
     formData.append("c_password",this.registerForm.get('c_password').value);
 
-    let headers = new HttpHeaders({"Accept": "application/json"});
-    this.http.post('https://ionicinto.wdipl.com/mychat/api/register',formData,{headers:headers}).subscribe(async (response:any)=> {
-              this.router.navigate(['/menu/verify']);
-    //         if(response.status==1){
-    //           this.storage.set('userData', this.registerForm.value.email);
-    //           this.storage.set('userToken',response.userToken);
-   
-    //             this.toastService.showToast();
-    //         this.toastService.showToast();
-    //         this.ionLoader.showLoader();
-    // setTimeout(() => {
-    //   this.hideLoader();
-    // },1000);
-              
+    this.authService.addUser(this.registerForm.value).subscribe((response:any)=> {
+        if(response){
+          this.authService.updateUserDetails(response.data);
+          this.router.navigate(['/menu/login']);
 
-    //         }
+        }
     })
+   
 
 
    

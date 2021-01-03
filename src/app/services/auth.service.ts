@@ -3,25 +3,61 @@ import { HttpClient ,  HttpParams,HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { BehaviorSubject } from 'rxjs';
-
+import { Storage } from '@ionic/storage';
+import {User} from '../../user.model';  
 // import { Config } from ".././app/config/config";
 import { Router } from "@angular/router";
+import { ToastController, Platform } from '@ionic/angular';
+import { CommonService } from './common.service';
 import { HttpErrorHandlerService , HandleError } from "./http-error-handler.service";
+export interface AuthResponseData {
+  kind: string;
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  localId: string;
+  expiresIn: string;
+  registered?: boolean;
+}
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
+  user = new BehaviorSubject<User>(null);
+  authState = new BehaviorSubject(false);
   localStorageUserKey = "JAJSESSION";
   localStorageUserTypeKey = "JAJSESSION";
   // localStorageNotiCount="DRIVERNOTICOUNT";
   onUserDetailChanged: BehaviorSubject<any> = new BehaviorSubject(null);
 
   localStorageNotiData = "JAJNOTIDATA";
-  constructor(private http: HttpClient,
-      private router: Router
-    ) {
+  private handleError : HandleError
 
-      //this.handleError= httpErrorHandler.createHandleError('TasksService')
+  constructor(
+    private http :HttpClient,
+    httpErrorHandler:HttpErrorHandlerService,
+    private router:Router,
+    private storage: Storage,
+    private platform: Platform,
+    public toastController: ToastController,
+    private commonService:CommonService 
+    ) {
+      this.platform.ready().then(() => {
+        this.ifLoggedIn();
+      });
+      this.handleError= httpErrorHandler.createHandleError('TasksService') 
+    
+
+  }
+  ifLoggedIn() {
+    const dataPromise = this.storage.get('userToken');
+      dataPromise.then(data => {
+        let retdata = data;         
+         if (retdata !== null) {          
+          return true;
+        }
+      });
   }
   generateFormData(data: any) {
     let input = new FormData();
@@ -99,15 +135,37 @@ export class AuthService {
     return params;
   }
 
-    postData(data: any,url:string): Observable<any>{
-    let formdata = this.generateFormData(data);
-    let headers = new HttpHeaders({ "Accept": "application/json" });
-    return this.http.post<any>('https://jajoj.threethree.in/api/'+url,formdata,{});
-  }
-  get(data: any,url:any): Observable<any>{
+  addUser(data: any): Observable<any> {
+    this.generateFormData(data);
+    return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/register', data).pipe(catchError(this.handleError('addTask', data)));
+  }  
+  userLogin(data:any) : Observable<any>{
+    this.generateFormData(data);
+    return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/login',data).pipe(catchError(this.handleError('userLogin',data)))
+
+    // let formdata = this.generateFormData(data);
+    // return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/login',formdata).pipe(catchError(this.handleError('userLogin',formdata)))
+  }  
+  post(data: any,url:any): Observable<any>{
     let params = this.getUrlFromData(data);
 
-    return this.http.get<any>('https://jajoj.threethree.in/api/'+url,{params:params});
+    return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/'+url,{params:params});
   }
-
+  logout():Observable<any>{
+    this.removeAllSessions();
+    return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/logout','');
+  }
+  async autoLogin()   {
+    const data =localStorage.getItem('userToken');
+    var userData:any =localStorage.getItem('userData');
+    userData =  JSON.parse(userData); 
+      if(userData)
+      {
+        this.commonService.setUserData(userData);
+        if(userData.user_type == 1)  
+          {
+            this.router.navigate(["/menu/home"]); 
+          }
+      }  
+  }
 }
