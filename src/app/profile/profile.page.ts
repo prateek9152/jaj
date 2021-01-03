@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
-// import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { ImageService } from '../services/image.service';
 
 @Component({
@@ -13,13 +13,20 @@ export class ProfilePage implements OnInit {
   blobImageName: any;
   useBlobImage: any;
   blobImage: Blob;
-
-  constructor(private menuCtrl:MenuController, private navCtrl: NavController,private imageP:ImageService) { 
-    // this.formData = this.auth.getUserDetails();
+  loginDetails : any;
+  profilePicUrl : any = 'https://ionicinto.wdipl.com/mychat/public/pic/';
+  constructor(
+    private menuCtrl:MenuController,
+    private navCtrl: NavController,
+    private imageP:ImageService,
+    public auth:AuthService,) { 
   }
 
 
   ngOnInit() {
+    this.loginDetails = this.auth.getUserDetails();
+    console.log("Login Data:"+JSON.stringify(this.loginDetails));
+
   }
   getImage(){
     this.imageP.getImage().then((res: any)=> {

@@ -11,7 +11,7 @@
 <ion-content class="profile">
   <ion-card no-margin>
     <ion-card-content class="bg-profile">
-      <img [src]="blobImageName">
+      <img src="{{profilePicUrl}}{{loginDetails.profile_picture}}">
       <button style="padding-right: 0px;
       padding-left: 0px;
       padding-top: 0px;
@@ -33,24 +33,24 @@
             
              <ion-item class="box">
               <ion-label  position="stacked">Full Name:</ion-label>
-              <ion-input type="text" style=" font-weight: bold; color: #000;" placeholder="" value=""  ></ion-input>
+              <ion-input type="text" style=" font-weight: bold; color: #000;" placeholder="" value="{{loginDetails.name}}  {{loginDetails.last_name}}"  ></ion-input>
               <img src="../../assets/imgs/status-edit.png" class="iconimage" >
 
             </ion-item><br>
               <ion-item class="box">
               <ion-label  position="stacked">Email Address:</ion-label>
-              <ion-input inputmode="email" style="outline: none; font-weight: bold;" placeholder="" value="">abc@abc.com</ion-input>
+              <ion-input inputmode="email" style="outline: none; font-weight: bold;" placeholder="" value="{{loginDetails.email}}"></ion-input>
              </ion-item><br>
              <ion-item class="box">
               <ion-label  position="stacked">Username:</ion-label>
-              <ion-input type="text"  style=" outline: none; font-weight: bold;" placeholder="" value=""  ></ion-input>
+              <ion-input type="text"  style=" outline: none; font-weight: bold;" placeholder="" value="{{loginDetails.user_name}}"  ></ion-input>
               <img src="../../assets/imgs/status-edit.png" class="iconimage" >
 
             </ion-item>  
         <br>
             <ion-item class="box">
               <ion-label  position="stacked">Phone Number:</ion-label>
-              <ion-input inputmode="number" style=" outline: none; font-weight: bold;" placeholder="" value="" ></ion-input>
+              <ion-input inputmode="number" style=" outline: none; font-weight: bold;" placeholder="" value="{{loginDetails.primary_mobile_number}}" ></ion-input>
               <img slot="end" src="../../assets/imgs/status-edit.png" class="iconimage" >
             </ion-item>
 
