@@ -28,6 +28,7 @@ export class AuthService {
   authState = new BehaviorSubject(false);
   localStorageUserKey = "JAJSESSION";
   localStorageUserTypeKey = "JAJSESSION";
+  loginDetails : any;
   // localStorageNotiCount="DRIVERNOTICOUNT";
   onUserDetailChanged: BehaviorSubject<any> = new BehaviorSubject(null);
 
@@ -47,8 +48,6 @@ export class AuthService {
         this.ifLoggedIn();
       });
       this.handleError= httpErrorHandler.createHandleError('TasksService') 
-    
-
   }
   ifLoggedIn() {
     const dataPromise = this.storage.get('userToken');
@@ -73,57 +72,33 @@ export class AuthService {
     return input;
   }
   getUserDetails() {
-    let user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
-    return user.userDetails;
+    return JSON.parse(localStorage.getItem('userData'));
   }
   getCurrentUserId() {
-    let user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
-    return user.userDetails.id;
+    this.loginDetails = JSON.parse(localStorage.getItem('userData'));
+    return this.loginDetails.id;
   }
-  updateUserDetails(details: any) {
-    console.log(details);
-    
-    console.log(this.localStorageUserKey,details);
-    let session = JSON.parse(localStorage.getItem(this.localStorageUserKey));
-
-    if (session) {
-      session.userDetails = details;
-    }
-    else {
-      session = {
-        "userDetails": details,
-        "language": "en"
-      }
-    }
-    localStorage.setItem(this.localStorageUserKey, JSON.stringify(session));
-
-    //this.onUserDetailChanged.next(details);
-
+  updateUserDetails(details: any) {    
+    localStorage.setItem('token', JSON.stringify(details.success.token));
+    localStorage.setItem('userData', JSON.stringify(details.success.data));    
   }
 
   removeUserDetails() {
-    let session = JSON.parse(localStorage.getItem(this.localStorageUserKey));
-    delete session["userDetails"];
-    localStorage.setItem(this.localStorageUserKey, JSON.stringify(session));
+    localStorage.removeItem('userData');
   }
 
   removeAllSessions() {
-    localStorage.removeItem(this.localStorageUserKey);
+    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
   }
 
   isUserLoggedIn() {
-    let user = JSON.parse(localStorage.getItem(this.localStorageUserKey));
-    if (user) {
-      if (user.userDetails) {
+    if (this.getUserDetails()) {
         return true;
       }
       else {
         return false;
       }
-    }
-    else {
-      return false;
-    }
   }
   getUrlFromData(data: any) {
 
