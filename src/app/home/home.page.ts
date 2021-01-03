@@ -30,6 +30,7 @@ export class HomePage implements OnInit {
    let data = {
      "id" : this.auth.getCurrentUserId()
    };
+   localStorage.getItem('userDetails');
   //  this.resultData = 
   //  this.auth.get(data,'details').subscribe(
   //   (response:any) =>{
