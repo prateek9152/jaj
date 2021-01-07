@@ -45,7 +45,7 @@ export class ChatService {
   }
 //---------featch user list 
   chatUserList(): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'api/auth/chatUserList',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
+    return this.http.post<any>(Config.ApiUrl+'mychat/api/auth/chat_user_list',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
 
   }
 

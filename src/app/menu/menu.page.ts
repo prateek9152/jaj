@@ -12,7 +12,7 @@ export class MenuPage implements OnInit {
   @ViewChild('input',{static:false}) searchInput: { setFocus: () => void; } ;
 
   activePath = '';
-
+formData:any;
   pages = [
     {
       name: 'Profile',

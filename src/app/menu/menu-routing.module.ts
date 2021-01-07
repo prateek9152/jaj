@@ -45,7 +45,7 @@ const routes: Routes = [
       loadChildren: () => import('../forgotverify/forgotverify.module').then( m => m.ForgotverifyPageModule)
     },
     {
-      path:'chatdetails/:receiver/:room/:type',
+      path:'chatdetails',
       loadChildren:() => import('../chatdetails/chatdetails.module').then(m => m.ChatdetailsPageModule)
     },
     {
@@ -63,6 +63,10 @@ const routes: Routes = [
     {
       path: 'terms',
       loadChildren: () => import('../terms/terms.module').then( m => m.TermsPageModule)
+    },
+    {
+      path: 'contact',
+      loadChildren: () => import('../contact/contact.module').then( m => m.ContactPageModule)
     },
      ]
   },

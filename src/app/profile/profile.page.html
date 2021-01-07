@@ -1,58 +1,50 @@
 <ion-header>
   <ion-toolbar>
     <ion-item slot="start">
-      <ion-buttons style="zoom: 2.0;" (click)="goBack()">
-<ion-icon name="arrow-back-outline"></ion-icon>        </ion-buttons>
+      
+<ion-icon name="arrow-back" (click)="goBack()"></ion-icon>       
       </ion-item>
     <ion-title style="text-align: center;">Edit Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="profile">
-  <ion-card no-margin>
-    <ion-card-content class="bg-profile">
-      <img src="{{profilePicUrl}}{{loginDetails.profile_picture}}">
-      <button style="padding-right: 0px;
-      padding-left: 0px;
-      padding-top: 0px;
-      height: 29px;
-      width: 50px;
-      border-radius: 17px;
-      border-left: 3px; margin-left: -124px; border: none; background: none;">
+    <div class="bg-profile">
+      <img *ngIf="formData.profile_picture" src="{{profilePicUrl}} {{formData.profile_picture}}">
+      <img *ngIf="!formData.profile_picture" src="../../assets/imgs/user.jpg">
+      <!-- <img  [src]="formData?.profile_picture"> -->
+      <button class="selectfile">
         <img style="margin-left: 1px;
         width: 50%;
         height: 82%;" src="../../assets/imgs/camera.png" (click)="getImage()">
         </button>
-    </ion-card-content>
+    </div>
     <ion-grid fixed no-padding>
 
        <ion-row>
         <ion-col padding>
 
-          <ion-list lines="none">
+          <ion-list>
             
-             <ion-item class="box">
+             <ion-item class="box" lines="none">
               <ion-label  position="stacked">Full Name:</ion-label>
-              <ion-input type="text" style=" font-weight: bold; color: #000;" placeholder="" value="{{loginDetails.name}}  {{loginDetails.last_name}}"  ></ion-input>
-              <img src="../../assets/imgs/status-edit.png" class="iconimage" >
+              <ion-input type="text"style=" font-weight: bold; color: #000; outline: none;" placeholder="" value=""  >{{formData.name}}</ion-input>
 
             </ion-item><br>
               <ion-item class="box">
               <ion-label  position="stacked">Email Address:</ion-label>
-              <ion-input inputmode="email" style="outline: none; font-weight: bold;" placeholder="" value="{{loginDetails.email}}"></ion-input>
+              <ion-input inputmode="email" style="outline: none; font-weight: bold;" placeholder="" value="">{{formData.email}}</ion-input>
              </ion-item><br>
              <ion-item class="box">
               <ion-label  position="stacked">Username:</ion-label>
-              <ion-input type="text"  style=" outline: none; font-weight: bold;" placeholder="" value="{{loginDetails.user_name}}"  ></ion-input>
-              <img src="../../assets/imgs/status-edit.png" class="iconimage" >
+              <ion-input type="text"  style=" outline: none; font-weight: bold;" placeholder="" value=""  >{{formData.user_name}}</ion-input>
 
             </ion-item>  
         <br>
             <ion-item class="box">
               <ion-label  position="stacked">Phone Number:</ion-label>
-              <ion-input inputmode="number" style=" outline: none; font-weight: bold;" placeholder="" value="{{loginDetails.primary_mobile_number}}" ></ion-input>
-              <img slot="end" src="../../assets/imgs/status-edit.png" class="iconimage" >
-            </ion-item>
+              <ion-input inputmode="number" style=" outline: none; font-weight: bold;" placeholder="" value="" >{{formData.primary_mobile_number}}</ion-input>
+              </ion-item>
 
           </ion-list>
 
@@ -60,15 +52,12 @@
 
         </ion-col>
       </ion-row> 
-<section id="footer">
-  <button expand="block" style="background-color: #5ac5ad; font-size: medium; width: 360px;
-  height: 36px;
-  color: white;" (click)="save()">Save</button>
-</section>
+<div id="footer">
+  <button expand="block" class="btnsave" (click)="save()">Save</button>
+</div>
     </ion-grid>
 
 
-  </ion-card>
 
 
 </ion-content>

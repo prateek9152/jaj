@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
-import { MenuController,ModalController,NavController } from '@ionic/angular';
+import { MenuController,ModalController,NavController,AlertController } from '@ionic/angular';
 import {MustMatch} from '.././_helpers/must-match.validator';
 import {UsernameValidator} from '../_helpers/username.validator';
 import {PhoneValidator} from '../_helpers/phone.validator';
@@ -32,7 +32,7 @@ export class SignupPage implements OnInit {
   constructor(private router:Router,private menuCtrl:MenuController, 
     private formBuilder:FormBuilder,private modalController:ModalController,
     private toastService:ToastService,private ionLoader:LoaderService,
-    private http:HttpClient,public authService:AuthService, private storage:Storage) { }
+    private http:HttpClient,public authService:AuthService, private storage:Storage,private alertctrl:AlertController) { }
 
     dismissRegister(){
       this.modalController.dismiss();
@@ -59,7 +59,10 @@ export class SignupPage implements OnInit {
         Validators.maxLength(25),
         Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
       ])),     
-       c_password: ['',[Validators.required]]
+       c_password: ['',[Validators.required]],  
+        acceptTerms: new FormControl(false,Validators.compose([
+        Validators.requiredTrue
+      ])),
     }, {
       validator: MustMatch('password','c_password')
     });
@@ -87,7 +90,9 @@ export class SignupPage implements OnInit {
     c_password: [
       {type: 'required',message: 'Confirm Password is required'},
       { type: 'pattern', message: 'Confirm Password not match.' }
-    ]
+    ],
+    acceptTerms: [false, Validators.requiredTrue]
+
   }
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
@@ -123,11 +128,14 @@ export class SignupPage implements OnInit {
     formData.append("password",this.registerForm.get('password').value);
     formData.append("c_password",this.registerForm.get('c_password').value);
 
-    this.authService.addUser(this.registerForm.value).subscribe((response:any)=> {
+    this.authService.addUser(this.registerForm.value).subscribe(async(response:any)=> {
         if(response){
           this.authService.updateUserDetails(response.data);
           this.router.navigate(['/menu/login']);
-
+          this.toastService.showToast();
+        }
+        else {
+            this.toastService.errorLogin();
         }
     })
    

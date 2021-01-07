@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {  MenuController, Platform } from '@ionic/angular';
+import {  AlertController, MenuController, Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ToastService } from '../services/toast.service';
 import {LoaderService} from '../services/loader.service';
@@ -19,11 +19,12 @@ export class LoginPage implements OnInit {
   validations_form: FormGroup;
   submitted = false;
   diviceToken: string;
+  public alertPresented: any;
 
   constructor(private router: Router,public menuCtrl:MenuController,public formBuilder: FormBuilder,
     private toastService:ToastService, private ionLoader:LoaderService, private http:HttpClient, public storage: Storage,
-    private authService:AuthService,private alertService:AlertService,private settingsService:SettingsService,private commonService:CommonService,
-    private platform:Platform ) {
+    private authService:AuthService,private alertController:AlertController,private settingsService:SettingsService,private commonService:CommonService,
+    private platform:Platform,private alertService:AlertService ) {
     
     // this.menuCtrl.enable(false,"first");
 
@@ -77,41 +78,36 @@ login(){
 
   return;
   }
-  var formData: any = new FormData();
-  formData.append("emailOrPrimaryMobile",this.validations_form.get('emailOrPrimaryMobile').value);
-  formData.append("password",this.validations_form.get('password').value);
-  let headers = new HttpHeaders({"Accept": "application/json"});
-  console.log(formData);
-  this.authService.userLogin(this.validations_form.value).subscribe((response:any)=> {
+  
+  return this.authService.userLogin(this.validations_form.value).pipe().subscribe(async(response)=> {
+    console.log('statusCode:', response.status);
+
       if(response){
+        let vm = this
+            if(!vm.alertPresented){
+              vm.alertPresented = true;
           this.authService.updateUserDetails(response);
+          const alert = await this.alertController.create({
+            cssClass: 'my-custom-class',
+            header: 'Thank You',
+           message: 'Success!!',
+            buttons: [{
+            text: 'OK',
+            handler:() => {
+              vm.alertPresented = false
+            }
+          }]
+          });
+
+          await alert.present();
           this.router.navigate(['/menu/home']);
-      }
-      else {
+
+        }
         
       }
        
-
-
-      //  this.registerForm.reset();
-    
-      
-  })
-  // this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
-  // console.log("loginResponce:"+JSON.stringify(response));
-  // console.log(response.status);
-  // this.router.navigate(['/menu/home']);
-
-  // //  if(response.status==1){
-  // //   //  this.authService.updateUserDetails(response.data);
-  // //    this.toastService.showLoginToast();
-
-  // //  }
-  // //   else {
-  // //     // this.alertService.show('Alert',response.message);
-   
-  // //   }
-  // })
+  },)
+  
   
   
 

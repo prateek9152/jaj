@@ -265,8 +265,7 @@
 
       var _requests_modal_requests_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! ../requests-modal/requests-modal.component */
-      "./src/app/requests-modal/requests-modal.component.ts"); // import { AuthService } from '../auth.service';
-
+      "./src/app/requests-modal/requests-modal.component.ts");
 
       var HomePage = /*#__PURE__*/function () {
         function HomePage(router, platform, auth, modalController) {
@@ -316,24 +315,21 @@
 
         _createClass(HomePage, [{
           key: "ngOnInit",
-          value: function ngOnInit() {//  let data = {
-            //    "id" : this.auth.getCurrentUserId()
-            //  };
+          value: function ngOnInit() {//  this.resultData = 
             //  this.auth.get(data,'details').subscribe(
             //   (response:any) =>{
             //     console.log(response)
             //     if(response.status==0){
             //       this.resultData = response;
-            //       // this.router.navigate(['/menu/home']);
+            //       this.router.navigate(['/menu/home']);
             //     }
             //     else {
             //       this.auth.updateUserDetails(response.data);
             //     }
-            //   // let data = {
-            //   //   "id": this.auth.getCurrentUserId()
-            //   // };
-            //   // console.log(data);
-            //   })
+            // let data = {
+            //   "id": this.auth.getCurrentUserId()
+            // };
+            // console.log(data);
           }
         }, {
           key: "ionViewDidEnter",

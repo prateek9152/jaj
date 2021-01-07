@@ -146,7 +146,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import { AuthService } from '../auth.service';
 let HomePage = class HomePage {
     constructor(router, platform, auth, modalController) {
         this.router = router;
@@ -201,24 +200,21 @@ let HomePage = class HomePage {
         this.type = "chat";
     }
     ngOnInit() {
-        //  let data = {
-        //    "id" : this.auth.getCurrentUserId()
-        //  };
+        //  this.resultData = 
         //  this.auth.get(data,'details').subscribe(
         //   (response:any) =>{
         //     console.log(response)
         //     if(response.status==0){
         //       this.resultData = response;
-        //       // this.router.navigate(['/menu/home']);
+        //       this.router.navigate(['/menu/home']);
         //     }
         //     else {
         //       this.auth.updateUserDetails(response.data);
         //     }
-        //   // let data = {
-        //   //   "id": this.auth.getCurrentUserId()
-        //   // };
-        //   // console.log(data);
-        //   })
+        // let data = {
+        //   "id": this.auth.getCurrentUserId()
+        // };
+        // console.log(data);
     }
     ionViewDidEnter() {
         this.subscription = this.platform.backButton.subscribe(() => {

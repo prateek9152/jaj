@@ -5,7 +5,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 import { CommonService } from 'src/app/services/common.service';
 import { IonContent } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
-import {AuthService} from '../services/auth.service';
+
 @Component({
   selector: 'app-chatdetails',
   templateUrl: './chatdetails.page.html',
@@ -48,7 +48,6 @@ export class ChatdetailsPage implements OnInit {
   messageDateString : string ;
   lastChatId : any = 0;
   loginId : any;
-  loginDetails:any;
   constructor(
     public popoverController:PopoverController,
     public navCtrl:NavController,
@@ -57,17 +56,19 @@ export class ChatdetailsPage implements OnInit {
     private actRoute: ActivatedRoute,
     private socket: Socket,
     public commonService:CommonService,
-    public alertController: AlertController,
-    public auth :AuthService) { }
+    public alertController: AlertController,) { }
 
   ngOnInit() {
-    this.loginDetails = this.auth.getUserDetails();
-    this.loginId = this.loginDetails.id;
+    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.loginId = 2;
     this.actRoute.paramMap.subscribe((params: ParamMap) => {
-      this.room = params.get('room');
+      // this.room = params.get('room');
+      this.room = 'cm9vbS0xMg==';
       //--reciver is ( in private chat is sender id )-----
-      this.receiverId = params.get('receiver');
-      this.chatType = params.get('type');      
+      // this.receiverId = params.get('receiver');
+      this.receiverId = 1;
+      // this.chatType = params.get('type');
+      this.chatType = 1;
     });
     this.getStart();
     this.privateChat();

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController, Platform } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { RequestsModalComponent } from '../requests-modal/requests-modal.component';
-
+import {ChatService} from '../services/chat.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -18,26 +18,21 @@ export class HomePage implements OnInit {
   public subscription: any;
   resultData: any = [];
   filterTerm: string;
-  chatType : any;
-  room : any;
-  receiverID : any;
+  formData:any;
+  public items: any;
+  requestCount: any = 0;
+
   constructor(
     private router:Router,
     private platform: Platform,
     private auth:AuthService,
+    private chatService:ChatService,
     private modalController:ModalController
     ) {
       this.type = "chat";
     }
   ngOnInit(){
-    this.chatType = 1;
-    this.room = '';
-    this.receiverID = '';
-   let data = {
-     "id" : this.auth.getCurrentUserId()
-   };
-   localStorage.getItem('userDetails');
-  //  this.resultData = 
+    //  this.resultData = 
   //  this.auth.get(data,'details').subscribe(
   //   (response:any) =>{
   //     console.log(response)
@@ -60,8 +55,14 @@ export class HomePage implements OnInit {
     this.subscription = this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
     });
+    // this.displayUserList();
   }
-
+    // displayUserList(){
+    //       this.chatService.chatUserList().subscribe((data:any) => {
+    //           this.items = data.chatlist;
+    //           this.requestCount = data.requestcount;
+    //       })
+    //     }
   userRecords = [{
     "id": 1,
     "name": "Simon",
@@ -117,7 +118,7 @@ export class HomePage implements OnInit {
   }
 details(){}
 chatdetail(){
-  this.router.navigate(['/menu/chatdetails/'+this.receiverID+'/'+this.room+'/'+this.chatType]);
+  this.router.navigate(['/menu/chatdetails']);
 }
 filter() {
 }
@@ -151,6 +152,9 @@ async requests(){
   });
   return await modal.present();
 
+}
+showRequests(){
+  
 }
 }
 

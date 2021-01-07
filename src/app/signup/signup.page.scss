@@ -14,6 +14,7 @@
     // color: #000;
     font-size: 16px;
     margin: 25px 0 40px;
+    margin-top: 3px;
 }
 .login_form_main {
     // height: 100%;
@@ -31,10 +32,12 @@
 }
 .logo img {
     width: 100px;
+    margin-top: -65px;
 }
 .logo {
     padding: 0;
     text-align: center;
+
 }
 .input_1 {
     height: 50px;
@@ -47,11 +50,13 @@
     padding-left: 0px;
     margin: 10px auto;
     left: 4px;
+    margin-top: 26px;
 }
 .btn_grp {
     padding: 10px 0 !important;
     text-align: center;
     font-size: 15px;
+    margin-top: 7px;
 }
 .btn_grp p span {
     color: #5ac5ad;
@@ -94,6 +99,26 @@
     width: 322px;
     height: 53px;
 }
-.error-message { display:block;
-color:red;
-margin-top:5px; text-align: center;}
+.error-message { color: red;
+    /* margin-top: 0px; */
+    /* text-align: center; */
+    font-size: 83%;
+    position: absolute;
+    margin-top: -2px;
+    /* right: 93px; */
+    left: 47px;
+    display: initial;}
+    .box2{
+        margin-top: 12px !important;
+      }
+      .errmsg{
+        color: red;
+        /* margin-top: 0px; */
+        /* text-align: center; */
+        font-size: 83%;
+        position: absolute;
+        margin-top: 17px;
+        /* right: 93px; */
+        left: 47px;
+        display: initial;
+      }

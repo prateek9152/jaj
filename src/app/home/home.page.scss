@@ -200,3 +200,28 @@ z-index: +99;
     height: 22px;
     cursor: pointer;
 }
+.icon {
+  width:30px; 
+  height:30px;
+  position: relative;
+}
+.txt{
+  background-color:rgb(218, 135, 28);
+  color: #000;
+  font-size:xx-small;
+  position: absolute;
+  padding:2px;
+  top: 5px;
+  right: 32px;
+  border-radius: 25px;
+}
+.txt1{
+  background-color:rgb(218, 135, 28);
+  color: #000;
+  font-size:xx-small;
+  position: absolute;
+  padding:2px;
+  top: 5px;
+  right: 55px;
+  border-radius: 25px;
+}

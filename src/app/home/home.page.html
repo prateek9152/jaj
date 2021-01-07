@@ -41,6 +41,7 @@
   <ion-segment [(ngModel)]="type" style="background-color: #fe6e4a;">
     <ion-segment-button   value="chat">
       Chat
+      <div class="txt1">3</div>
    </ion-segment-button>
    <!-- <ion-segment-button value="group">
        Groups
@@ -48,8 +49,9 @@
    <ion-segment-button value="circle">
        Circles
    </ion-segment-button> -->
-   <ion-segment-button value="request">
+   <ion-segment-button value="request"  (click)="showRequests()">
     Requests
+    <div class="txt">10</div>
   </ion-segment-button>
   <!-- <ion-segment-button value="status">
     Status
@@ -63,7 +65,7 @@
     margin: auto;" [(ngModel)]="filterTerm" animated="true">
   </ion-searchbar>
       
-    <div class="user" *ngFor="let k of [1,2,3,4,5]" (click)="chatdetail()">
+    <div class="user" *ngFor="let k of [1,2,3,4,5]" >
   
       <ion-list>
       <ion-item-sliding no-lines>
@@ -73,7 +75,7 @@
        
         </ion-avatar>
       
-        <div>
+        <div (click)="chatdetail()">
           <h6 class="heading_int">{{data.name}}</h6>
               <p class="dateee">How are you?</p>
               </div>

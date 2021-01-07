@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content>\n  <ion-content padding class=\"back_img\">\n\n\n\n    <div class=\"login_form_main\">\n      <form [formGroup]=\"validations_form\" style=\"\theight: 100%;\n      display: contents;\n      width: 100%;\n      align-items: center;\"  (ngSubmit)=\"login()\">\n\n      <div class=\"login_form\">\n        <div class=\"logo\">\n          <img src=\"../../assets/imgs/login/jajlogo.jpeg\">\n          <h3>Please enter your login detail</h3>\n        </div>\n  \n  \n        <ion-list style=\"margin:0 0 20px; display:inline\">\n          <ion-input class=\"input_1\" type=\"email\" formControlName=\"email\" placeholder=\"E-Mail\" [ngClass]=\"{'is-invalid': submitted && f.email.errors}\"></ion-input>\n          <ng-container *ngFor=\"let validation of validation_messages.email\">\n            <span class=\"error-message\"\n              *ngIf=\"(submitted || validations_form.get('email').touched) && validations_form.get('email').hasError(validation.type)\">\n              {{ validation.message }}\n            </span>\n          </ng-container>  \n          <!-- <ion-label style=\"text-align: center;\n          display: block;\">Enter Your Phone Number</ion-label> -->\n            <!-- <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Enter Your Mobile Number\" [ngClass]=\"{'is-invalid': submitted && f.phone.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.phone\">\n              <span class=\"error-message\"\n                *ngIf=\"(submitted || validations_form.get('phone').touched) && validations_form.get('phone').hasError(validation.type)\">\n                {{ validation.message }}\n              </span>\n            </ng-container> -->\n            \n          <!-- <ion-label style=\"text-align: center;\n          display: block;\">Password</ion-label> -->\n            <ion-input class=\"input_1\" type=\"password\" formControlName=\"password\" placeholder=\"Enter Password\" [ngClass]=\"{'is-invalid': submitted && f.password.errors}\"></ion-input>\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\n              <span class=\"error-message\"\n                *ngIf=\"(submitted || validations_form.get('password').touched) && validations_form.get('password').hasError(validation.type)\">\n                {{ validation.message }}\n              </span>\n            </ng-container>\n            \n        </ion-list>\n  \n        <h5 style=\"text-align: center;font-size: 13px;font-weight: normal;\" [routerLink]=\"['/menu/forgot']\">Forgot Password?</h5>\n  \n        <div padding class=\"btn_grp\">\n          <button class=\"btnclick\" (click)=\"login()\">LOGIN</button>\n          <p>Don't have an account? <span (click)=\"register()\">Sign Up</span></p>\n        </div>\n      </div>\n      </form>\n\n    </div>\n  \n \n  \n  </ion-content>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-content>\r\n  <ion-content padding class=\"back_img\">\r\n\r\n\r\n\r\n    <div class=\"login_form_main\">\r\n      <form [formGroup]=\"validations_form\" style=\"\theight: 100%;\r\n      display: contents;\r\n      width: 100%;\r\n      align-items: center;\"  (ngSubmit)=\"login()\">\r\n\r\n      <div class=\"login_form\">\r\n        <div class=\"logo\">\r\n          <img src=\"../../assets/imgs/login/jajlogo.jpeg\">\r\n          <h3>Please enter your login detail</h3>\r\n        </div>\r\n  \r\n  \r\n        <ion-list style=\"margin:0 0 20px; display:inline\">\r\n          <ion-input class=\"input_1\" type=\"text\" formControlName=\"emailOrPrimaryMobile\" placeholder=\"E-Mail Or Mobile\" [ngClass]=\"{'is-invalid': submitted && f.emailOrPrimaryMobile.errors}\" ></ion-input>\r\n          <ng-container *ngFor=\"let validation of validation_messages.emailOrPrimaryMobile\">\r\n            <span class=\"error-message\"\r\n              *ngIf=\"(submitted || validations_form.get('emailOrPrimaryMobile').touched) && validations_form.get('emailOrPrimaryMobile').hasError(validation.type)\">\r\n              {{ validation.message }}\r\n            </span>\r\n          </ng-container>  \r\n          <!-- <ion-label style=\"text-align: center;\r\n          display: block;\">Enter Your Phone Number</ion-label> -->\r\n            <!-- <ion-input class=\"input_1\" type=\"number\" formControlName=\"phone\" placeholder=\"Enter Your Mobile Number\" [ngClass]=\"{'is-invalid': submitted && f.phone.errors}\"></ion-input>\r\n            <ng-container *ngFor=\"let validation of validation_messages.phone\">\r\n              <span class=\"error-message\"\r\n                *ngIf=\"(submitted || validations_form.get('phone').touched) && validations_form.get('phone').hasError(validation.type)\">\r\n                {{ validation.message }}\r\n              </span>\r\n            </ng-container> -->\r\n            \r\n          <!-- <ion-label style=\"text-align: center;\r\n          display: block;\">Password</ion-label> -->\r\n            <ion-input class=\"input_1\" type=\"password\" formControlName=\"password\" placeholder=\"Enter Password\" [ngClass]=\"{'is-invalid': submitted && f.password.errors}\"></ion-input>\r\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\r\n              <span class=\"error-message\"\r\n                *ngIf=\"(submitted || validations_form.get('password').touched) && validations_form.get('password').hasError(validation.type)\">\r\n                {{ validation.message }}\r\n              </span>\r\n            </ng-container>\r\n            \r\n        </ion-list>\r\n  \r\n        <h5 style=\"text-align: center;font-size: 13px;font-weight: normal;\" [routerLink]=\"['/menu/forgot']\">Forgot Password?</h5>\r\n  \r\n        <div padding class=\"btn_grp\">\r\n          <button class=\"btnclick\" (click)=\"login()\">LOGIN</button>\r\n          <p>Don't have an account? <span (click)=\"register()\">Sign Up</span></p>\r\n        </div>\r\n      </div>\r\n      </form>\r\n\r\n    </div>\r\n  \r\n \r\n  \r\n  </ion-content>\r\n</ion-content>\r\n";
       /***/
     },
 
@@ -175,7 +175,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = ".back_img {\n  background: #f1f1f1;\n  background-color: rgba(0, 0, 0, 0);\n  background-position-x: 0%;\n  background-position-y: 0%;\n  background-repeat: repeat;\n  background-size: auto;\n  background-size: cover;\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-color: #ececec;\n}\n\n.logo h3 {\n  font-size: 16px;\n  margin: 25px 0 40px;\n  font-weight: bold;\n}\n\n.login_form_main {\n  height: 100%;\n  display: flex;\n  width: 100%;\n  align-items: center;\n}\n\n.login_form {\n  width: 100%;\n}\n\n.img_sign img {\n  width: 200px;\n  margin: 10px;\n}\n\n.logo img {\n  width: 100px;\n}\n\n.logo {\n  padding: 0;\n  text-align: center;\n}\n\n.input_1 {\n  height: 50px;\n  background: #fff;\n  color: #575757;\n  font-size: 13px;\n  border: 1px solid #d8d8d8 !important;\n  border-radius: 3px;\n  width: 322px;\n  padding-left: 0px;\n  margin: 10px auto;\n  left: 4px;\n}\n\n.btn_grp {\n  padding: 10px 0 !important;\n  text-align: center;\n  font-size: 15px;\n}\n\n.btn_grp p span {\n  color: #5ac5ad;\n}\n\n.toolbar-background.toolbar-background-ios {\n  background: #fff;\n  border: none;\n}\n\n.header-md::after, .tabs-md[tabsPlacement=top] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement=bottom] > .tabbar::before {\n  left: 0;\n  bottom: -5px;\n  background-position: left 0 top -2px;\n  position: absolute;\n  width: 100%;\n  height: 5px;\n  background-image: none;\n  background-repeat: repeat-x;\n  content: \"\";\n}\n\n.label input {\n  width: 85%;\n  height: 30px;\n  border: none;\n}\n\n.label {\n  display: flex;\n  align-items: center;\n}\n\n.label img {\n  width: 32px;\n  height: 20px;\n  margin-right: 8px;\n}\n\n.btnclick {\n  background-color: #5ac5ad;\n  color: #ffff;\n  width: 322px;\n  height: 53px;\n}\n\n.error-message {\n  display: block;\n  color: red;\n  margin-top: 5px;\n  text-align: center;\n}\n\n/* google*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vbG9naW4ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7RUFDQSxrQ0FBQTtFQUNBLHlCQUFBO0VBQ0EseUJBQUE7RUFDQSx5QkFBQTtFQUNBLHFCQUFBO0VBQ0Esc0JBQUE7RUFDQSwrQkFBQTtFQUNBLDRCQUFBO0VBQ0EseUJBQUE7QUFDSjs7QUFDQTtFQUVJLGVBQUE7RUFDQSxtQkFBQTtFQUNBLGlCQUFBO0FBQ0o7O0FBQ0E7RUFDQyxZQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7RUFDQSxtQkFBQTtBQUVEOztBQUFBO0VBQ0MsV0FBQTtBQUdEOztBQURBO0VBQ0MsWUFBQTtFQUNBLFlBQUE7QUFJRDs7QUFGQTtFQUNJLFlBQUE7QUFLSjs7QUFIQTtFQUNJLFVBQUE7RUFDQSxrQkFBQTtBQU1KOztBQUpBO0VBQ0ksWUFBQTtFQUNBLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLGVBQUE7RUFDQSxvQ0FBQTtFQUNBLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7RUFDQSxTQUFBO0FBT0o7O0FBTEE7RUFDSSwwQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQVFKOztBQU5BO0VBQ0MsY0FBQTtBQVNEOztBQVBBO0VBQ0MsZ0JBQUE7RUFDQSxZQUFBO0FBVUQ7O0FBUkE7RUFDQyxPQUFBO0VBQ0EsWUFBQTtFQUNBLG9DQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0VBQ0EsV0FBQTtFQUNBLHNCQUFBO0VBQ0EsMkJBQUE7RUFDQSxXQUFBO0FBV0Q7O0FBVEE7RUFDQyxVQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7QUFZRDs7QUFUQTtFQUNDLGFBQUE7RUFDQSxtQkFBQTtBQVlEOztBQVZBO0VBQ0MsV0FBQTtFQUNBLFlBQUE7RUFDQSxpQkFBQTtBQWFEOztBQVhBO0VBQ0kseUJBQUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7QUFjSjs7QUFaQTtFQUFpQixjQUFBO0VBQ2IsVUFBQTtFQUNBLGVBQUE7RUFBZ0Isa0JBQUE7QUFpQnBCOztBQWhCQSxVQUFBIiwiZmlsZSI6InNyYy9hcHAvbG9naW4vbG9naW4ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJhY2tfaW1nIHtcclxuICAgIGJhY2tncm91bmQ6I2YxZjFmMTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMCk7XHJcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXg6IDAlO1xyXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbi15OiAwJTtcclxuICAgIGJhY2tncm91bmQtcmVwZWF0OiByZXBlYXQ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGF1dG87XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogdG9wIGNlbnRlcjtcclxuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZWNlY2VjO1xyXG59XHJcbi5sb2dvIGgzIHtcclxuICAgIC8vIGNvbG9yOiAjMDAwO1xyXG4gICAgZm9udC1zaXplOiAxNnB4O1xyXG4gICAgbWFyZ2luOiAyNXB4IDAgNDBweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcbi5sb2dpbl9mb3JtX21haW4ge1xyXG5cdGhlaWdodDogMTAwJTtcclxuXHRkaXNwbGF5OiBmbGV4O1xyXG5cdHdpZHRoOiAxMDAlO1xyXG5cdGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuLmxvZ2luX2Zvcm0ge1xyXG5cdHdpZHRoOiAxMDAlO1xyXG59XHJcbi5pbWdfc2lnbiBpbWcge1xyXG5cdHdpZHRoOiAyMDBweDtcclxuXHRtYXJnaW46IDEwcHg7XHJcbn1cclxuLmxvZ28gaW1nIHtcclxuICAgIHdpZHRoOiAxMDBweDtcclxufVxyXG4ubG9nbyB7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbi5pbnB1dF8xIHtcclxuICAgIGhlaWdodDogNTBweDtcclxuICAgIGJhY2tncm91bmQ6ICNmZmY7XHJcbiAgICBjb2xvcjogIzU3NTc1NztcclxuICAgIGZvbnQtc2l6ZTogMTNweDtcclxuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkOGQ4ZDggIWltcG9ydGFudDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDNweDtcclxuICAgIHdpZHRoOiAzMjJweDtcclxuICAgIHBhZGRpbmctbGVmdDogMHB4O1xyXG4gICAgbWFyZ2luOiAxMHB4IGF1dG87XHJcbiAgICBsZWZ0OiA0cHg7XHJcbn1cclxuLmJ0bl9ncnAge1xyXG4gICAgcGFkZGluZzogMTBweCAwICFpbXBvcnRhbnQ7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBmb250LXNpemU6IDE1cHg7XHJcbn1cclxuLmJ0bl9ncnAgcCBzcGFuIHtcclxuXHRjb2xvcjogIzVhYzVhZDtcclxufVxyXG4udG9vbGJhci1iYWNrZ3JvdW5kLnRvb2xiYXItYmFja2dyb3VuZC1pb3Mge1xyXG5cdGJhY2tncm91bmQ6ICNmZmY7XHJcblx0Ym9yZGVyOiBub25lO1xyXG59XHJcbi5oZWFkZXItbWQ6OmFmdGVyLCAudGFicy1tZFt0YWJzUGxhY2VtZW50PVwidG9wXCJdID4gLnRhYmJhcjo6YWZ0ZXIsIC5mb290ZXItbWQ6OmJlZm9yZSwgLnRhYnMtbWRbdGFic1BsYWNlbWVudD1cImJvdHRvbVwiXSA+IC50YWJiYXI6OmJlZm9yZSB7XHJcblx0bGVmdDogMDtcclxuXHRib3R0b206IC01cHg7XHJcblx0YmFja2dyb3VuZC1wb3NpdGlvbjogbGVmdCAwIHRvcCAtMnB4O1xyXG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuXHR3aWR0aDogMTAwJTtcclxuXHRoZWlnaHQ6IDVweDtcclxuXHRiYWNrZ3JvdW5kLWltYWdlOiBub25lO1xyXG5cdGJhY2tncm91bmQtcmVwZWF0OiByZXBlYXQteDtcclxuXHRjb250ZW50OiBcIlwiO1xyXG59XHJcbi5sYWJlbCBpbnB1dCB7XHJcblx0d2lkdGg6IDg1JTtcclxuXHRoZWlnaHQ6IDMwcHg7XHJcblx0Ym9yZGVyOiBub25lO1xyXG59XHJcblxyXG4ubGFiZWwge1xyXG5cdGRpc3BsYXk6IGZsZXg7XHJcblx0YWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG4ubGFiZWwgaW1nIHtcclxuXHR3aWR0aDogMzJweDtcclxuXHRoZWlnaHQ6IDIwcHg7XHJcblx0bWFyZ2luLXJpZ2h0OiA4cHg7XHJcbn1cclxuLmJ0bmNsaWNre1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzVhYzVhZDtcclxuICAgIGNvbG9yOiAjZmZmZjtcclxuICAgIHdpZHRoOiAzMjJweDtcclxuICAgIGhlaWdodDogNTNweDtcclxufVxyXG4uZXJyb3ItbWVzc2FnZSB7IGRpc3BsYXk6YmxvY2s7XHJcbiAgICBjb2xvcjpyZWQ7XHJcbiAgICBtYXJnaW4tdG9wOjVweDsgdGV4dC1hbGlnbjogY2VudGVyO31cclxuLyogZ29vZ2xlKi9cclxuIl19 */";
+      __webpack_exports__["default"] = ".back_img {\n  background: #f1f1f1;\n  background-color: rgba(0, 0, 0, 0);\n  background-position-x: 0%;\n  background-position-y: 0%;\n  background-repeat: repeat;\n  background-size: auto;\n  background-size: cover;\n  background-position: top center;\n  background-repeat: no-repeat;\n  background-color: #ececec;\n}\n\n.logo h3 {\n  font-size: 16px;\n  margin: 25px 0 40px;\n  font-weight: bold;\n}\n\n.login_form_main {\n  height: 100%;\n  display: flex;\n  width: 100%;\n  align-items: center;\n}\n\n.login_form {\n  width: 100%;\n}\n\n.img_sign img {\n  width: 200px;\n  margin: 10px;\n}\n\n.logo img {\n  width: 100px;\n}\n\n.logo {\n  padding: 0;\n  text-align: center;\n}\n\n.input_1 {\n  height: 50px;\n  background: #fff;\n  color: #575757;\n  font-size: 13px;\n  border: 1px solid #d8d8d8 !important;\n  border-radius: 3px;\n  width: 322px;\n  padding-left: 0px;\n  margin: 10px auto;\n  left: 4px;\n}\n\n.btn_grp {\n  padding: 10px 0 !important;\n  text-align: center;\n  font-size: 15px;\n}\n\n.btn_grp p span {\n  color: #5ac5ad;\n}\n\n.toolbar-background.toolbar-background-ios {\n  background: #fff;\n  border: none;\n}\n\n.header-md::after, .tabs-md[tabsPlacement=top] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement=bottom] > .tabbar::before {\n  left: 0;\n  bottom: -5px;\n  background-position: left 0 top -2px;\n  position: absolute;\n  width: 100%;\n  height: 5px;\n  background-image: none;\n  background-repeat: repeat-x;\n  content: \"\";\n}\n\n.label input {\n  width: 85%;\n  height: 30px;\n  border: none;\n}\n\n.label {\n  display: flex;\n  align-items: center;\n}\n\n.label img {\n  width: 32px;\n  height: 20px;\n  margin-right: 8px;\n}\n\n.btnclick {\n  background-color: #5ac5ad;\n  color: #ffff;\n  width: 322px;\n  height: 53px;\n}\n\n.error-message {\n  display: block;\n  color: red;\n  margin-top: 5px;\n  text-align: center;\n}\n\n/* google*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vbG9naW4ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7RUFDQSxrQ0FBQTtFQUNBLHlCQUFBO0VBQ0EseUJBQUE7RUFDQSx5QkFBQTtFQUNBLHFCQUFBO0VBQ0Esc0JBQUE7RUFDQSwrQkFBQTtFQUNBLDRCQUFBO0VBQ0EseUJBQUE7QUFDSjs7QUFDQTtFQUVJLGVBQUE7RUFDQSxtQkFBQTtFQUNBLGlCQUFBO0FBQ0o7O0FBQ0E7RUFDQyxZQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7RUFDQSxtQkFBQTtBQUVEOztBQUFBO0VBQ0MsV0FBQTtBQUdEOztBQURBO0VBQ0MsWUFBQTtFQUNBLFlBQUE7QUFJRDs7QUFGQTtFQUNJLFlBQUE7QUFLSjs7QUFIQTtFQUNJLFVBQUE7RUFDQSxrQkFBQTtBQU1KOztBQUpBO0VBQ0ksWUFBQTtFQUNBLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLGVBQUE7RUFDQSxvQ0FBQTtFQUNBLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7RUFDQSxTQUFBO0FBT0o7O0FBTEE7RUFDSSwwQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQVFKOztBQU5BO0VBQ0MsY0FBQTtBQVNEOztBQVBBO0VBQ0MsZ0JBQUE7RUFDQSxZQUFBO0FBVUQ7O0FBUkE7RUFDQyxPQUFBO0VBQ0EsWUFBQTtFQUNBLG9DQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0VBQ0EsV0FBQTtFQUNBLHNCQUFBO0VBQ0EsMkJBQUE7RUFDQSxXQUFBO0FBV0Q7O0FBVEE7RUFDQyxVQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7QUFZRDs7QUFUQTtFQUNDLGFBQUE7RUFDQSxtQkFBQTtBQVlEOztBQVZBO0VBQ0MsV0FBQTtFQUNBLFlBQUE7RUFDQSxpQkFBQTtBQWFEOztBQVhBO0VBQ0kseUJBQUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7QUFjSjs7QUFaQTtFQUFpQixjQUFBO0VBQ2IsVUFBQTtFQUNBLGVBQUE7RUFBZ0Isa0JBQUE7QUFpQnBCOztBQWhCQSxVQUFBIiwiZmlsZSI6InNyYy9hcHAvbG9naW4vbG9naW4ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJhY2tfaW1nIHtcbiAgICBiYWNrZ3JvdW5kOiNmMWYxZjE7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwKTtcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXg6IDAlO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb24teTogMCU7XG4gICAgYmFja2dyb3VuZC1yZXBlYXQ6IHJlcGVhdDtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGF1dG87XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiB0b3AgY2VudGVyO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2VjZWNlYztcbn1cbi5sb2dvIGgzIHtcbiAgICAvLyBjb2xvcjogIzAwMDtcbiAgICBmb250LXNpemU6IDE2cHg7XG4gICAgbWFyZ2luOiAyNXB4IDAgNDBweDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cbi5sb2dpbl9mb3JtX21haW4ge1xuXHRoZWlnaHQ6IDEwMCU7XG5cdGRpc3BsYXk6IGZsZXg7XG5cdHdpZHRoOiAxMDAlO1xuXHRhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLmxvZ2luX2Zvcm0ge1xuXHR3aWR0aDogMTAwJTtcbn1cbi5pbWdfc2lnbiBpbWcge1xuXHR3aWR0aDogMjAwcHg7XG5cdG1hcmdpbjogMTBweDtcbn1cbi5sb2dvIGltZyB7XG4gICAgd2lkdGg6IDEwMHB4O1xufVxuLmxvZ28ge1xuICAgIHBhZGRpbmc6IDA7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmlucHV0XzEge1xuICAgIGhlaWdodDogNTBweDtcbiAgICBiYWNrZ3JvdW5kOiAjZmZmO1xuICAgIGNvbG9yOiAjNTc1NzU3O1xuICAgIGZvbnQtc2l6ZTogMTNweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZDhkOGQ4ICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xuICAgIHdpZHRoOiAzMjJweDtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweDtcbiAgICBtYXJnaW46IDEwcHggYXV0bztcbiAgICBsZWZ0OiA0cHg7XG59XG4uYnRuX2dycCB7XG4gICAgcGFkZGluZzogMTBweCAwICFpbXBvcnRhbnQ7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGZvbnQtc2l6ZTogMTVweDtcbn1cbi5idG5fZ3JwIHAgc3BhbiB7XG5cdGNvbG9yOiAjNWFjNWFkO1xufVxuLnRvb2xiYXItYmFja2dyb3VuZC50b29sYmFyLWJhY2tncm91bmQtaW9zIHtcblx0YmFja2dyb3VuZDogI2ZmZjtcblx0Ym9yZGVyOiBub25lO1xufVxuLmhlYWRlci1tZDo6YWZ0ZXIsIC50YWJzLW1kW3RhYnNQbGFjZW1lbnQ9XCJ0b3BcIl0gPiAudGFiYmFyOjphZnRlciwgLmZvb3Rlci1tZDo6YmVmb3JlLCAudGFicy1tZFt0YWJzUGxhY2VtZW50PVwiYm90dG9tXCJdID4gLnRhYmJhcjo6YmVmb3JlIHtcblx0bGVmdDogMDtcblx0Ym90dG9tOiAtNXB4O1xuXHRiYWNrZ3JvdW5kLXBvc2l0aW9uOiBsZWZ0IDAgdG9wIC0ycHg7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0d2lkdGg6IDEwMCU7XG5cdGhlaWdodDogNXB4O1xuXHRiYWNrZ3JvdW5kLWltYWdlOiBub25lO1xuXHRiYWNrZ3JvdW5kLXJlcGVhdDogcmVwZWF0LXg7XG5cdGNvbnRlbnQ6IFwiXCI7XG59XG4ubGFiZWwgaW5wdXQge1xuXHR3aWR0aDogODUlO1xuXHRoZWlnaHQ6IDMwcHg7XG5cdGJvcmRlcjogbm9uZTtcbn1cblxuLmxhYmVsIHtcblx0ZGlzcGxheTogZmxleDtcblx0YWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5sYWJlbCBpbWcge1xuXHR3aWR0aDogMzJweDtcblx0aGVpZ2h0OiAyMHB4O1xuXHRtYXJnaW4tcmlnaHQ6IDhweDtcbn1cbi5idG5jbGlja3tcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWFjNWFkO1xuICAgIGNvbG9yOiAjZmZmZjtcbiAgICB3aWR0aDogMzIycHg7XG4gICAgaGVpZ2h0OiA1M3B4O1xufVxuLmVycm9yLW1lc3NhZ2UgeyBkaXNwbGF5OmJsb2NrO1xuICAgIGNvbG9yOnJlZDtcbiAgICBtYXJnaW4tdG9wOjVweDsgdGV4dC1hbGlnbjogY2VudGVyO31cbi8qIGdvb2dsZSovXG4iXX0= */";
       /***/
     },
 
@@ -258,9 +258,27 @@
       var _services_alert_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ../services/alert.service */
       "./src/app/services/alert.service.ts");
+      /* harmony import */
+
+
+      var _ionic_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @ionic/storage */
+      "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
+      /* harmony import */
+
+
+      var _services_settings_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! ../services/settings.service */
+      "./src/app/services/settings.service.ts");
+      /* harmony import */
+
+
+      var _services_common_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! ../services/common.service */
+      "./src/app/services/common.service.ts");
 
       var LoginPage = /*#__PURE__*/function () {
-        function LoginPage(router, menuCtrl, formBuilder, toastService, ionLoader, http, authService, alertService) {
+        function LoginPage(router, menuCtrl, formBuilder, toastService, ionLoader, http, storage, authService, alertService, settingsService, commonService, platform) {
           _classCallCheck(this, LoginPage);
 
           // this.menuCtrl.enable(false,"first");
@@ -270,16 +288,17 @@
           this.toastService = toastService;
           this.ionLoader = ionLoader;
           this.http = http;
+          this.storage = storage;
           this.authService = authService;
           this.alertService = alertService;
+          this.settingsService = settingsService;
+          this.commonService = commonService;
+          this.platform = platform;
           this.submitted = false;
           this.validation_messages = {
-            email: [{
+            emailOrPrimaryMobile: [{
               type: 'required',
-              message: 'Email is required.'
-            }, {
-              type: 'pattern',
-              message: 'Enter a valid email'
+              message: 'Email Or Mobile is required.'
             }],
             // 'phone': [
             //   { type: 'required', message: 'Phone is required.' },
@@ -302,7 +321,7 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             this.validations_form = this.formBuilder.group({
-              email: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern('[a-zA-Z0-9_.+-]+@(?:[a-zA-Z0-9-]+\.)\.[A-Za-z0-9._%+-]{2,}')])),
+              emailOrPrimaryMobile: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])),
               // phone: new FormControl('', Validators.compose([
               //   Validators.minLength(10),
               //   Validators.required,
@@ -334,40 +353,31 @@
 
             if (this.validations_form.invalid) {
               return;
-            }
+            } // var formData: any = new FormData();
+            // formData.append("emailOrPrimaryMobile",this.validations_form.get('emailOrPrimaryMobile').value);
+            // formData.append("password",this.validations_form.get('password').value);
+            // console.log(formData);
 
-            var formData = new FormData();
-            formData.append("email", this.validations_form.get('email').value);
-            formData.append("password", this.validations_form.get('password').value);
-            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpHeaders"]({
-              "Accept": "application/json"
-            });
-            console.log(formData);
-            this.http.post('https://jajoj.threethree.in/api/login', formData, {
-              headers: headers
-            }).subscribe(function (response) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                return regeneratorRuntime.wrap(function _callee$(_context) {
-                  while (1) {
-                    switch (_context.prev = _context.next) {
-                      case 0:
-                        console.log(response);
-                        this.router.navigate(['/menu/home']); //  if(response.status==1){
-                        //   //  this.authService.updateUserDetails(response.data);
-                        //    this.toastService.showLoginToast();
-                        //  }
-                        //   else {
-                        //     // this.alertService.show('Alert',response.message);
-                        //   }
 
-                      case 2:
-                      case "end":
-                        return _context.stop();
-                    }
-                  }
-                }, _callee, this);
-              }));
-            });
+            this.authService.userLogin(this.validations_form.value).subscribe(function (response) {
+              if (response) {
+                _this.authService.updateUserDetails(response);
+
+                _this.router.navigate(['/menu/home']);
+              } else {} //  this.registerForm.reset();
+
+            }); // this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
+            // console.log("loginResponce:"+JSON.stringify(response));
+            // console.log(response.status);
+            // this.router.navigate(['/menu/home']);
+            // //  if(response.status==1){
+            // //   //  this.authService.updateUserDetails(response.data);
+            // //    this.toastService.showLoginToast();
+            // //  }
+            // //   else {
+            // //     // this.alertService.show('Alert',response.message);
+            // //   }
+            // })
           }
         }, {
           key: "register",
@@ -398,9 +408,17 @@
         }, {
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]
         }, {
+          type: _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["Storage"]
+        }, {
           type: _services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]
         }, {
           type: _services_alert_service__WEBPACK_IMPORTED_MODULE_9__["AlertService"]
+        }, {
+          type: _services_settings_service__WEBPACK_IMPORTED_MODULE_11__["SettingsService"]
+        }, {
+          type: _services_common_service__WEBPACK_IMPORTED_MODULE_12__["CommonService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"]
         }];
       };
 
@@ -1092,13 +1110,13 @@
             var _this2 = this;
 
             return new Promise(function (resolve) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
                 var alert;
-                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
                   while (1) {
-                    switch (_context2.prev = _context2.next) {
+                    switch (_context.prev = _context.next) {
                       case 0:
-                        _context2.next = 2;
+                        _context.next = 2;
                         return this.alert.create({
                           cssClass: 'my-custom-class',
                           header: title,
@@ -1107,16 +1125,16 @@
                         });
 
                       case 2:
-                        alert = _context2.sent;
-                        _context2.next = 5;
+                        alert = _context.sent;
+                        _context.next = 5;
                         return alert.present();
 
                       case 5:
                       case "end":
-                        return _context2.stop();
+                        return _context.stop();
                     }
                   }
-                }, _callee2, this);
+                }, _callee, this);
               }));
             });
           }
@@ -1126,11 +1144,11 @@
             var _this3 = this;
 
             return new Promise(function (resolve) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this3, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this3, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
                 var lang, msessage, vm, alert;
-                return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
                   while (1) {
-                    switch (_context3.prev = _context3.next) {
+                    switch (_context2.prev = _context2.next) {
                       case 0:
                         lang = this.getLang();
                         msessage = singleMessage[lang][message];
@@ -1142,12 +1160,12 @@
                         vm = this;
 
                         if (vm.alertPresented) {
-                          _context3.next = 11;
+                          _context2.next = 11;
                           break;
                         }
 
                         vm.alertPresented = true;
-                        _context3.next = 8;
+                        _context2.next = 8;
                         return this.alert.create({
                           header: title,
                           message: msessage,
@@ -1160,16 +1178,16 @@
                         });
 
                       case 8:
-                        alert = _context3.sent;
-                        _context3.next = 11;
+                        alert = _context2.sent;
+                        _context2.next = 11;
                         return alert.present();
 
                       case 11:
                       case "end":
-                        return _context3.stop();
+                        return _context2.stop();
                     }
                   }
-                }, _callee3, this);
+                }, _callee2, this);
               }));
             });
           }

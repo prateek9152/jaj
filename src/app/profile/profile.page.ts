@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
+import { Config } from '../config/config';
 import { AuthService } from '../services/auth.service';
 import { ImageService } from '../services/image.service';
 
@@ -13,20 +14,15 @@ export class ProfilePage implements OnInit {
   blobImageName: any;
   useBlobImage: any;
   blobImage: Blob;
-  loginDetails : any;
-  profilePicUrl : any = 'https://ionicinto.wdipl.com/mychat/public/pic/';
-  constructor(
-    private menuCtrl:MenuController,
-    private navCtrl: NavController,
-    private imageP:ImageService,
-    public auth:AuthService,) { 
+  gallaryImgPath: any = [];
+  profilePicUrl: any = Config.profilePic;
+
+  constructor(private menuCtrl:MenuController,private auth:AuthService, private navCtrl: NavController,private imageP:ImageService) { 
+    this.formData = this.auth.getUserDetails();
   }
 
 
   ngOnInit() {
-    this.loginDetails = this.auth.getUserDetails();
-    console.log("Login Data:"+JSON.stringify(this.loginDetails));
-
   }
   getImage(){
     this.imageP.getImage().then((res: any)=> {
@@ -40,10 +36,13 @@ export class ProfilePage implements OnInit {
   save(){
     
     let data1 ={
-      "profile": {value:this.useBlobImage,type:"No",name:this.blobImageName}
+      "id":{value:this.auth.getCurrentUserId(),type:"NO"},
+      "file": {value:this.useBlobImage,type:"No",name:this.blobImageName}
     };
-    
-    console.log(data1);
+    this.auth.uploadPic(data1).subscribe((data:any)=> {
+        console.log("pppp"+data);
+    })
+    // console.log(data1);
     
   }
   ionViewWillEnter() {

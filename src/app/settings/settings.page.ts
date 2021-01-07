@@ -18,7 +18,8 @@ export class SettingsPage implements OnInit {
   }
   privacy(){}
   posting(){}
-  contact(){}
+  contact(){this.router.navigate(['/menu/contact']);
+}
   goBack(){
     this.navCtrl.back();
   }

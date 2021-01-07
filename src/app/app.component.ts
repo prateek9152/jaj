@@ -39,8 +39,12 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      
-       
+      if(this.auth.isUserLoggedIn()){
+          this.router.navigate(['/menu/home']);
+      }
+        else {
+          this.router.navigate(['/menu/login']);
+        }
       this.statusBar.styleDefault();
    
      this.splashScreen.hide();
