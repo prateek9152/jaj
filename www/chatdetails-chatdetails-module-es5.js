@@ -300,13 +300,14 @@
           value: function ngOnInit() {
             var _this = this;
 
-            this.loginId = 2;
+            this.userData = JSON.parse(localStorage.getItem('userData'));
+            this.loginId = 1;
             this.actRoute.paramMap.subscribe(function (params) {
               // this.room = params.get('room');
               _this.room = 'cm9vbS0xMg=='; //--reciver is ( in private chat is sender id )-----
               // this.receiverId = params.get('receiver');
 
-              _this.receiverId = 1; // this.chatType = params.get('type');
+              _this.receiverId = 2; // this.chatType = params.get('type');
 
               _this.chatType = 1;
             });

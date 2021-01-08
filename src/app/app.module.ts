@@ -15,7 +15,7 @@ import {Camera} from '@ionic-native/camera/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { Contacts } from '@ionic-native/contacts/ngx';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://ionicinto.wdipl.com:9902/', options: {secure: true}, };
+const config: SocketIoConfig = { url: 'https://ionicinto.wdipl.com:9902/', options: {secure: true}, };
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

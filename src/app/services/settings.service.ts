@@ -25,7 +25,7 @@ export class SettingsService {
   getApiHeaders(extraHeader = {}, checkAuth = false) {
 
     if (checkAuth) {
-      this.token = localStorage.getItem('userToken');
+      this.token = localStorage.getItem('token');
 
       this.headers = new HttpHeaders({ "Authorization": "Bearer " + this.token });
     }
@@ -43,7 +43,7 @@ export class SettingsService {
     return this.http.post<any>(Config.ApiUrl + 'api/auth/deleteUser', id, this.getApiHeaders(null, true)).pipe(catchError(this.handleError('deleteUser', id)))
   }
   logout(): Observable<{}> {
-    return this.http.post<any>(Config.ApiUrl + 'api/auth/logOut', null, this.getApiHeaders(null, true)).pipe(catchError(this.handleError('logout')))
+    return this.http.post<any>(Config.ApiUrl + 'mychat/api/logout', null, this.getApiHeaders(null, true)).pipe(catchError(this.handleError('logout')))
   }
   isLogedIn(): Observable<any> {
     return this.http.post<any>(Config.ApiUrl + 'api/auth/islogedin', null, this.getApiHeaders(null, true)).pipe(catchError(this.handleError('isLogedIn')));

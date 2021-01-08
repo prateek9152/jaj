@@ -278,7 +278,7 @@
       "./src/app/services/common.service.ts");
 
       var LoginPage = /*#__PURE__*/function () {
-        function LoginPage(router, menuCtrl, formBuilder, toastService, ionLoader, http, storage, authService, alertService, settingsService, commonService, platform) {
+        function LoginPage(router, menuCtrl, formBuilder, toastService, ionLoader, http, storage, authService, alertController, settingsService, commonService, platform, alertService) {
           _classCallCheck(this, LoginPage);
 
           // this.menuCtrl.enable(false,"first");
@@ -290,10 +290,11 @@
           this.http = http;
           this.storage = storage;
           this.authService = authService;
-          this.alertService = alertService;
+          this.alertController = alertController;
           this.settingsService = settingsService;
           this.commonService = commonService;
           this.platform = platform;
+          this.alertService = alertService;
           this.submitted = false;
           this.validation_messages = {
             emailOrPrimaryMobile: [{
@@ -353,31 +354,60 @@
 
             if (this.validations_form.invalid) {
               return;
-            } // var formData: any = new FormData();
-            // formData.append("emailOrPrimaryMobile",this.validations_form.get('emailOrPrimaryMobile').value);
-            // formData.append("password",this.validations_form.get('password').value);
-            // console.log(formData);
+            }
 
+            return this.authService.userLogin(this.validations_form.value).pipe().subscribe(function (response) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                var vm, alert;
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        console.log('statusCode:', response.status);
 
-            this.authService.userLogin(this.validations_form.value).subscribe(function (response) {
-              if (response) {
-                _this.authService.updateUserDetails(response);
+                        if (!response) {
+                          _context.next = 12;
+                          break;
+                        }
 
-                _this.router.navigate(['/menu/home']);
-              } else {} //  this.registerForm.reset();
+                        vm = this;
 
-            }); // this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
-            // console.log("loginResponce:"+JSON.stringify(response));
-            // console.log(response.status);
-            // this.router.navigate(['/menu/home']);
-            // //  if(response.status==1){
-            // //   //  this.authService.updateUserDetails(response.data);
-            // //    this.toastService.showLoginToast();
-            // //  }
-            // //   else {
-            // //     // this.alertService.show('Alert',response.message);
-            // //   }
-            // })
+                        if (vm.alertPresented) {
+                          _context.next = 12;
+                          break;
+                        }
+
+                        vm.alertPresented = true;
+                        this.authService.updateUserDetails(response);
+                        _context.next = 8;
+                        return this.alertController.create({
+                          cssClass: 'my-custom-class',
+                          header: 'Thank You',
+                          message: 'Success!!',
+                          buttons: [{
+                            text: 'OK',
+                            handler: function handler() {
+                              vm.alertPresented = false;
+                            }
+                          }]
+                        });
+
+                      case 8:
+                        alert = _context.sent;
+                        _context.next = 11;
+                        return alert.present();
+
+                      case 11:
+                        this.router.navigate(['/menu/home']);
+
+                      case 12:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }
+                }, _callee, this);
+              }));
+            });
           }
         }, {
           key: "register",
@@ -412,13 +442,15 @@
         }, {
           type: _services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]
         }, {
-          type: _services_alert_service__WEBPACK_IMPORTED_MODULE_9__["AlertService"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
         }, {
           type: _services_settings_service__WEBPACK_IMPORTED_MODULE_11__["SettingsService"]
         }, {
           type: _services_common_service__WEBPACK_IMPORTED_MODULE_12__["CommonService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"]
+        }, {
+          type: _services_alert_service__WEBPACK_IMPORTED_MODULE_9__["AlertService"]
         }];
       };
 
@@ -1110,13 +1142,13 @@
             var _this2 = this;
 
             return new Promise(function (resolve) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
                 var alert;
-                return regeneratorRuntime.wrap(function _callee$(_context) {
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
                   while (1) {
-                    switch (_context.prev = _context.next) {
+                    switch (_context2.prev = _context2.next) {
                       case 0:
-                        _context.next = 2;
+                        _context2.next = 2;
                         return this.alert.create({
                           cssClass: 'my-custom-class',
                           header: title,
@@ -1125,16 +1157,16 @@
                         });
 
                       case 2:
-                        alert = _context.sent;
-                        _context.next = 5;
+                        alert = _context2.sent;
+                        _context2.next = 5;
                         return alert.present();
 
                       case 5:
                       case "end":
-                        return _context.stop();
+                        return _context2.stop();
                     }
                   }
-                }, _callee, this);
+                }, _callee2, this);
               }));
             });
           }
@@ -1144,11 +1176,11 @@
             var _this3 = this;
 
             return new Promise(function (resolve) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this3, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this3, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
                 var lang, msessage, vm, alert;
-                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                return regeneratorRuntime.wrap(function _callee3$(_context3) {
                   while (1) {
-                    switch (_context2.prev = _context2.next) {
+                    switch (_context3.prev = _context3.next) {
                       case 0:
                         lang = this.getLang();
                         msessage = singleMessage[lang][message];
@@ -1160,12 +1192,12 @@
                         vm = this;
 
                         if (vm.alertPresented) {
-                          _context2.next = 11;
+                          _context3.next = 11;
                           break;
                         }
 
                         vm.alertPresented = true;
-                        _context2.next = 8;
+                        _context3.next = 8;
                         return this.alert.create({
                           header: title,
                           message: msessage,
@@ -1178,16 +1210,16 @@
                         });
 
                       case 8:
-                        alert = _context2.sent;
-                        _context2.next = 11;
+                        alert = _context3.sent;
+                        _context3.next = 11;
                         return alert.present();
 
                       case 11:
                       case "end":
-                        return _context2.stop();
+                        return _context3.stop();
                     }
                   }
-                }, _callee2, this);
+                }, _callee3, this);
               }));
             });
           }

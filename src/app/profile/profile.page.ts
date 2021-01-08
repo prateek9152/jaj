@@ -36,7 +36,6 @@ export class ProfilePage implements OnInit {
   save(){
     
     let data1 ={
-      "id":{value:this.auth.getCurrentUserId(),type:"NO"},
       "file": {value:this.useBlobImage,type:"No",name:this.blobImageName}
     };
     this.auth.uploadPic(data1).subscribe((data:any)=> {

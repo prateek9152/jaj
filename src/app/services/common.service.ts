@@ -41,7 +41,7 @@ export class CommonService {
    getApiHeaders(extraHeader = {}, checkAuth = false) {
 
     if (checkAuth) {
-      this.token = localStorage.getItem('userToken');
+      this.token = localStorage.getItem('token');
       this.headers = new HttpHeaders({ "Authorization": "Bearer " + this.token });
     }
     return this.options = { headers: this.headers };
@@ -161,19 +161,23 @@ export class CommonService {
 
     loggingout(){
       this.storage.get('userData').then((value) =>            
-      this.settingsService.logout().subscribe((data: any) => {         
+      this.settingsService.logout().subscribe((data: any) => {
+        console.log(data);
+                 
            this.storage.clear(); 
-           localStorage.removeItem('userToken') ;
+           localStorage.removeItem('token') ;
            localStorage.removeItem('userData') ;
+          //  localStorage.removeItem('localStorageUserKey');
+
            localStorage.clear          
            
            this.dismissLoader(); 
-          this.router.navigateByUrl('/signin');
+          this.router.navigateByUrl('/menu/signin');
           this.navCtrl.navigateRoot;
             
         }, err => {
           this.storage.clear(); 
-          localStorage.removeItem('userToken') ;
+          localStorage.removeItem('token') ;
           localStorage.removeItem('userData') ;          
         })
       );

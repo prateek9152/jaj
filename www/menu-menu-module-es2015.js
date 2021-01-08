@@ -88,6 +88,10 @@ const routes = [
                 path: 'terms',
                 loadChildren: () => __webpack_require__.e(/*! import() | terms-terms-module */ "terms-terms-module").then(__webpack_require__.bind(null, /*! ../terms/terms.module */ "./src/app/terms/terms.module.ts")).then(m => m.TermsPageModule)
             },
+            {
+                path: 'contact',
+                loadChildren: () => __webpack_require__.e(/*! import() | contact-contact-module */ "contact-contact-module").then(__webpack_require__.bind(null, /*! ../contact/contact.module */ "./src/app/contact/contact.module.ts")).then(m => m.ContactPageModule)
+            },
         ]
     },
     {

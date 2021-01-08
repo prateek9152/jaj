@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {MenuController, NavController} from '@ionic/angular';
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',

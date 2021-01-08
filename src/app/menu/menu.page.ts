@@ -2,7 +2,8 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
-
+import { CommonService } from '../services/common.service';
+import {SettingsService} from '../services/settings.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -42,7 +43,8 @@ formData:any;
     
   ]
 
-  constructor(private router: Router,public auth:AuthService,private alertController:AlertController) {
+  constructor(private router: Router,public auth:AuthService,private alertController:AlertController,
+    private settingsService:SettingsService,private commonService:CommonService) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.activePath = event.url
     })
@@ -71,10 +73,11 @@ formData:any;
         }, {
           text: 'Yes',
           handler: () => {
-            this.auth.removeAllSessions();
-            this.auth.logout();
+            this.commonService.loggingout();
+              // this.auth.removeAllSessions();
 
-              this.router.navigate(['/menu/login']);
+
+              //  this.router.navigate(['/menu/login']);
           }
         }
       ]

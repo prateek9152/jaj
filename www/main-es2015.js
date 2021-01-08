@@ -518,7 +518,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const config = { url: 'http://ionicinto.wdipl.com:9902/', options: { secure: true }, };
+const config = { url: 'https://ionicinto.wdipl.com:9902/', options: { secure: true }, };
 let AppModule = class AppModule {
 };
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -631,12 +631,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
-/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! .././config/config */ "./src/app/config/config.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./common.service */ "./src/app/services/common.service.ts");
-/* harmony import */ var _http_error_handler_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./http-error-handler.service */ "./src/app/services/http-error-handler.service.ts");
-
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./common.service */ "./src/app/services/common.service.ts");
+/* harmony import */ var _http_error_handler_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./http-error-handler.service */ "./src/app/services/http-error-handler.service.ts");
 
 
 
@@ -662,10 +660,15 @@ let AuthService = class AuthService {
         // localStorageNotiCount="DRIVERNOTICOUNT";
         this.onUserDetailChanged = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](null);
         this.localStorageNotiData = "JAJNOTIDATA";
+        this.currentUserSubject = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
         this.platform.ready().then(() => {
             this.ifLoggedIn();
         });
         this.handleError = httpErrorHandler.createHandleError('TasksService');
+    }
+    get currentUserValue() {
+        return this.currentUserSubject.value;
     }
     ifLoggedIn() {
         const dataPromise = this.storage.get('userToken');
@@ -736,44 +739,44 @@ let AuthService = class AuthService {
         return this.http.post('https://ionicinto.wdipl.com/mychat/api/register', data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('addTask', data)));
     }
     userLogin(data) {
-        this.generateFormData(data);
-        return this.http.post('https://ionicinto.wdipl.com/mychat/api/login', data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('userLogin', data)));
+        let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "Accept": "application/json" });
+        return this.http.post('https://ionicinto.wdipl.com/mychat/api/login', data, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('userLogin', data)));
         // let formdata = this.generateFormData(data);
         // return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/login',formdata).pipe(catchError(this.handleError('userLogin',formdata)))
     }
-    post(data, url) {
-        let params = this.getUrlFromData(data);
-        return this.http.post('https://ionicinto.wdipl.com/mychat/api/' + url, { params: params });
-    }
+    // post(data: any,url:any): Observable<any>{
+    //   let params = this.getUrlFromData(data);
+    //   return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/'+url,{params:params});
+    // }
     logout() {
         this.removeAllSessions();
         return this.http.post('https://ionicinto.wdipl.com/mychat/api/logout', '');
     }
-    autoLogin() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const data = localStorage.getItem('userToken');
-            var userData = localStorage.getItem('userData');
-            userData = JSON.parse(userData);
-            if (userData) {
-                this.commonService.setUserData(userData);
-                if (userData.user_type == 1) {
-                    this.router.navigate(["/menu/home"]);
-                }
-            }
-        });
-    }
+    // async autoLogin()   {
+    //   const data =localStorage.getItem('userToken');
+    //   var userData:any =localStorage.getItem('userData');
+    //   userData =  JSON.parse(userData); 
+    //     if(userData)
+    //     {
+    //       this.commonService.setUserData(userData);
+    //       if(userData.user_type == 1)  
+    //         {
+    //           this.router.navigate(["/menu/home"]); 
+    //         }
+    //     }  
+    // }
     uploadPic(formData) {
-        return this.http.post(_config_config__WEBPACK_IMPORTED_MODULE_6__["Config"].ApiUrl + 'api/upload_profile_picture', formData, this.getApiHeaders(null, true)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('uploadPic', formData)));
+        return this.http.post('https://ionicinto.wdipl.com/mychat/api/upload_profile_picture', formData, this.getApiHeaders(null, true)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('uploadPic', formData)));
     }
 };
 AuthService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
-    { type: _http_error_handler_service__WEBPACK_IMPORTED_MODULE_10__["HttpErrorHandlerService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
+    { type: _http_error_handler_service__WEBPACK_IMPORTED_MODULE_9__["HttpErrorHandlerService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
     { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["Platform"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ToastController"] },
-    { type: _common_service__WEBPACK_IMPORTED_MODULE_9__["CommonService"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["Platform"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"] },
+    { type: _common_service__WEBPACK_IMPORTED_MODULE_8__["CommonService"] }
 ];
 AuthService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

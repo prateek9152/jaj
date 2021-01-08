@@ -99,6 +99,8 @@ export class AuthService {
   removeAllSessions() {
     localStorage.removeItem('token');
     localStorage.removeItem('userData');
+    localStorage.removeItem(this.localStorageUserKey);
+
   }
 
   isUserLoggedIn() {
@@ -121,8 +123,9 @@ export class AuthService {
   }
   getApiHeaders(extraHeader = {}, checkAuth = false){
       if(checkAuth){
-        this.token = localStorage.getItem('token');
-        this.headers = new HttpHeaders({"Authorization": "Bearer" + this.token});
+        this.headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          "Authorization": 'Bearer '+JSON.parse(localStorage.getItem('token'))});
 
       }
       return this.options = {headers: this.headers};

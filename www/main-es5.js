@@ -637,7 +637,7 @@
 
 
       var config = {
-        url: 'http://ionicinto.wdipl.com:9902/',
+        url: 'https://ionicinto.wdipl.com:9902/',
         options: {
           secure: true
         }
@@ -824,31 +824,25 @@
       /* harmony import */
 
 
-      var _config_config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-      /*! .././config/config */
-      "./src/app/config/config.ts");
-      /* harmony import */
-
-
-      var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
       /* harmony import */
 
 
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! @ionic/angular */
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
       /* harmony import */
 
 
-      var _common_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      var _common_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ./common.service */
       "./src/app/services/common.service.ts");
       /* harmony import */
 
 
-      var _http_error_handler_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      var _http_error_handler_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ./http-error-handler.service */
       "./src/app/services/http-error-handler.service.ts");
 
@@ -871,6 +865,8 @@
 
           this.onUserDetailChanged = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](null);
           this.localStorageNotiData = "JAJNOTIDATA";
+          this.currentUserSubject = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](JSON.parse(localStorage.getItem('currentUser')));
+          this.currentUser = this.currentUserSubject.asObservable();
           this.platform.ready().then(function () {
             _this4.ifLoggedIn();
           });
@@ -982,57 +978,46 @@
         }, {
           key: "userLogin",
           value: function userLogin(data) {
-            this.generateFormData(data);
-            return this.http.post('https://ionicinto.wdipl.com/mychat/api/login', data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('userLogin', data))); // let formdata = this.generateFormData(data);
-            // return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/login',formdata).pipe(catchError(this.handleError('userLogin',formdata)))
-          }
-        }, {
-          key: "post",
-          value: function post(data, url) {
-            var params = this.getUrlFromData(data);
-            return this.http.post('https://ionicinto.wdipl.com/mychat/api/' + url, {
-              params: params
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Accept": "application/json"
             });
-          }
+            return this.http.post('https://ionicinto.wdipl.com/mychat/api/login', data, {
+              headers: headers
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('userLogin', data))); // let formdata = this.generateFormData(data);
+            // return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/login',formdata).pipe(catchError(this.handleError('userLogin',formdata)))
+          } // post(data: any,url:any): Observable<any>{
+          //   let params = this.getUrlFromData(data);
+          //   return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/'+url,{params:params});
+          // }
+
         }, {
           key: "logout",
           value: function logout() {
             this.removeAllSessions();
             return this.http.post('https://ionicinto.wdipl.com/mychat/api/logout', '');
-          }
-        }, {
-          key: "autoLogin",
-          value: function autoLogin() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var data, userData;
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                while (1) {
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      data = localStorage.getItem('userToken');
-                      userData = localStorage.getItem('userData');
-                      userData = JSON.parse(userData);
+          } // async autoLogin()   {
+          //   const data =localStorage.getItem('userToken');
+          //   var userData:any =localStorage.getItem('userData');
+          //   userData =  JSON.parse(userData); 
+          //     if(userData)
+          //     {
+          //       this.commonService.setUserData(userData);
+          //       if(userData.user_type == 1)  
+          //         {
+          //           this.router.navigate(["/menu/home"]); 
+          //         }
+          //     }  
+          // }
 
-                      if (userData) {
-                        this.commonService.setUserData(userData);
-
-                        if (userData.user_type == 1) {
-                          this.router.navigate(["/menu/home"]);
-                        }
-                      }
-
-                    case 4:
-                    case "end":
-                      return _context3.stop();
-                  }
-                }
-              }, _callee3, this);
-            }));
-          }
         }, {
           key: "uploadPic",
           value: function uploadPic(formData) {
-            return this.http.post(_config_config__WEBPACK_IMPORTED_MODULE_6__["Config"].ApiUrl + 'api/upload_profile_picture', formData, this.getApiHeaders(null, true)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('uploadPic', formData)));
+            return this.http.post('https://ionicinto.wdipl.com/mychat/api/upload_profile_picture', formData, this.getApiHeaders(null, true)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('uploadPic', formData)));
+          }
+        }, {
+          key: "currentUserValue",
+          get: function get() {
+            return this.currentUserSubject.value;
           }
         }]);
 
@@ -1043,17 +1028,17 @@
         return [{
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
         }, {
-          type: _http_error_handler_service__WEBPACK_IMPORTED_MODULE_10__["HttpErrorHandlerService"]
+          type: _http_error_handler_service__WEBPACK_IMPORTED_MODULE_9__["HttpErrorHandlerService"]
         }, {
-          type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]
         }, {
           type: _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"]
         }, {
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["Platform"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["Platform"]
         }, {
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ToastController"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"]
         }, {
-          type: _common_service__WEBPACK_IMPORTED_MODULE_9__["CommonService"]
+          type: _common_service__WEBPACK_IMPORTED_MODULE_8__["CommonService"]
         }];
       };
 
@@ -1189,15 +1174,15 @@
         }, {
           key: "presentPromptRedirect",
           value: function presentPromptRedirect(title, msg, sendData, Url) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
               var _this5 = this;
 
               var alert;
-              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
-                  switch (_context4.prev = _context4.next) {
+                  switch (_context3.prev = _context3.next) {
                     case 0:
-                      _context4.next = 2;
+                      _context3.next = 2;
                       return this.alertController.create({
                         cssClass: this.cssClass,
                         header: title,
@@ -1228,25 +1213,25 @@
                       });
 
                     case 2:
-                      alert = _context4.sent;
+                      alert = _context3.sent;
                       alert.present();
 
                     case 4:
                     case "end":
-                      return _context4.stop();
+                      return _context3.stop();
                   }
                 }
-              }, _callee4, this);
+              }, _callee3, this);
             }));
           }
         }, {
           key: "presentAlert",
           value: function presentAlert(title, msg, btns, myCustomClass) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
               var alert;
-              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
                 while (1) {
-                  switch (_context5.prev = _context5.next) {
+                  switch (_context4.prev = _context4.next) {
                     case 0:
                       if (myCustomClass != null && myCustomClass != '') {
                         this.cssClass = myCustomClass;
@@ -1254,7 +1239,7 @@
                         this.cssClass = 'custom-alert';
                       }
 
-                      _context5.next = 3;
+                      _context4.next = 3;
                       return this.alertController.create({
                         cssClass: this.cssClass,
                         header: title,
@@ -1263,29 +1248,29 @@
                       });
 
                     case 3:
-                      alert = _context5.sent;
+                      alert = _context4.sent;
                       alert.present();
 
                     case 5:
                     case "end":
-                      return _context5.stop();
+                      return _context4.stop();
                   }
                 }
-              }, _callee5, this);
+              }, _callee4, this);
             }));
           }
         }, {
           key: "redirectUrlWithIdConfirm",
           value: function redirectUrlWithIdConfirm(title, msg, redirrectUrl, id) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
               var _this6 = this;
 
               var alert;
-              return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              return regeneratorRuntime.wrap(function _callee5$(_context5) {
                 while (1) {
-                  switch (_context6.prev = _context6.next) {
+                  switch (_context5.prev = _context5.next) {
                     case 0:
-                      _context6.next = 2;
+                      _context5.next = 2;
                       return this.alertController.create({
                         header: title,
                         message: msg,
@@ -1302,8 +1287,36 @@
                       });
 
                     case 2:
-                      alert = _context6.sent;
+                      alert = _context5.sent;
                       alert.present();
+
+                    case 4:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, _callee5, this);
+            }));
+          }
+        }, {
+          key: "presentToast",
+          value: function presentToast(headerdata) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+              var toast;
+              return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                while (1) {
+                  switch (_context6.prev = _context6.next) {
+                    case 0:
+                      _context6.next = 2;
+                      return this.toastController.create({
+                        header: headerdata,
+                        duration: 2000,
+                        position: 'bottom'
+                      });
+
+                    case 2:
+                      toast = _context6.sent;
+                      toast.present();
 
                     case 4:
                     case "end":
@@ -1314,45 +1327,17 @@
             }));
           }
         }, {
-          key: "presentToast",
-          value: function presentToast(headerdata) {
+          key: "presentLoader",
+          value: function presentLoader() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-              var toast;
+              var _this7 = this;
+
               return regeneratorRuntime.wrap(function _callee7$(_context7) {
                 while (1) {
                   switch (_context7.prev = _context7.next) {
                     case 0:
-                      _context7.next = 2;
-                      return this.toastController.create({
-                        header: headerdata,
-                        duration: 2000,
-                        position: 'bottom'
-                      });
-
-                    case 2:
-                      toast = _context7.sent;
-                      toast.present();
-
-                    case 4:
-                    case "end":
-                      return _context7.stop();
-                  }
-                }
-              }, _callee7, this);
-            }));
-          }
-        }, {
-          key: "presentLoader",
-          value: function presentLoader() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-              var _this7 = this;
-
-              return regeneratorRuntime.wrap(function _callee8$(_context8) {
-                while (1) {
-                  switch (_context8.prev = _context8.next) {
-                    case 0:
                       this.isLoading = true;
-                      _context8.next = 3;
+                      _context7.next = 3;
                       return this.loadingController.create({
                         spinner: 'crescent',
                         // message: 'wait...',
@@ -1367,6 +1352,29 @@
                       });
 
                     case 3:
+                      return _context7.abrupt("return", _context7.sent);
+
+                    case 4:
+                    case "end":
+                      return _context7.stop();
+                  }
+                }
+              }, _callee7, this);
+            }));
+          }
+        }, {
+          key: "dismissLoader",
+          value: function dismissLoader() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+                while (1) {
+                  switch (_context8.prev = _context8.next) {
+                    case 0:
+                      this.isLoading = false;
+                      _context8.next = 3;
+                      return this.loadingController.dismiss();
+
+                    case 3:
                       return _context8.abrupt("return", _context8.sent);
 
                     case 4:
@@ -1375,29 +1383,6 @@
                   }
                 }
               }, _callee8, this);
-            }));
-          }
-        }, {
-          key: "dismissLoader",
-          value: function dismissLoader() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-              return regeneratorRuntime.wrap(function _callee9$(_context9) {
-                while (1) {
-                  switch (_context9.prev = _context9.next) {
-                    case 0:
-                      this.isLoading = false;
-                      _context9.next = 3;
-                      return this.loadingController.dismiss();
-
-                    case 3:
-                      return _context9.abrupt("return", _context9.sent);
-
-                    case 4:
-                    case "end":
-                      return _context9.stop();
-                  }
-                }
-              }, _callee9, this);
             }));
           }
         }, {
@@ -1436,14 +1421,14 @@
         }, {
           key: "presentModal",
           value: function presentModal(path, classcss, parameters) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
               var _this9 = this;
 
-              return regeneratorRuntime.wrap(function _callee10$(_context10) {
+              return regeneratorRuntime.wrap(function _callee9$(_context9) {
                 while (1) {
-                  switch (_context10.prev = _context10.next) {
+                  switch (_context9.prev = _context9.next) {
                     case 0:
-                      _context10.next = 2;
+                      _context9.next = 2;
                       return this.modalController.create({
                         component: path,
                         cssClass: classcss,
@@ -1452,35 +1437,35 @@
                       });
 
                     case 2:
-                      this.modal = _context10.sent;
+                      this.modal = _context9.sent;
                       this.modal.onDidDismiss().then(function (d) {
                         _this9.modal = null;
                         _this9.modaldata = d;
                       });
-                      _context10.next = 6;
+                      _context9.next = 6;
                       return this.modal.present();
 
                     case 6:
-                      return _context10.abrupt("return", _context10.sent);
+                      return _context9.abrupt("return", _context9.sent);
 
                     case 7:
                     case "end":
-                      return _context10.stop();
+                      return _context9.stop();
                   }
                 }
-              }, _callee10, this);
+              }, _callee9, this);
             }));
           }
         }, {
           key: "showPopover",
           value: function showPopover(path, classcss, parameters) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
               var popover;
-              return regeneratorRuntime.wrap(function _callee11$(_context11) {
+              return regeneratorRuntime.wrap(function _callee10$(_context10) {
                 while (1) {
-                  switch (_context11.prev = _context11.next) {
+                  switch (_context10.prev = _context10.next) {
                     case 0:
-                      _context11.next = 2;
+                      _context10.next = 2;
                       return this.popoverController.create({
                         component: path,
                         translucent: true,
@@ -1490,19 +1475,19 @@
                       });
 
                     case 2:
-                      popover = _context11.sent;
-                      _context11.next = 5;
+                      popover = _context10.sent;
+                      _context10.next = 5;
                       return popover.present();
 
                     case 5:
-                      return _context11.abrupt("return", _context11.sent);
+                      return _context10.abrupt("return", _context10.sent);
 
                     case 6:
                     case "end":
-                      return _context11.stop();
+                      return _context10.stop();
                   }
                 }
-              }, _callee11, this);
+              }, _callee10, this);
             }));
           }
         }, {
@@ -1527,13 +1512,13 @@
             var buttons = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
             var numColumns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
             var numOptions = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 5;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
               var picker;
-              return regeneratorRuntime.wrap(function _callee12$(_context12) {
+              return regeneratorRuntime.wrap(function _callee11$(_context11) {
                 while (1) {
-                  switch (_context12.prev = _context12.next) {
+                  switch (_context11.prev = _context11.next) {
                     case 0:
-                      _context12.next = 2;
+                      _context11.next = 2;
                       return this.pickerController.create({
                         columns: columnOptions,
                         buttons: buttons,
@@ -1541,16 +1526,16 @@
                       });
 
                     case 2:
-                      picker = _context12.sent;
-                      _context12.next = 5;
+                      picker = _context11.sent;
+                      _context11.next = 5;
                       return picker.present();
 
                     case 5:
                     case "end":
-                      return _context12.stop();
+                      return _context11.stop();
                   }
                 }
-              }, _callee12, this);
+              }, _callee11, this);
             }));
           }
         }, {

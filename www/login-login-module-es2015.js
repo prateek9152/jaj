@@ -143,7 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(router, menuCtrl, formBuilder, toastService, ionLoader, http, storage, authService, alertService, settingsService, commonService, platform) {
+    constructor(router, menuCtrl, formBuilder, toastService, ionLoader, http, storage, authService, alertController, settingsService, commonService, platform, alertService) {
         // this.menuCtrl.enable(false,"first");
         this.router = router;
         this.menuCtrl = menuCtrl;
@@ -153,10 +153,11 @@ let LoginPage = class LoginPage {
         this.http = http;
         this.storage = storage;
         this.authService = authService;
-        this.alertService = alertService;
+        this.alertController = alertController;
         this.settingsService = settingsService;
         this.commonService = commonService;
         this.platform = platform;
+        this.alertService = alertService;
         this.submitted = false;
         this.validation_messages = {
             emailOrPrimaryMobile: [
@@ -202,31 +203,29 @@ let LoginPage = class LoginPage {
         if (this.validations_form.invalid) {
             return;
         }
-        // var formData: any = new FormData();
-        // formData.append("emailOrPrimaryMobile",this.validations_form.get('emailOrPrimaryMobile').value);
-        // formData.append("password",this.validations_form.get('password').value);
-        // console.log(formData);
-        this.authService.userLogin(this.validations_form.value).subscribe((response) => {
+        return this.authService.userLogin(this.validations_form.value).pipe().subscribe((response) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log('statusCode:', response.status);
             if (response) {
-                this.authService.updateUserDetails(response);
-                this.router.navigate(['/menu/home']);
+                let vm = this;
+                if (!vm.alertPresented) {
+                    vm.alertPresented = true;
+                    this.authService.updateUserDetails(response);
+                    const alert = yield this.alertController.create({
+                        cssClass: 'my-custom-class',
+                        header: 'Thank You',
+                        message: 'Success!!',
+                        buttons: [{
+                                text: 'OK',
+                                handler: () => {
+                                    vm.alertPresented = false;
+                                }
+                            }]
+                    });
+                    yield alert.present();
+                    this.router.navigate(['/menu/home']);
+                }
             }
-            else {
-            }
-            //  this.registerForm.reset();
-        });
-        // this.http.post('https://ionicinto.wdipl.com/mychat/api/login',formData,{headers:headers}).subscribe(async (response:any)=> {
-        // console.log("loginResponce:"+JSON.stringify(response));
-        // console.log(response.status);
-        // this.router.navigate(['/menu/home']);
-        // //  if(response.status==1){
-        // //   //  this.authService.updateUserDetails(response.data);
-        // //    this.toastService.showLoginToast();
-        // //  }
-        // //   else {
-        // //     // this.alertService.show('Alert',response.message);
-        // //   }
-        // })
+        }));
     }
     register() {
         this.router.navigate(['/menu/signup']);
@@ -241,10 +240,11 @@ LoginPage.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"] },
     { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["Storage"] },
     { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"] },
-    { type: _services_alert_service__WEBPACK_IMPORTED_MODULE_9__["AlertService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
     { type: _services_settings_service__WEBPACK_IMPORTED_MODULE_11__["SettingsService"] },
     { type: _services_common_service__WEBPACK_IMPORTED_MODULE_12__["CommonService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
+    { type: _services_alert_service__WEBPACK_IMPORTED_MODULE_9__["AlertService"] }
 ];
 LoginPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

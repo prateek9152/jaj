@@ -175,13 +175,14 @@ let ChatdetailsPage = class ChatdetailsPage {
         this.lastChatId = 0;
     }
     ngOnInit() {
-        this.loginId = 2;
+        this.userData = JSON.parse(localStorage.getItem('userData'));
+        this.loginId = 1;
         this.actRoute.paramMap.subscribe((params) => {
             // this.room = params.get('room');
             this.room = 'cm9vbS0xMg==';
             //--reciver is ( in private chat is sender id )-----
             // this.receiverId = params.get('receiver');
-            this.receiverId = 1;
+            this.receiverId = 2;
             // this.chatType = params.get('type');
             this.chatType = 1;
         });

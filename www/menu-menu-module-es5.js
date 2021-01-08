@@ -200,6 +200,17 @@
               return m.TermsPageModule;
             });
           }
+        }, {
+          path: 'contact',
+          loadChildren: function loadChildren() {
+            return __webpack_require__.e(
+            /*! import() | contact-contact-module */
+            "contact-contact-module").then(__webpack_require__.bind(null,
+            /*! ../contact/contact.module */
+            "./src/app/contact/contact.module.ts")).then(function (m) {
+              return m.ContactPageModule;
+            });
+          }
         }]
       }, {
         path: '',
