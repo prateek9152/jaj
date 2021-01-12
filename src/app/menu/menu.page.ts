@@ -48,6 +48,8 @@ formData:any;
     this.router.events.subscribe((event: RouterEvent) => {
       this.activePath = event.url
     })
+    this.formData = this.auth.getUserDetails();
+
   }
 
   ngOnInit() {

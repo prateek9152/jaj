@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
   formData:any;
   public items: any;
   requestCount: any = 0;
+  unreadchatCount: any = 0;
 
   constructor(
     private router:Router,
@@ -45,9 +46,10 @@ export class HomePage implements OnInit {
     this.displayUserList();
   }
     displayUserList(){
-          this.chatService.chatUserList().subscribe((data:any) => {
+          this.auth.chatUserList().subscribe((data:any) => {
               this.items = data.chatlist;
               this.requestCount = data.requestcount;
+              this.unreadchatCount = data.unreadchatcount;
           })
         }
   userRecords = [{

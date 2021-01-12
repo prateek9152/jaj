@@ -2,7 +2,7 @@
   <ion-menu side="start" contentId="main-content" type="overlay" menuId="custom" id="custom">
   
     <ion-content>
-      <div class="user">
+      <div class="user" *ngIf="auth.isUserLoggedIn()">
         <ion-list no-lines class="list_menu" style="margin: 16px 0px;border-bottom: 1px solid #ffffff47;">
   
           <ion-item no-lines class="chat_item chat_item_2" style="background-color: transparent;">
@@ -12,7 +12,7 @@
   
               </div>
             </ion-avatar>&nbsp;&nbsp;
-            <ion-input placeholder="Username" class="heading_int" style="color: #fe6e4a;"></ion-input>
+            <ion-input class="heading_int" style="color: #fe6e4a;">{{formData.user_name}}</ion-input>
             <!-- <p class="dat" style="color: #000;">@username</p> -->
           <!-- <p class="wallet_p"><b>$<span>100</span></b> <img src="assets/imgs/eye1.png" (click)="toggle()" style="width:18px;margin-left:5px;"></p> -->
   

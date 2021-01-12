@@ -225,3 +225,6 @@ z-index: +99;
   right: 55px;
   border-radius: 25px;
 }
+.nutrition-no-data {
+  height: calc(100% - 100px) !important;
+}

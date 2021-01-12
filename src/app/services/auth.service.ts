@@ -158,5 +158,8 @@ export class AuthService {
     return this.http.post<any>( Config.ApiUrl +'/api/upload_profile_picture',formData,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('uploadPic',formData)));
   }
 
- 
+  chatUserList(): Observable<any>{
+    return this.http.post<any>(Config.ApiUrl+'/api/chat_user_list',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
+
+  }
 }

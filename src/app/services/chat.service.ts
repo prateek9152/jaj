@@ -33,6 +33,7 @@ export class ChatService {
        this.token = localStorage.getItem('userToken');
        
        this.headers = new HttpHeaders({"Authorization": "Bearer " + this.token });
+       console.log("pspasps" +this.token);
     }
     return  this.options = { headers: this.headers };
   } 
@@ -45,7 +46,7 @@ export class ChatService {
   }
 //---------featch user list 
   chatUserList(): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'/api/chat_user_list',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
+    return this.http.post<any>(Config.ApiUrl+'/api/auth/chat_user_list',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
 
   }
 

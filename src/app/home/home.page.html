@@ -13,11 +13,11 @@
   <ion-segment [(ngModel)]="type" style="background-color: #fe6e4a;">
     <ion-segment-button   value="chat">
       Chat
-      <div class="txt1">3</div>
+      <div class="txt1" *ngIf="unreadchatCount > 0">{{unreadchatCount}}</div>
    </ion-segment-button>
    <ion-segment-button value="request"  (click)="showRequests()">
     Requests
-    <div class="txt">10</div>
+    <div class="txt" *ngIf="requestCount > 0">{{requestCount}}</div>
   </ion-segment-button>
   </ion-segment>
   
@@ -39,7 +39,7 @@
         </ion-avatar>
       
         <div (click)="chatdetail()">
-          <h6 class="heading_int">{{data.name}}</h6>
+          <h6 class="heading_int">{{data.user_name}}</h6>
               <p class="dateee">How are you?</p>
               </div>
               <div class="rate">
@@ -71,11 +71,13 @@
       </ion-item-options>
   
     </ion-item-sliding>
+
   </ion-list>
-  
+
       </div>
   
-  
+      <div *ngIf="items?.length === 0" style="text-align: center;">No Chat found</div>
+
   </div>
   
   <div *ngSwitchCase="'request'" class="list_plan">
