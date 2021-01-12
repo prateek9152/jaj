@@ -17,7 +17,7 @@ export class ApiService {
 
     getData(forceRefresh: boolean = false): Observable<any[]>{
       if(this.networkService.getCurrentNetworkStatus() === ConnectionStatus.Offline || forceRefresh){
-        return from(this.getLocalData('dogs'));
+        return from(this.getLocalData('user'));
                 }
       else {
         return this.http.get<any[]>('').pipe(tap(res => {

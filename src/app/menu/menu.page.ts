@@ -73,11 +73,11 @@ formData:any;
         }, {
           text: 'Yes',
           handler: () => {
-            this.commonService.loggingout();
-              // this.auth.removeAllSessions();
+            // this.commonService.loggingout();
+              this.auth.removeAllSessions();
 
 
-              //  this.router.navigate(['/menu/login']);
+               this.router.navigate(['/menu/login']);
           }
         }
       ]
