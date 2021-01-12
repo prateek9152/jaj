@@ -167,6 +167,8 @@ export class CommonService {
            this.storage.clear(); 
            localStorage.removeItem('token') ;
            localStorage.removeItem('userData') ;
+           localStorage.removeItem('currentUser') ;
+           
           //  localStorage.removeItem('localStorageUserKey');
 
            localStorage.clear          

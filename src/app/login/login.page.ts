@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import {  AlertController, MenuController, Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ToastService } from '../services/toast.service';
@@ -10,6 +10,7 @@ import { AlertService } from '../services/alert.service';
 import {Storage} from '@ionic/storage';
 import { SettingsService } from '../services/settings.service';
 import { CommonService } from '../services/common.service';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -20,11 +21,14 @@ export class LoginPage implements OnInit {
   submitted = false;
   diviceToken: string;
   public alertPresented: any;
+  returnUrl: string;
+  public err: any; 
 
   constructor(private router: Router,public menuCtrl:MenuController,public formBuilder: FormBuilder,
     private toastService:ToastService, private ionLoader:LoaderService, private http:HttpClient, public storage: Storage,
     private authService:AuthService,private alertController:AlertController,private settingsService:SettingsService,private commonService:CommonService,
-    private platform:Platform,private alertService:AlertService ) {
+    private platform:Platform,private alertService:AlertService,        private route: ActivatedRoute,
+    ) {
     
     // this.menuCtrl.enable(false,"first");
 
@@ -47,6 +51,7 @@ export class LoginPage implements OnInit {
         Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9!$%@#£€*?&]+$')
       ]))
     });
+      this.returnUrl = this.route.snapshot.queryParams['returnedUrl'] || '/';
   }
   get f() { return this.validations_form.controls; }
 
@@ -78,35 +83,47 @@ login(){
 
   return;
   }
-  
-  return this.authService.userLogin(this.validations_form.value).pipe().subscribe(async(response)=> {
-    console.log('statusCode:', response.status);
+  this.authService.login(this.f.emailOrPrimaryMobile.value,this.f.password.value).pipe(first()).subscribe(data => {
+      console.log(data);
+      this.authService.updateUserDetails(data);
+      this.alertService.confirmationAlert('Thank you','Login Successfully.');
+      this.router.navigate(['/menu/home']);
+  },error => {
+      this.alertService.show('Alert',error.message) ;
+  })
+  //  this.authService.userLogin(this.validations_form.value).subscribe(async(response) => {
+  //   console.log('statusCode:', response);
+    
+  //       if(response){
+          
+  //         let vm = this
+  //             if(!vm.alertPresented){
+  //               vm.alertPresented = true;
+  //           this.authService.updateUserDetails(response);
+  //           const alert = await this.alertController.create({
+  //             cssClass: 'my-custom-class',
+  //             header: 'Thank You',
+  //           message: 'Success!!',
+  //             buttons: [{
+  //             text: 'OK',
+  //             handler:() => {
+  //               vm.alertPresented = false
+  //             }
+  //           }]
+  //           });
 
-      if(response){
-        let vm = this
-            if(!vm.alertPresented){
-              vm.alertPresented = true;
-          this.authService.updateUserDetails(response);
-          const alert = await this.alertController.create({
-            cssClass: 'my-custom-class',
-            header: 'Thank You',
-           message: 'Success!!',
-            buttons: [{
-            text: 'OK',
-            handler:() => {
-              vm.alertPresented = false
-            }
-          }]
-          });
+  //           await alert.present();
+  //           this.router.navigate(['/menu/home']);
 
-          await alert.present();
-          this.router.navigate(['/menu/home']);
-
-        }
+  //         }
+          
+  //       }
         
-      }
-       
-  },)
+  //       else {
+  //         this.alertService.show('Alert',response.message);
+
+  //       }
+  // })
   
   
   

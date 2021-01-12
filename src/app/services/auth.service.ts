@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient ,  HttpParams,HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable,BehaviorSubject } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { BehaviorSubject } from 'rxjs';
+
+// import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import {User} from '../../user.model';  
 import { Config } from ".././config/config";
@@ -10,6 +11,8 @@ import { Router } from "@angular/router";
 import { ToastController, Platform } from '@ionic/angular';
 import { CommonService } from './common.service';
 import { HttpErrorHandlerService , HandleError } from "./http-error-handler.service";
+import { map } from 'rxjs/operators';
+
 export interface AuthResponseData {
   kind: string;
   idToken: string;
@@ -100,6 +103,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('userData');
     localStorage.removeItem(this.localStorageUserKey);
+    localStorage.removeItem('currentUser');
 
   }
 
@@ -125,50 +129,33 @@ export class AuthService {
       if(checkAuth){
         this.headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          "Authorization": 'Bearer '+JSON.parse(localStorage.getItem('token'))});
+          "Authorization": 'Bearer ' +JSON.parse(localStorage.getItem('token'))});
 
       }
       return this.options = {headers: this.headers};
   }
-
+  // signup(user){
+  //   return this.http.post('https://ionicinto.wdipl.com/mychat/api/register',user);
+  // }
   addUser(data: any): Observable<any> {
-    this.generateFormData(data);
-    return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/register', data).pipe(catchError(this.handleError('addTask', data)));
+    return this.http.post<any>(Config.ApiUrl +'/api/register', data).pipe(catchError(this.handleError('addTask', data)));
   }  
-  userLogin(data:any) : Observable<any>{
-    
-    let headers = new HttpHeaders({ "Accept": "application/json" });
-    
-    return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/login',data,{headers:headers}).pipe(catchError(this.handleError('userLogin',data)))
-
-    // let formdata = this.generateFormData(data);
-    // return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/login',formdata).pipe(catchError(this.handleError('userLogin',formdata)))
-  }  
-  // post(data: any,url:any): Observable<any>{
-  //   let params = this.getUrlFromData(data);
-
-  //   return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/'+url,{params:params});
-  // }
-  logout():Observable<any>{
-    this.removeAllSessions();
-    return this.http.post<any>('https://ionicinto.wdipl.com/mychat/api/logout','');
+  login(emailOrPrimaryMobile,password){
+    return this.http.post<any>(Config.ApiUrl +'/api/login',{emailOrPrimaryMobile,password}).pipe(map(user => {
+        // user.authdata = window.btoa(emailOrPrimaryMobile + ':' +password);
+        localStorage.setItem('currentUser',JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;
+    }))
   }
-  // async autoLogin()   {
-  //   const data =localStorage.getItem('userToken');
-  //   var userData:any =localStorage.getItem('userData');
-  //   userData =  JSON.parse(userData); 
-  //     if(userData)
-  //     {
-  //       this.commonService.setUserData(userData);
-  //       if(userData.user_type == 1)  
-  //         {
-  //           this.router.navigate(["/menu/home"]); 
-  //         }
-  //     }  
-  // }
-
+  
+    logout():Observable<any>{
+    this.removeAllSessions();
+    return this.http.post<any>(Config.ApiUrl +'/api/logout','');
+  }
+  
   uploadPic(formData){
-    return this.http.post<any>( 'https://ionicinto.wdipl.com/mychat/api/upload_profile_picture',formData,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('uploadPic',formData)));
+    return this.http.post<any>( Config.ApiUrl +'/api/upload_profile_picture',formData,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('uploadPic',formData)));
   }
 
  

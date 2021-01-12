@@ -11,6 +11,8 @@ import {LoaderService} from '../services/loader.service';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Storage} from '@ionic/storage';
+import { first } from 'rxjs/operators';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -31,7 +33,7 @@ export class SignupPage implements OnInit {
   
   constructor(private router:Router,private menuCtrl:MenuController, 
     private formBuilder:FormBuilder,private modalController:ModalController,
-    private toastService:ToastService,private ionLoader:LoaderService,
+    private alertService:AlertService,private ionLoader:LoaderService,
     private http:HttpClient,public authService:AuthService, private storage:Storage,private alertctrl:AlertController) { }
 
     dismissRegister(){
@@ -120,25 +122,33 @@ export class SignupPage implements OnInit {
     return;
     }
 
-    var formData = new FormData();
-    formData.append("name",this.registerForm.get('name').value);
-    formData.append("last_name",this.registerForm.get('last_name').value);
-    formData.append("primary_mobile_number",this.registerForm.get('primary_mobile_number').value);
-    formData.append("email",this.registerForm.get('email').value);
-    formData.append("password",this.registerForm.get('password').value);
-    formData.append("c_password",this.registerForm.get('c_password').value);
+    // var formData = new FormData();
+    // formData.append("name",this.registerForm.get('name').value);
+    // formData.append("last_name",this.registerForm.get('last_name').value);
+    // formData.append("primary_mobile_number",this.registerForm.get('primary_mobile_number').value);
+    // formData.append("email",this.registerForm.get('email').value);
+    // formData.append("password",this.registerForm.get('password').value);
+    // formData.append("c_password",this.registerForm.get('c_password').value);
 
-    this.authService.addUser(this.registerForm.value).subscribe(async(response:any)=> {
-        if(response){
-          this.authService.updateUserDetails(response.data);
+    this.authService.addUser(this.registerForm.value).pipe(first()).subscribe((response:any)=> {
+          this.authService.updateUserDetails(response);
           this.router.navigate(['/menu/login']);
-          this.toastService.showToast();
-        }
-        else {
-            this.toastService.errorLogin();
-        }
+          this.alertService.confirmationAlert('Thank you', 'Registration Completed Successfully.');
+        
+        
+        
+    },error => {
+      this.alertService.show('Alert',error.message);
+
     })
    
+    // this.authService.signup(this.registerForm.value).pipe(first()).subscribe(data => {
+    //     this.alertService.confirmationAlert('Thank you','Registration successful');
+    //     this.authService.updateUserDetails(data);
+    //       this.router.navigate(['/menu/login']);
+    // },error => {
+    //     this.alertService.show('Alert',error.message);
+    // })
 
 
    

@@ -32,37 +32,24 @@ export class HomePage implements OnInit {
       this.type = "chat";
     }
   ngOnInit(){
-    //  this.resultData = 
-  //  this.auth.get(data,'details').subscribe(
-  //   (response:any) =>{
-  //     console.log(response)
-  //     if(response.status==0){
-  //       this.resultData = response;
-
-
-  //       this.router.navigate(['/menu/home']);
-  //     }
-  //     else {
-  //       this.auth.updateUserDetails(response.data);
-  //     }
-    // let data = {
-    //   "id": this.auth.getCurrentUserId()
-    // };
-    // console.log(data);
+    let data = {
+      "id": this.auth.getCurrentUserId()
+    };
+    console.log(data);
   
   }
   ionViewDidEnter() {
     this.subscription = this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
     });
-    // this.displayUserList();
+    this.displayUserList();
   }
-    // displayUserList(){
-    //       this.chatService.chatUserList().subscribe((data:any) => {
-    //           this.items = data.chatlist;
-    //           this.requestCount = data.requestcount;
-    //       })
-    //     }
+    displayUserList(){
+          this.chatService.chatUserList().subscribe((data:any) => {
+              this.items = data.chatlist;
+              this.requestCount = data.requestcount;
+          })
+        }
   userRecords = [{
     "id": 1,
     "name": "Simon",
@@ -156,6 +143,10 @@ async requests(){
 showRequests(){
   
 }
+
+    cancel(){
+      this.router.navigate(['/menu/home']);
+    }
 }
 
 

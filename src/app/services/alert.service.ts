@@ -167,6 +167,9 @@ export class AlertService {
 
   confirmationAlert(title: string,message:string){
   return new Promise(async (resolve)=> {
+    let vm = this
+    if(!vm.alertPresented){
+      vm.alertPresented = true;
     const alert = await this.alert.create({
       cssClass: 'my-custom-class',
       header: title,
@@ -175,6 +178,7 @@ export class AlertService {
     });
 
     await alert.present();
+  }
   })
 }
 

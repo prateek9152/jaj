@@ -10,8 +10,9 @@
 
 <ion-content class="profile">
     <div class="bg-profile">
-      <img *ngIf="formData.profile_picture" src="{{profilePicUrl}} {{formData.profile_picture}}">
-      <img *ngIf="!formData.profile_picture" src="../../assets/imgs/user.jpg">
+      <img *ngIf="!formData?.file" src="../../assets/imgs/user.jpg">
+      <img *ngIf="formData?.file" [src]="formData?.file">
+
       <!-- <img  [src]="formData?.profile_picture"> -->
       <button class="selectfile">
         <img style="margin-left: 1px;
