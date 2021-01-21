@@ -20,20 +20,20 @@ const routes: Routes = [
      
       {
         path: 'signup',
-        loadChildren: () => import('../signup/signup.module').then( m => m.SignupPageModule)
+        loadChildren: () => import('../auth/signup/signup.module').then( m => m.SignupPageModule)
       },
       
       {
         path: 'login',
-        loadChildren: () => import('../login/login.module').then( m => m.LoginPageModule)
+        loadChildren: () => import('../auth/login/login.module').then( m => m.LoginPageModule)
       },
       {
         path: 'verify',
-        loadChildren: () => import('../verify/verify.module').then( m => m.VerifyPageModule)
+        loadChildren: () => import('../auth/verify/verify.module').then( m => m.VerifyPageModule)
       },
      {
       path: 'forgot',
-      loadChildren: () => import('../forgot/forgot.module').then( m => m.ForgotPageModule)
+      loadChildren: () => import('../auth/forgot/forgot.module').then( m => m.ForgotPageModule)
      },
      {
       path: 'settings',
@@ -41,7 +41,7 @@ const routes: Routes = [
     },
     {
       path: 'forgotverify',
-      loadChildren: () => import('../forgotverify/forgotverify.module').then( m => m.ForgotverifyPageModule)
+      loadChildren: () => import('../auth/forgotverify/forgotverify.module').then( m => m.ForgotverifyPageModule)
     },
     {
       path:'chatdetails/:receiver/:room/:type',

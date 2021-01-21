@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import {  AlertController, MenuController, Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { ToastService } from '../services/toast.service';
-import {LoaderService} from '../services/loader.service';
+import { ToastService } from '../../services/toast.service';
+import {LoaderService} from '../../services/loader.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
-import { AlertService } from '../services/alert.service';
+import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../services/alert.service';
 import {Storage} from '@ionic/storage';
-import { SettingsService } from '../services/settings.service';
-import { CommonService } from '../services/common.service';
+import { SettingsService } from '../../services/settings.service';
+import { CommonService } from '../../services/common.service';
 import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-login',

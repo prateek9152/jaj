@@ -12,10 +12,7 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
-  {
-    path: 'forgotverify',
-    loadChildren: () => import('./forgotverify/forgotverify.module').then( m => m.ForgotverifyPageModule)
-  },
+  
   {
     path: 'chatdetails',
     loadChildren: () => import('./chatdetails/chatdetails.module').then( m => m.ChatdetailsPageModule)

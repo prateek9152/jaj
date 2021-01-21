@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { MenuController,ModalController,NavController,AlertController } from '@ionic/angular';
-import {MustMatch} from '.././_helpers/must-match.validator';
-import {UsernameValidator} from '../_helpers/username.validator';
-import {PhoneValidator} from '../_helpers/phone.validator';
-import { LoginPage } from '../login/login.page';
-import {ToastService} from '../services/toast.service';
-import {LoaderService} from '../services/loader.service';
-import { AuthService } from '../services/auth.service';
+import {MustMatch} from '../.././_helpers/must-match.validator';
+import {UsernameValidator} from '../../_helpers/username.validator';
+import {PhoneValidator} from '../../_helpers/phone.validator';
+import { LoginPage } from '../../auth/login/login.page';
+import {ToastService} from '../../services/toast.service';
+import {LoaderService} from '../../services/loader.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Storage} from '@ionic/storage';
 import { first } from 'rxjs/operators';
-import { AlertService } from '../services/alert.service';
+import { AlertService } from '../../services/alert.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
