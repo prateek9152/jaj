@@ -5,6 +5,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 import { CommonService } from 'src/app/services/common.service';
 import { IonContent } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-chatdetails',
@@ -56,11 +57,11 @@ export class ChatdetailsPage implements OnInit {
     private actRoute: ActivatedRoute,
     private socket: Socket,
     public commonService:CommonService,
-    public alertController: AlertController,) { }
+    public alertController: AlertController,public auth:AuthService) {
+      this.userData = this.auth.getUserDetails();
+     }
 
   ngOnInit() {
-    this.userData = JSON.parse(localStorage.getItem('userData'));
-
     // this.loginId = 1;
     this.actRoute.paramMap.subscribe((params: ParamMap) => {
       this.room = params.get('room');
