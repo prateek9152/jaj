@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, Platform } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
-import { RequestsModalComponent } from '../requests-modal/requests-modal.component';
+import { RequestsModalComponent } from '../chatdetails/requests-modal/requests-modal.component';
 import {ChatService} from '../services/chat.service';
 import { ApiService } from '../services/api.service';
 import {NetworkService} from '../services/network.service';

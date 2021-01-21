@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router ,ActivatedRoute,ParamMap} from '@angular/router';
 import { PopoverController,NavController,MenuController,AlertController } from '@ionic/angular';
-import { DropdownComponent } from '../dropdown/dropdown.component';
+import { DropdownComponent } from '../chatdetails/dropdown/dropdown.component';
 import { CommonService } from 'src/app/services/common.service';
 import { IonContent } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';

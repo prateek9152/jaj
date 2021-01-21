@@ -17,10 +17,7 @@ const routes: Routes = [
     path: 'chatdetails',
     loadChildren: () => import('./chatdetails/chatdetails.module').then( m => m.ChatdetailsPageModule)
   },
-  {
-    path: 'mycontact',
-    loadChildren: () => import('./mycontact/mycontact.module').then( m => m.MycontactPageModule)
-  },
+ 
  
   {
     path: 'demo',

@@ -49,14 +49,11 @@ const routes: Routes = [
     },
     {
       path:'mycontact',
-      loadChildren:() => import('../mycontact/mycontact.module').then(m => m.MycontactPageModule)
+      loadChildren:() => import('../chatdetails/mycontact/mycontact.module').then(m => m.MycontactPageModule)
     },
    
-    {
-      path: 'terms',
-      loadChildren: () => import('../terms/terms.module').then( m => m.TermsPageModule)
-    },
-    {
+   
+   {
       path: 'contact',
       loadChildren: () => import('../contact/contact.module').then( m => m.ContactPageModule)
     },
