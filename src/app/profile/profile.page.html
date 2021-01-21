@@ -7,58 +7,80 @@
     <ion-title style="text-align: center;">Edit Profile</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="profile">
-    <div class="bg-profile">
-      <img *ngIf="!formData?.file" src="../../assets/imgs/user.jpg">
-      <img *ngIf="formData?.file" [src]="formData?.file">
+  <div class="bg-profile">
+    <img *ngIf="!formData?.file" src="../../assets/imgs/user.jpg">
+    <img *ngIf="formData?.file" [src]="formData?.file">
 
-      <!-- <img  [src]="formData?.profile_picture"> -->
-      <button class="selectfile">
-        <img style="margin-left: 1px;
-        width: 50%;
-        height: 82%;" src="../../assets/imgs/camera.png" (click)="getImage()">
-        </button>
-    </div>
-    <ion-grid fixed no-padding>
+    <!-- <img  [src]="formData?.profile_picture"> -->
+    <button class="selectfile">
+      <img style="margin-left: 1px;
+      width: 50%;
+      height: 82%;" src="../../assets/imgs/camera.png" (click)="getImage()">
+      </button>
+  </div>
+  <ion-grid fixed no-padding>
 
-       <ion-row>
-        <ion-col padding>
+     <ion-row>
+      <ion-col padding>
 
-          <ion-list>
-            
-             <ion-item class="box" lines="none">
-              <ion-label  position="stacked">Full Name:</ion-label>
-              <ion-input type="text"style=" font-weight: bold; color: #000; outline: none;" placeholder="" value=""  >{{formData.name}}</ion-input>
+        <ion-list>
+          
+           <ion-item class="box" lines="none">
+            <ion-label  position="stacked">Full Name:</ion-label>
+            <ion-input type="text"style=" font-weight: bold; color: #000; outline: none;"  placeholder="" value=""  >{{formData.name}}</ion-input>
+            <ion-input type="text"style=" font-weight: bold; color: #000; outline: none;" *ngIf="platform.is('android')" placeholder="" value=""  >{{formData.name}}</ion-input>
 
             </ion-item><br>
-              <ion-item class="box">
-              <ion-label  position="stacked">Email Address:</ion-label>
-              <ion-input inputmode="email" style="outline: none; font-weight: bold;" placeholder="" value="">{{formData.email}}</ion-input>
-             </ion-item><br>
-             <ion-item class="box">
-              <ion-label  position="stacked">Username:</ion-label>
-              <ion-input type="text"  style=" outline: none; font-weight: bold;" placeholder="" value=""  >{{formData.user_name}}</ion-input>
-
-            </ion-item>  
-        <br>
             <ion-item class="box">
-              <ion-label  position="stacked">Phone Number:</ion-label>
-              <ion-input inputmode="number" style=" outline: none; font-weight: bold;" placeholder="" value="" >{{formData.primary_mobile_number}}</ion-input>
-              </ion-item>
+            <ion-label  position="stacked">Email Address:</ion-label>
+            <ion-input inputmode="email" style="outline: none; font-weight: bold;" placeholder="" value="">{{formData.email}}</ion-input>
+            <ion-input inputmode="email" style="outline: none; font-weight: bold;"*ngIf="platform.is('android')" placeholder="" value="">{{formData.email}}</ion-input>  
+          </ion-item><br>
+           <ion-item class="box">
+            <ion-label  position="stacked">Username:</ion-label>
+            <ion-input type="text"  style=" outline: none; font-weight: bold;"  placeholder="" value=""  >{{formData.user_name}}</ion-input>
+            <ion-input type="text"  style=" outline: none; font-weight: bold;" *ngIf="platform.is('android')" placeholder="" value=""  >{{formData.user_name}}</ion-input>
 
-          </ion-list>
+          </ion-item>  
+      <br>
+          <ion-item class="box">
+            <ion-label  position="stacked">Phone Number:</ion-label>
+            <ion-input inputmode="number" style=" outline: none; font-weight: bold;" placeholder="" value="" >{{formData.primary_mobile_number}}</ion-input>
+            <ion-input inputmode="number" style=" outline: none; font-weight: bold;"*ngIf="platform.is('android')" placeholder="" value="" >{{formData.primary_mobile_number}}</ion-input>
+          </ion-item>
+
+        </ion-list>
 
 
 
-        </ion-col>
-      </ion-row> 
+      </ion-col>
+    </ion-row> 
 <div id="footer">
-  <button expand="block" class="btnsave" (click)="save()">Save</button>
+<button expand="block" class="btnsave" (click)="save()">Save</button>
 </div>
-    </ion-grid>
+  </ion-grid>
 
 
 
 
 </ion-content>
+<!-- <ion-content>
+
+
+    <ion-grid>
+      <ion-row>
+      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+        <ion-img src="{{ photo.webviewPath }}" (click)="showActionSheet(photo, position)"></ion-img>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button (click)="photoService.takePicture()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>    
+
+
+</ion-content> -->

@@ -4,6 +4,8 @@ import { ModalController, Platform } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { RequestsModalComponent } from '../requests-modal/requests-modal.component';
 import {ChatService} from '../services/chat.service';
+import { ApiService } from '../services/api.service';
+import {NetworkService} from '../services/network.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -22,22 +24,29 @@ export class HomePage implements OnInit {
   public items: any;
   requestCount: any = 0;
   unreadchatCount: any = 0;
-
+  userData:any;
   constructor(
     private router:Router,
     private platform: Platform,
     private auth:AuthService,
     private chatService:ChatService,
-    private modalController:ModalController
+    private modalController:ModalController,
+    private apiService: ApiService,
+            public networkService: NetworkService,
     ) {
       this.type = "chat";
+      this.userData = this.auth.getUserDetails();
+      console.log("pppp", this.userData);
+      
     }
   ngOnInit(){
-    let data = {
-      "id": this.auth.getCurrentUserId()
-    };
-    console.log(data);
+    
+       this.auth.getCurrentUserId()
   
+        
+         this.auth.getNativeCurrentUserId();
+        
+  this.networkService.initializeNetworkEvents();
   }
   ionViewDidEnter() {
     this.subscription = this.platform.backButton.subscribe(() => {
@@ -106,8 +115,8 @@ export class HomePage implements OnInit {
       this.buttonName = "Show";
   }
 details(){}
-chatdetail(){
-  this.router.navigate(['/menu/chatdetails']);
+chatdetail(receiverID:any,room:any,type:any){
+  this.router.navigate(['/menu/chatdetails/'+receiverID+'/'+room+'/'+type]);
 }
 filter() {
 }

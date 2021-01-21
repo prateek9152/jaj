@@ -86,6 +86,7 @@ login(){
   this.authService.login(this.f.emailOrPrimaryMobile.value,this.f.password.value).pipe(first()).subscribe(data => {
       console.log(data);
       this.authService.updateUserDetails(data);
+      this.authService.setLoggedIn(true);
       this.alertService.confirmationAlert('Thank you','Login Successfully.');
       this.router.navigate(['/menu/home']);
   },error => {

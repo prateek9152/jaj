@@ -6,6 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+// import { ConnectionStatus, NetworkService } from './services/network.service';
+import { OfflineManagerService } from './services/offline-manager.service';
+import { NetworkService } from './services/network.service';
 
 @Component({
   selector: 'app-root',
@@ -27,8 +30,9 @@ export class AppComponent {
     private location: Location,
     private router:Router,
     private toastController:ToastController,
-    private auth:AuthService
-   
+    private auth:AuthService,
+    private offlineManager: OfflineManagerService,
+   private networkService:NetworkService
 
   ) {
 
@@ -45,11 +49,20 @@ export class AppComponent {
         else {
           this.router.navigate(['/menu/login']);
         }
+    
+        // this.networkService.onNetworkChange().subscribe((status: ConnectionStatus) => {
+        //     if(status == ConnectionStatus.Online){
+        //         this.offlineManager.checkForEvents().subscribe();
+        //     }
+        // })
+        
+            
+        
       this.statusBar.styleDefault();
    
      this.splashScreen.hide();
     });
- 
+    
   }
   backButtonEvent() {
     this.platform.backButton.subscribe(async () => {

@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
-import {Camera} from '@ionic-native/camera/ngx';
+import {Camera,CameraOptions} from '@ionic-native/camera/ngx';
 import {AlertController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';  
+import { PhotoService } from './photo.service';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import {File} from '@ionic-native/file/ngx';
+import {Storage} from '@ionic/storage';
+
+const PHOTO_STORAGE:string = "photos";
 
 @Injectable({
  
   providedIn: 'root'
 })
 export class ImageService {
+  public photos: Photo[] = [];
 
   constructor(public http:HttpClient,
     public camera:Camera,
-    public alertCtrl:AlertController) { }
+    public alertCtrl:AlertController, public photoService:PhotoService,private storage:Storage, private file:File,private webview:WebView) { }
   
     getimageByCamera(){
     return new Promise((resolve,reject)=> {
@@ -75,19 +82,7 @@ export class ImageService {
               }, {
                 text: 'Take Photo',
                 handler: () => {
-                  this.camera.getPicture({
-                    quality: 100,
-                    destinationType: this.camera.DestinationType.DATA_URL,
-                    encodingType: this.camera.EncodingType.JPEG,
-                    targetHeight: 600,
-                    targetWidth: 600,
-                    saveToPhotoAlbum: false,
-                    correctOrientation: true  
-                  }).then((data)=> {
-                    resolve('data:image/jpeg;base64' +data);
-                  }, (err)=> {
-                    reject('Unable to take photo' +err);
-                  })
+                 this.takePicture();
                 }
               }
             ]
@@ -108,6 +103,28 @@ export class ImageService {
         }
       });
     }
+    async takePicture(){
+      const options: CameraOptions = {
+          quality: 100,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE
+      }
+      const capturedTempImage = await this.camera.getPicture(options);
+      const savedImageFile = await this.savePicture(capturedTempImage);
+      this.photos.unshift({
+          filepath: savedImageFile,
+          file: this.webview.convertFileSrc(savedImageFile)
+      });
+      this.storage.set(PHOTO_STORAGE,this.photos);
+}
+async savePicture(cameraImage){
+  const tempFileName = cameraImage.substr(cameraImage.lastIndexOf('/') +1);
+  const tempBaseFilesystemPath = cameraImage.substr(0,cameraImage.lastIndexOf('/') +1);
+  const newBaseFilesystemPath = this.file.dataDirectory;
+  await this.file.copyFile(tempBaseFilesystemPath,tempFileName,newBaseFilesystemPath,tempFileName);
+  return newBaseFilesystemPath + tempFileName;
+}
 
     getGalleryimages(){
       return new Promise((resolve,reject)=> {
@@ -236,4 +253,8 @@ export class ImageService {
       let imgType = k.substring(k.lastIndexOf("/")+1);
       return new Date().getTime() + '.' +imgType; 
     }
+}
+class Photo {
+  filepath: string;
+  file:string;
 }

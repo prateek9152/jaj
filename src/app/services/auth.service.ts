@@ -12,7 +12,7 @@ import { ToastController, Platform } from '@ionic/angular';
 import { CommonService } from './common.service';
 import { HttpErrorHandlerService , HandleError } from "./http-error-handler.service";
 import { map } from 'rxjs/operators';
-
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 export interface AuthResponseData {
   kind: string;
   idToken: string;
@@ -32,9 +32,11 @@ export class AuthService {
   localStorageUserKey = "JAJSESSION";
   localStorageUserTypeKey = "JAJSESSION";
   loginDetails : any;
+  userloginDetails:any;
   token:any;
   options:any;
   headers:any;
+  isLoggedIn = false;
   // localStorageNotiCount="DRIVERNOTICOUNT";
   onUserDetailChanged: BehaviorSubject<any> = new BehaviorSubject(null);
 
@@ -49,7 +51,8 @@ export class AuthService {
     private storage: Storage,
     private platform: Platform,
     public toastController: ToastController,
-    private commonService:CommonService 
+    private commonService:CommonService,
+    private nativeStorage: NativeStorage 
     ) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
       this.currentUser = this.currentUserSubject.asObservable();
@@ -62,13 +65,20 @@ export class AuthService {
       return this.currentUserSubject.value;
   }
   ifLoggedIn() {
-    const dataPromise = this.storage.get('userToken');
+    const dataPromise = this.storage.get('token');
       dataPromise.then(data => {
         let retdata = data;         
          if (retdata !== null) {          
           return true;
         }
       });
+      const user = this.storage.get('userData');
+      user.then(result => {
+          let retdata = result;
+          if(retdata !== null){
+            return true;
+          }
+      })
   }
   generateFormData(data: any) {
     let input = new FormData();
@@ -84,17 +94,41 @@ export class AuthService {
     return input;
   }
   getUserDetails() {
-    return JSON.parse(localStorage.getItem('userData'));
+    this.nativeStorage.getItem('user');
+    
+        return JSON.parse(localStorage.getItem('userData'));
+   
+      
   }
   getCurrentUserId() {
     this.loginDetails = JSON.parse(localStorage.getItem('userData'));
+    console.log("mobilewebid");
+    
     return this.loginDetails.id;
+    
+    
+      
   }
-  updateUserDetails(details: any) {    
+  
+  
+  updateUserDetails(details: any) {  
+    
+      console.log('desktop');
+      
     localStorage.setItem('token', JSON.stringify(details.success.token));
-    localStorage.setItem('userData', JSON.stringify(details.success.data));    
+    localStorage.setItem('userData', JSON.stringify(details.success.data)); 
+    
+                          // Native Storage 
+     this.nativeStorage.setItem('toekn', JSON.stringify(details.success.token)).then(
+      () => {console.log('Stored Token!'),error => console.error('Error storing item',error);})
+    this.nativeStorage.setItem('user', JSON.stringify(details.success.data)).then(
+      () => {console.log('Stored Item!'),error => console.error('Error storing item',error);})
+  
   }
-
+  getNativeCurrentUserId(){
+    this.userloginDetails = this.nativeStorage.getItem('user');
+    return this.userloginDetails.id;
+  }
   removeUserDetails() {
     localStorage.removeItem('userData');
   }
@@ -104,10 +138,12 @@ export class AuthService {
     localStorage.removeItem('userData');
     localStorage.removeItem(this.localStorageUserKey);
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userToken');
 
   }
 
   isUserLoggedIn() {
+
     this.loginDetails = JSON.parse(localStorage.getItem('userData'));
     if(this.loginDetails){
         return true;
@@ -145,12 +181,14 @@ export class AuthService {
         // user.authdata = window.btoa(emailOrPrimaryMobile + ':' +password);
         localStorage.setItem('currentUser',JSON.stringify(user));
         this.currentUserSubject.next(user);
+        this.authState.next(true);
         return user;
     }))
   }
   
     logout():Observable<any>{
     this.removeAllSessions();
+    this.authState.next(false);
     return this.http.post<any>(Config.ApiUrl +'/api/logout','');
   }
   
@@ -161,5 +199,12 @@ export class AuthService {
   chatUserList(): Observable<any>{
     return this.http.post<any>(Config.ApiUrl+'/api/chat_user_list',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
 
+  }
+
+  setLoggedIn(_value){
+      this.isLoggedIn = _value;
+  }
+  isAuthenticated(){
+      return this.authState.value;
   }
 }

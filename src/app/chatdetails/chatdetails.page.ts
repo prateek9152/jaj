@@ -60,15 +60,16 @@ export class ChatdetailsPage implements OnInit {
 
   ngOnInit() {
     this.userData = JSON.parse(localStorage.getItem('userData'));
-    this.loginId = 1;
+
+    // this.loginId = 1;
     this.actRoute.paramMap.subscribe((params: ParamMap) => {
-      // this.room = params.get('room');
-      this.room = 'cm9vbS0xMg==';
+      this.room = params.get('room');
+      // this.room = 'cm9vbS0xMg==';
       //--reciver is ( in private chat is sender id )-----
-      // this.receiverId = params.get('receiver');
-      this.receiverId = 2;
-      // this.chatType = params.get('type');
-      this.chatType = 1;
+      this.receiverId = params.get('receiver');
+      // this.receiverId = 2;
+      this.chatType = params.get('type');
+      // this.chatType = 1;
     });
     this.getStart();
     this.privateChat();
@@ -117,11 +118,11 @@ export class ChatdetailsPage implements OnInit {
       this.UserOnLineStatus = UserOnLineStatus;
     });
 
-    this.socket.emit("addUser", this.loginId,this.receiverId);
-    this.socket.emit("newUser", [this.loginId,this.receiverId, this.room]);
+    this.socket.emit("addUser", this.userData.id,this.receiverId);
+    this.socket.emit("newUser", [this.userData.id,this.receiverId, this.room]);
     
 
-    this.socket.emit("storemassagerequest",this.loginId,this.receiverId);
+    this.socket.emit("storemassagerequest",this.userData.id,this.receiverId);
 
     this.socket.fromEvent('stormessage').subscribe(storMessage => {      
       this.storeMessages = storMessage;
@@ -174,7 +175,7 @@ export class ChatdetailsPage implements OnInit {
       component: DropdownComponent,
       event: ev,
       componentProps: {
-        userDataid:this.loginId,
+        userDataid:this.userData.id,
         receiverId: this.receiverId,
         bidOUser : this.bidOUser,
         bSOUser:this.bSOUser,

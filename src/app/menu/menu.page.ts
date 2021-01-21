@@ -49,7 +49,8 @@ formData:any;
       this.activePath = event.url
     })
     this.formData = this.auth.getUserDetails();
-
+ console.log(this.auth.getUserDetails());
+ 
   }
 
   ngOnInit() {

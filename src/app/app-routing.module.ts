@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'addcircle',
     loadChildren: () => import('./addcircle/addcircle.module').then( m => m.AddcirclePageModule)
   },
+  {
+    path: 'demo',
+    loadChildren: () => import('./demo/demo.module').then( m => m.DemoPageModule)
+  },
   
   
   

@@ -38,7 +38,7 @@
        
         </ion-avatar>
       
-        <div (click)="chatdetail()">
+        <div (click)="chatdetail(userData.id === data.receiverID ? data.senderID: data.receiverID,data.chatroom.room,data.type)">
           <h6 class="heading_int">{{data.user_name}}</h6>
               <p class="dateee">How are you?</p>
               </div>

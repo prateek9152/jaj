@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, NavController,ActionSheetController, Platform } from '@ionic/angular';
 import { Config } from '../config/config';
 import { AuthService } from '../services/auth.service';
 import { ImageService } from '../services/image.service';
+import {PhotoService} from '../services/photo.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,12 +18,20 @@ export class ProfilePage implements OnInit {
   gallaryImgPath: any = [];
   profilePicUrl = "https://ionicinto.wdipl.com/public/profile_pic/thumb/";
 
-  constructor(private menuCtrl:MenuController,private auth:AuthService, private navCtrl: NavController,private imageP:ImageService) { 
+  constructor(private menuCtrl:MenuController,private auth:AuthService, private navCtrl: NavController,private imageP:ImageService
+    ,public photoService:PhotoService, public actionSheetController:ActionSheetController,public platform:Platform) { 
+      
     this.formData = this.auth.getUserDetails();
+    console.log('ProfileWeb');
+      
+       
+        
+      
   }
 
 
   ngOnInit() {
+      this.photoService.loadSave();
   }
   getImage(){
     this.imageP.getImage().then((res: any)=> {
@@ -33,6 +42,7 @@ export class ProfilePage implements OnInit {
       })
     })
   }
+
   save(){
     
     let data1 ={
@@ -47,6 +57,34 @@ export class ProfilePage implements OnInit {
     // console.log(data1);
     
   }
+
+  // async showActionSheet(photo,position){
+  //     const actionSheet = await this.actionSheetController.create({
+  //         header: 'Photos',
+  //         buttons: [
+  //           {
+  //             text: 'Choose from gallery',
+  //             handler: () => {
+  //                 this.getImage();
+  //             }
+  //           },
+  //           {
+  //             text: 'Take Camera',
+             
+  //             handler: () => {
+  //               this.photoService.takePicture();
+  //             }
+  //         }, {
+  //           text: 'Cancel',
+  //           icon: 'close',
+  //           role: 'cancel',
+  //           handler: () => {
+
+  //           }
+  //         }]
+  //     });
+  //     await actionSheet.present();
+  // }
   ionViewWillEnter() {
     // this.menuCtrl.enable(false);
   }

@@ -27,4 +27,7 @@ export class SettingsPage implements OnInit {
   ionViewWillEnter() {
     // this.menuCtrl.enable(false);
   }
+  saveimageStorage(){
+    this.router.navigate(['/menu/demo']);
+  }
 }

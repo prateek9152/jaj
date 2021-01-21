@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
-
 const routes: Routes = [
   {
     path: 'menu',
@@ -10,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: '../home/home.module#HomePageModule'
+        loadChildren: '../home/home.module#HomePageModule',
       },
       {
         path: 'profile',
@@ -45,7 +44,7 @@ const routes: Routes = [
       loadChildren: () => import('../forgotverify/forgotverify.module').then( m => m.ForgotverifyPageModule)
     },
     {
-      path:'chatdetails',
+      path:'chatdetails/:receiver/:room/:type',
       loadChildren:() => import('../chatdetails/chatdetails.module').then(m => m.ChatdetailsPageModule)
     },
     {
@@ -67,6 +66,10 @@ const routes: Routes = [
     {
       path: 'contact',
       loadChildren: () => import('../contact/contact.module').then( m => m.ContactPageModule)
+    },
+    {
+      path: 'demo',
+      loadChildren: () => import('../demo/demo.module').then( m => m.DemoPageModule)
     },
      ]
   },
