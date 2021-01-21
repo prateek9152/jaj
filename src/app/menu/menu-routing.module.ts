@@ -51,14 +51,7 @@ const routes: Routes = [
       path:'mycontact',
       loadChildren:() => import('../mycontact/mycontact.module').then(m => m.MycontactPageModule)
     },
-    {
-      path:'addgroup',
-      loadChildren:() => import('../addgroup/addgroup.module').then(m => m.AddgroupPageModule)
-    },
-    {
-      path:'addcircle',
-      loadChildren:() => import('../addcircle/addcircle.module').then(m => m.AddcirclePageModule)
-    },
+   
     {
       path: 'terms',
       loadChildren: () => import('../terms/terms.module').then( m => m.TermsPageModule)
