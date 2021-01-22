@@ -15,8 +15,9 @@ export class ProfilePage implements OnInit {
   blobImageName: any;
   useBlobImage: any;
   blobImage: Blob;
+  file:any;
   gallaryImgPath: any = [];
-  profilePicUrl = "https://ionicinto.wdipl.com/public/profile_pic/thumb/";
+  profilePicUrl : any = 'https://ionicinto.wdipl.com/mychat/public/pic/';
 
   constructor(private menuCtrl:MenuController,private auth:AuthService, private navCtrl: NavController,private imageP:ImageService
     ,public photoService:PhotoService, public actionSheetController:ActionSheetController,public platform:Platform) { 
