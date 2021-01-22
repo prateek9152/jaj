@@ -88,43 +88,11 @@ login(){
       this.authService.updateUserDetails(data);
       this.authService.setLoggedIn(true);
       this.alertService.confirmationAlert('Thank you','Login Successfully.');
-      this.router.navigate(['/menu/home']);
+      this.router.navigate(['/menu/home'],{skipLocationChange:true});
   },error => {
       this.alertService.show('Alert',error.message) ;
   })
-  //  this.authService.userLogin(this.validations_form.value).subscribe(async(response) => {
-  //   console.log('statusCode:', response);
-    
-  //       if(response){
-          
-  //         let vm = this
-  //             if(!vm.alertPresented){
-  //               vm.alertPresented = true;
-  //           this.authService.updateUserDetails(response);
-  //           const alert = await this.alertController.create({
-  //             cssClass: 'my-custom-class',
-  //             header: 'Thank You',
-  //           message: 'Success!!',
-  //             buttons: [{
-  //             text: 'OK',
-  //             handler:() => {
-  //               vm.alertPresented = false
-  //             }
-  //           }]
-  //           });
 
-  //           await alert.present();
-  //           this.router.navigate(['/menu/home']);
-
-  //         }
-          
-  //       }
-        
-  //       else {
-  //         this.alertService.show('Alert',response.message);
-
-  //       }
-  // })
   
   
   

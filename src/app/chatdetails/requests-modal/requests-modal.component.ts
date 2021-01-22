@@ -12,10 +12,11 @@ export class RequestsModalComponent implements OnInit {
   requestList : any ;
   constructor(
     private router:Router,
-    private commonService:CommonService
+    private commonService:CommonService,
 ) { }
 
   ngOnInit() {
+   
   }
   closeModal() {
     this.commonService.dismissModal();

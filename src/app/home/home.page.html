@@ -85,15 +85,16 @@
       
     <div class="user">
   
-      <ion-list>
+      <ion-list *ngFor="let data of requestList | filter:filterTerm">
       <ion-item-sliding no-lines>
-      <ion-item no-lines class="chat_item" *ngFor="let data of userRecords | filter:filterTerm">
+      <ion-item no-lines class="chat_item" *ngFor="let user of data.sendarbio" >
+
         <ion-avatar item-start>
             <img src="assets/imgs/blank-avatar.jpg">
         </ion-avatar>
         <div>
-        <h6 class="heading_int">{{data.name}}</h6>
-              <p class="dateee">How are you?</p>
+        <h6 class="heading_int">{{user.user_name}}</h6>
+              <!-- <p class="dateee">How are you?</p> -->
               </div>
               <div class="rate">
                   <button ion-button small class="block">Cancel</button>

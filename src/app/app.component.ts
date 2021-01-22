@@ -32,12 +32,13 @@ export class AppComponent {
     private toastController:ToastController,
     private auth:AuthService,
     private offlineManager: OfflineManagerService,
-   private networkService:NetworkService
+   private networkService:NetworkService,
+   private _location:Location 
 
   ) {
 
     this.initializeApp();
-    this.backButtonEvent();
+    // this.backButtonEvent();
 
   }
 
@@ -62,32 +63,72 @@ export class AppComponent {
    
      this.splashScreen.hide();
     });
-    
-  }
-  backButtonEvent() {
-    this.platform.backButton.subscribe(async () => {
-
-      this.routerOutlets.forEach(async (outlet: IonRouterOutlet) => {
-        if (outlet && outlet.canGoBack()) {
-          outlet.pop();
-
-        } else if (this.router.url === '/menu/home') {
-          if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
-            // this.platform.exitApp(); // Exit from app
-            navigator['app'].exitApp(); // work in ionic 4
-
-          } else {
-            const toast = await this.toastController.create({
-              message: 'Press back again to exit App.',
-              duration: 2000,
-              position: 'middle'
-            });
-            toast.present();
-            // console.log(JSON.stringify(toast));
-            this.lastTimeBackPress = new Date().getTime();
-          }
+   this.platform.backButton.subscribeWithPriority(10,(processNextHandler) => {
+        if(this._location.isCurrentPathEqualTo('/menu/home')){
+              this.showExitConfirm();
+              processNextHandler();
+        } else {
+            this._location.back();
         }
-      });
-    });
-}
+   });
+   this.platform.backButton.subscribeWithPriority(5,() => {
+        this.alertController.getTop().then(r => {
+            if(r){
+                navigator['app'].exitApp();
+            }
+            
+        }).catch(e => {
+                  console.log(e);
+                  
+        })
+   }); 
+  }
+      showExitConfirm(){
+        this.alertController.create({
+              header: 'App Termination',
+              message: 'Do you want to close the app',
+              backdropDismiss: false,
+              buttons: [{
+                  text: 'Stay',
+                  role: 'cancel',
+                  handler: () => {
+                      console.log('Application exit prevented');
+                      
+                  }
+              }, {
+                text: 'Exit',
+                handler: () => {
+                    navigator['app'].exitApp();
+                }
+              }]
+        }).then(alert => {
+            alert.present();
+        })
+      }  
+//   backButtonEvent() {
+//     this.platform.backButton.subscribe(async () => {
+
+//       this.routerOutlets.forEach(async (outlet: IonRouterOutlet) => {
+//         if (outlet && outlet.canGoBack()) {
+//           outlet.pop();
+
+//         } else if (this.router.url === '/menu/home') {
+//           if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
+//             // this.platform.exitApp(); // Exit from app
+//             navigator['app'].exitApp(); // work in ionic 4
+
+//           } else {
+//             const toast = await this.toastController.create({
+//               message: 'Press back again to exit App.',
+//               duration: 2000,
+//               position: 'middle'
+//             });
+//             toast.present();
+//             // console.log(JSON.stringify(toast));
+//             this.lastTimeBackPress = new Date().getTime();
+//           }
+//         }
+//       });
+//     });
+// }
 }

@@ -27,52 +27,51 @@ export class ChatService {
     ];
     this.handleError= httpErrorHandler.createHandleError('SearchService');
   }
-  getApiHeaders(extraHeader ={}, checkAuth=false){
-   
-    if(checkAuth){ 
-       this.token = localStorage.getItem('userToken');
-       
-       this.headers = new HttpHeaders({"Authorization": "Bearer " + this.token });
-       console.log("pspasps" +this.token);
+  getApiHeaders(extraHeader = {}, checkAuth = false){
+    if(checkAuth){
+      this.headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        "Authorization": 'Bearer ' +JSON.parse(localStorage.getItem('token'))});
+
     }
-    return  this.options = { headers: this.headers };
-  } 
+    return this.options = {headers: this.headers};
+} 
   searchPeople(data:any): Observable<any> {
-    return this.http.post<any>(Config.ApiUrl+'api/auth/searchPeople', data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('searchPeople', data)));
+    return this.http.post<any>(Config.ApiUrl+'/api/searchPeople', data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('searchPeople', data)));
 }
   searchQuery(data:any): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'api/auth/searchRequest',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('selectAll',data)));
+    return this.http.post<any>(Config.ApiUrl+'/api/searchRequest',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('selectAll',data)));
 
   }
 //---------featch user list 
   chatUserList(): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'/api/auth/chat_user_list',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
+    return this.http.post<any>(Config.ApiUrl+'/api/chat_user_list',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatUserList',null)));
 
   }
 
   requestsUserListCount(): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'api/auth/getChatRequestCount',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('requestsUserListCount',null)));
+    return this.http.post<any>(Config.ApiUrl+'/api/getChatRequestCount',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('requestsUserListCount',null)));
 
   }
 
   requestsUserList(): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'api/auth/getChatRequest',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('requestsUserList',null)));
+    return this.http.post<any>(Config.ApiUrl+'/api/get_chat_request',null,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('requestsUserList',null)));
 
   }
 
   //------------Accept chat request
   acceptChatRequest(data:any): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'api/auth/acceptRequest',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('acceptChatRequest',data)));
+    return this.http.post<any>(Config.ApiUrl+'/api/accept_request',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('acceptChatRequest',data)));
 
   }
   //------------Reject chat request
   rejectChatRequest(data:any): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'api/auth/rejectRequest',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('rejectChatRequest',data)));
+    return this.http.post<any>(Config.ApiUrl+'/api/reject_request',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('rejectChatRequest',data)));
 
   }
   //-----------send chat request
   sendChatRequest(data:any): Observable<any>{
-    return this.http.post<any>(Config.ApiUrl+'api/auth/sendChatRequest',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatRequestSend',data)));
+    return this.http.post<any>(Config.ApiUrl+'/api/send_chat_request',data,this.getApiHeaders(null,true)).pipe(catchError(this.handleError('chatRequestSend',data)));
 
   }
 

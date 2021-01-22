@@ -24,6 +24,8 @@ export class HomePage implements OnInit {
   public items: any;
   requestCount: any = 0;
   unreadchatCount: any = 0;
+  requestList : any ;
+
   userData:any;
   constructor(
     private router:Router,
@@ -47,9 +49,14 @@ export class HomePage implements OnInit {
          this.auth.getNativeCurrentUserId();
         
   this.networkService.initializeNetworkEvents();
+  this.chatService.requestsUserList().subscribe((data:any)=> {
+    this.requestList = data.requestslist;
+    console.log("pppppppaasps",data);
+    
+})
   }
   ionViewDidEnter() {
-    this.subscription = this.platform.backButton.subscribe(() => {
+    this.subscription = this.platform.backButton.subscribe(async() => {
       navigator['app'].exitApp();
     });
     this.displayUserList();
@@ -158,6 +165,9 @@ showRequests(){
     cancel(){
       this.router.navigate(['/menu/home']);
     }
+    // navigate(id : any,senderId:any,type:any){
+    //   this.router.navigate(['/access/'+id+'/'+senderId+'/'+type]);
+    // }
 }
 
 
